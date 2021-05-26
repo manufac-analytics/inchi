@@ -2,7 +2,7 @@
 
 ---
 
-<a title="NEUROtiker, Public domain, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Morphin_-_Morphine.svg"><img width="128" alt="Morphin - Morphine" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Morphin_-_Morphine.svg/128px-Morphin_-_Morphine.svg.png"></a>
+![Structure is taken from ChemSpider. ID 4450907](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Morphine_ball-and-stick.png/640px-Morphine_ball-and-stick.png)
 
 ---
 
