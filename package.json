@@ -11,10 +11,13 @@
   "files": ["libinchi.so.1.06.00"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/manufac-analytics/inchi.git"
+    "url": "git://github.com/manufac-analytics/inchi.git"
   },
   "bugs": {
     "url": "https://github.com/manufac-analytics/inchi/issues"
   },
   "homepage": "https://github.com/manufac-analytics/inchi#readme",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  }
 }
