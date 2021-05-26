@@ -17,8 +17,4 @@
     "url": "https://github.com/manufac-analytics/inchi/issues"
   },
   "homepage": "https://github.com/manufac-analytics/inchi#readme",
-  "publishConfig": {
-    "access": "public",
-    "registry":"https://registry.npmjs.org/"
-  }
 }
