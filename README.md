@@ -15,7 +15,7 @@
 
 ---
 
-How to use this library?
+#### How to use this library?
 
 - This library has a dependency on [ffi-napi](https://www.npmjs.com/package/ffi-napi). You may need to install [some necessary build tools](https://github.com/nodejs/node-gyp#installation) for it to work.
 - Alternately, you can also use Docker to quickly set up your dev environment. [Here's](https://github.com/manufac-analytics/inchi/blob/main/.devcontainer/Dockerfile) the Dockerfile that we are using for the same.
@@ -23,7 +23,7 @@ How to use this library?
 
 ---
 
-API Porting Status
+#### API Porting Status
 
 A. Generation of InChI from structure
 - [ ] GetINCHI
