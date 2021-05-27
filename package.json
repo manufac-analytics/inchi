@@ -1,14 +1,23 @@
 {
   "name": "@manufac-analytics/inchi",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "InChI for NodeJS",
-  "keywords": ["InChI", "InChiKey", "IUPAC", "NIST", "Line Notation", "Chemistry"],
+  "keywords": [
+    "InChI",
+    "InChiKey",
+    "IUPAC",
+    "NIST",
+    "Line Notation",
+    "Chemistry"
+  ],
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "ffi-napi": "^4.0.3"
   },
-  "files": ["libinchi.so.1.06.00"],
+  "files": [
+    "libinchi.so.1.06.00"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/manufac-analytics/inchi.git"
@@ -18,7 +27,7 @@
   },
   "homepage": "https://github.com/manufac-analytics/inchi#readme",
   "publishConfig": {
-    "registry":"https://registry.npmjs.org/",
+    "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
   "scripts": {
