@@ -53,7 +53,7 @@ B. Generation of InChI from structure, step-by-step way
 - [ ] STDINCHIGEN_Destroy
 
 C. Generation of InChI directly from Molfile
-MakeINCHIFromMolfileText
+- [ ] MakeINCHIFromMolfileText
 
 D. Restoring structure from InChI or AuxInfo
 - [ ] GetStructFromINCHI
@@ -82,3 +82,87 @@ G. Status Objects
 - [ ] IXA_STATUS_GetSeverity
 - [ ] IXA_STATUS_GetMessage
 
+H. Molecule Objects
+- [ ] IXA_MOL_Create
+- [ ] IXA_MOL_Clear
+- [ ] IXA_MOL_Destroy
+- [ ] IXA_MOL_ReadMolfile
+- [ ] IXA_MOL_ReadInChI
+- [ ] IXA_MOL_SetChiral
+- [ ] IXA_MOL_GetChiral
+- [ ] IXA_MOL_CreateAtom
+- [ ] IXA_MOL_SetAtomElement
+- [ ] IXA_MOL_SetAtomAtomicNumber
+- [ ] IXA_MOL_SetAtomMass
+- [ ] IXA_MOL_SetAtomCharge
+- [ ] IXA_MOL_SetAtomRadical
+- [ ] IXA_MOL_SetAtomHydrogens
+- [ ] IXA_MOL_SetAtomX
+- [ ] IXA_MOL_SetAtomY
+- [ ] IXA_MOL_SetAtomZ
+- [ ] IXA_MOL_CreateBond
+- [ ] IXA_MOL_SetBondType
+- [ ] IXA_MOL_SetBondWedge
+- [ ] IXA_MOL_SetDblBondConfig
+- [ ] IXA_MOL_CreateStereoTetrahedron
+- [ ] IXA_MOL_CreateStereoRectangle
+- [ ] IXA_MOL_CreateStereoAntiRectangle
+- [ ] IXA_MOL_SetStereoParity
+- [ ] IXA_MOL_CreatePolymerUnit (new in v. 1.06)
+- [ ] IXA_MOL_GetPolymerUnitId (new in v. 1.06)
+- [ ] IXA_MOL_GetPolymerUnitIndex (new in v. 1.06)
+- [ ] IXA_MOL_SetPolymerUnit (new in v. 1.06)
+- [ ] IXA_MOL_GetNumAtoms
+- [ ] IXA_MOL_GetNumBonds
+- [ ] IXA_MOL_GetAtomId
+- [ ] IXA_MOL_GetBondId
+- [ ] IXA_MOL_GetAtomIndex
+- [ ] IXA_MOL_GetBondIndex
+- [ ] IXA_MOL_GetAtomNumBonds
+- [ ] IXA_MOL_GetAtomBond
+- [ ] IXA_MOL_GetCommonBond
+- [ ] IXA_MOL_GetBondAtom1
+- [ ] IXA_MOL_GetBondAtom2
+- [ ] IXA_MOL_GetBondOtherAtom (new in v. 1.06)
+- [ ] IXA_MOL_GetAtomElement
+- [ ] IXA_MOL_GetAtomAtomicNumber
+- [ ] IXA_MOL_GetAtomMass
+- [ ] IXA_MOL_GetAtomCharge
+- [ ] IXA_MOL_GetAtomRadical
+- [ ] IXA_MOL_GetAtomHydrogens
+- [ ] IXA_MOL_GetAtomX
+- [ ] IXA_MOL_GetAtomY
+- [ ] IXA_MOL_GetAtomZ
+- [ ] IXA_MOL_GetBondType
+- [ ] IXA_MOL_GetBondWedge
+- [ ] IXA_MOL_GetDblBondConfig
+- [ ] IXA_MOL_GetNumStereos
+- [ ] IXA_MOL_GetStereoId
+- [ ] IXA_MOL_GetStereoIndex
+- [ ] IXA_MOL_GetStereoTopology
+- [ ] IXA_MOL_GetStereoCentralAtom
+- [ ] IXA_MOL_GetStereoCentralBond
+- [ ] IXA_MOL_GetStereoNumVertices
+- [ ] IXA_MOL_GetStereoVertex
+- [ ] IXA_MOL_GetStereoParity
+
+I. InChI Builder Objects
+- [ ] IXA_INCHIBUILDER_Create
+- [ ] IXA_INCHIBUILDER_SetMolecule
+- [ ] IXA_INCHIBUILDER_GetInChI
+- [ ] IXA_INCHIBUILDER_GetAuxInfo
+- [ ] IXA_INCHIBUILDER_GetLog
+- [ ] IXA_INCHIBUILDER_Destroy
+- [ ] IXA_INCHIBUILDER_SetOption
+- [ ] IXA_INCHIBUILDER_SetOption_Stereo
+- [ ] IXA_INCHIBUILDER_SetOption_Timeout
+- [ ] IXA_INCHIBUILDER_SetOption_Timeout_Milliseconds (new in v. 1.06)
+- [ ] IXA_INCHIBUILDER_CheckOption (new in v. 1.06)
+- [ ] IXA_INCHIBUILDER_CheckOption_Stereo (new in v. 1.06)
+- [ ] IXA_INCHIBUILDER_IXA_INCHIBUILDER_GetOption_Timeout_MilliSeconds (new in v. 1.06)
+
+J. InChIKey Builder Objects
+- [ ] IXA_INCHIKEYBUILDER_Create
+- [ ] IXA_INCHIKEYBUILDER_SetInChI
+- [ ] IXA_INCHIKEYBUILDER_GetInChIKey
+- [ ] IXA_INCHIKEYBUILDER_Destroy
