@@ -12,3 +12,11 @@
 - This library uses foreign function interface to access the native InChI module. The decision was mainly taken to achieve an ease of development that ffi provides compared to using [nan](https://github.com/nodejs/nan), [Node-API](https://nodejs.org/api/n-api.html), or [node-addon-api](https://github.com/nodejs/node-addon-api).
 - One can port the InChI library using the above tools also. These [examples](https://github.com/nodejs/node-addon-examples) may provide you a good idea on how to move forward.
 - For using ffi, 2 libraries were considered: [ffi](https://www.npmjs.com/package/ffi) and [ffi-napi](https://www.npmjs.com/package/ffi-napi). `ffi-napi` was adopted because it supports the latest/recent versions of NodeJS; it is tested to run on Node 6 and above, whereas `ffi` is only tested to run on Node v0.6, v0.8, v0.9 and v0.10.
+
+---
+
+How to use this library?
+
+- This library has a dependency on [ffi-napi](https://www.npmjs.com/package/ffi-napi). You may need to install [some necessary build tools](https://github.com/nodejs/node-gyp#installation) for it to work.
+- Alternately, you can also use Docker to quickly set up your dev environment. [Here's](https://github.com/manufac-analytics/inchi/blob/main/.devcontainer/Dockerfile) the Dockerfile that we are using for the same.
+- We are slowly working towards exposing all the InCHI functions. PRs welcome.
