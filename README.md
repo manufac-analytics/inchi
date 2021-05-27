@@ -20,3 +20,65 @@ How to use this library?
 - This library has a dependency on [ffi-napi](https://www.npmjs.com/package/ffi-napi). You may need to install [some necessary build tools](https://github.com/nodejs/node-gyp#installation) for it to work.
 - Alternately, you can also use Docker to quickly set up your dev environment. [Here's](https://github.com/manufac-analytics/inchi/blob/main/.devcontainer/Dockerfile) the Dockerfile that we are using for the same.
 - We are slowly working towards exposing all the InCHI functions. PRs welcome.
+
+---
+
+API Porting Status
+
+A. Generation of InChI from structure
+- [ ] GetINCHI
+- [ ] GetINCHIEx
+- [ ] FreeINCHI
+- [ ] Free_inchi_Input
+- [ ] Get_inchi_Input_FromAuxInfo
+- [ ] GetStdINCHI
+- [ ] FreeStdINCHI
+- [ ] Free_std_inchi_Input
+- [ ] Get_std_inchi_Input_FromAuxInfo
+
+B. Generation of InChI from structure, step-by-step way
+- [ ] INCHIGEN_Create
+- [ ] INCHIGEN_Setup
+- [ ] INCHIGEN_DoNormalization
+- [ ] INCHIGEN_DoCanonicalization
+- [ ] INCHIGEN_DoSerialization
+- [ ] INCHIGEN_Reset
+- [ ] INCHIGEN_Destroy
+- [ ] STDINCHIGEN_Create
+- [ ] STDINCHIGEN_Setup
+- [ ] STDINCHIGEN_DoNormalization
+- [ ] STDINCHIGEN_DoCanonicalization
+- [ ] STDINCHIGEN_DoSerialization
+- [ ] STDINCHIGEN_Reset
+- [ ] STDINCHIGEN_Destroy
+
+C. Generation of InChI directly from Molfile
+MakeINCHIFromMolfileText
+
+D. Restoring structure from InChI or AuxInfo
+- [ ] GetStructFromINCHI
+- [ ] GetStructFromINCHIEx
+- [ ] FreeStructFromINCHI
+- [ ] GetStructFromStdINCHI
+
+E. InChIKey
+- [ ] GetINCHIKeyFromINCHI
+- [ ] CheckINCHIKey
+- [ ] GetStdINCHIKeyFromStdINCHI
+
+F. Test and utlity procedures
+- [ ] GetINCHIfromINCHI
+- [ ] CheckINCHI
+- [ ] GetStringLength
+- [ ] FreeStructFromStdINCHI
+
+G. Status Objects
+- [ ] IXA_STATUS_Create
+- [ ] IXA_STATUS_Clear
+- [ ] IXA_STATUS_Destroy
+- [ ] IXA_STATUS_HasError
+- [ ] IXA_STATUS_HasWarning
+- [ ] IXA_STATUS_GetCount
+- [ ] IXA_STATUS_GetSeverity
+- [ ] IXA_STATUS_GetMessage
+
