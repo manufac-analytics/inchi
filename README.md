@@ -12,6 +12,7 @@
 - This library uses foreign function interface to access the native InChI module. The decision was mainly taken to achieve an ease of development that ffi provides compared to using [nan](https://github.com/nodejs/nan), [Node-API](https://nodejs.org/api/n-api.html), or [node-addon-api](https://github.com/nodejs/node-addon-api).
 - One can port the InChI library using the above tools also. These [examples](https://github.com/nodejs/node-addon-examples) may provide you a good idea on how to move forward.
 - For using ffi, 2 libraries were considered: [ffi](https://www.npmjs.com/package/ffi) and [ffi-napi](https://www.npmjs.com/package/ffi-napi). `ffi-napi` was adopted because it supports the latest/recent versions of NodeJS; it is tested to run on Node 6 and above, whereas `ffi` is only tested to run on Node v0.6, v0.8, v0.9 and v0.10.
+- You can learn more about `ffi-napi`/`ffi` via this [tutorial](https://github.com/node-ffi/node-ffi/wiki/Node-FFI-Tutorial).
 
 ---
 
