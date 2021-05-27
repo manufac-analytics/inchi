@@ -12,7 +12,7 @@
   ],
   "main": "index.js",
   "license": "MIT",
-    "dependencies": {
+  "dependencies": {
     "ffi-napi": "^4.0.3"
   },
   "files": [
@@ -31,6 +31,7 @@
     "access": "public"
   },
   "scripts": {
+    "pretty": "prettier --write .",
     "postversion": "git push origin v$npm_package_version && git push && yarn publish --new-version $npm_package_version"
   },
   "devDependencies": {
