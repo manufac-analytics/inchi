@@ -8,7 +8,7 @@
 
 - NodeJS Port of [InChI 1.06](https://www.inchi-trust.org/downloads/). API documentation of the original C based library is present [here](https://www.inchi-trust.org/download/106/INCHI-1-DOC.zip). Derived some inspiration from [smikes/inchi](https://github.com/smikes/inchi).
 - The Shared Object file, `libinchi.so.1.06.00`, contains all the InChI related business logic, is installed from [InChITRUST](https://www.inchi-trust.org/downloads/), and is licensed under [IUPAC/InChI Trust Licence](https://www.inchi-trust.org/download/106/LICENCE.pdf).
-- Here's a cool overview of integrating native modules with NodeJS applications: [N-API - The new native in Node.JS by Atishay Jain](https://www.youtube.com/watch?v=E0w7Tc0f2fA). 
+- Here's a cool overview of integrating native modules with NodeJS applications: [N-API - The new native in Node.JS by Atishay Jain](https://www.youtube.com/watch?v=E0w7Tc0f2fA).
 - This library uses foreign function interface to access the native InChI module. The decision was mainly taken to achieve an ease of development that ffi provides compared to using [nan](https://github.com/nodejs/nan), [Node-API](https://nodejs.org/api/n-api.html), or [node-addon-api](https://github.com/nodejs/node-addon-api).
 - One can port the InChI library using the above tools also. These [examples](https://github.com/nodejs/node-addon-examples) may provide you a good idea on how to move forward.
 - For using ffi, 2 libraries were considered: [ffi](https://www.npmjs.com/package/ffi) and [ffi-napi](https://www.npmjs.com/package/ffi-napi). `ffi-napi` was adopted because it supports the latest/recent versions of NodeJS; it is tested to run on Node 6 and above, whereas `ffi` is only tested to run on Node v0.6, v0.8, v0.9 and v0.10.
@@ -27,6 +27,7 @@
 #### API Porting Status
 
 A. Generation of InChI from structure
+
 - [ ] GetINCHI
 - [ ] GetINCHIEx
 - [ ] FreeINCHI
@@ -38,6 +39,7 @@ A. Generation of InChI from structure
 - [ ] Get_std_inchi_Input_FromAuxInfo
 
 B. Generation of InChI from structure, step-by-step way
+
 - [ ] INCHIGEN_Create
 - [ ] INCHIGEN_Setup
 - [ ] INCHIGEN_DoNormalization
@@ -54,26 +56,31 @@ B. Generation of InChI from structure, step-by-step way
 - [ ] STDINCHIGEN_Destroy
 
 C. Generation of InChI directly from Molfile
+
 - [ ] MakeINCHIFromMolfileText
 
 D. Restoring structure from InChI or AuxInfo
+
 - [ ] GetStructFromINCHI
 - [ ] GetStructFromINCHIEx
 - [ ] FreeStructFromINCHI
 - [ ] GetStructFromStdINCHI
 
 E. InChIKey
+
 - [ ] GetINCHIKeyFromINCHI
 - [ ] CheckINCHIKey
 - [ ] GetStdINCHIKeyFromStdINCHI
 
 F. Test and utlity procedures
+
 - [ ] GetINCHIfromINCHI
 - [ ] CheckINCHI
 - [ ] GetStringLength
 - [ ] FreeStructFromStdINCHI
 
 G. Status Objects
+
 - [ ] IXA_STATUS_Create
 - [ ] IXA_STATUS_Clear
 - [ ] IXA_STATUS_Destroy
@@ -84,6 +91,7 @@ G. Status Objects
 - [ ] IXA_STATUS_GetMessage
 
 H. Molecule Objects
+
 - [ ] IXA_MOL_Create
 - [ ] IXA_MOL_Clear
 - [ ] IXA_MOL_Destroy
@@ -148,6 +156,7 @@ H. Molecule Objects
 - [ ] IXA_MOL_GetStereoParity
 
 I. InChI Builder Objects
+
 - [ ] IXA_INCHIBUILDER_Create
 - [ ] IXA_INCHIBUILDER_SetMolecule
 - [ ] IXA_INCHIBUILDER_GetInChI
@@ -163,6 +172,7 @@ I. InChI Builder Objects
 - [ ] IXA_INCHIBUILDER_IXA_INCHIBUILDER_GetOption_Timeout_MilliSeconds (new in v. 1.06)
 
 J. InChIKey Builder Objects
+
 - [ ] IXA_INCHIKEYBUILDER_Create
 - [ ] IXA_INCHIKEYBUILDER_SetInChI
 - [ ] IXA_INCHIKEYBUILDER_GetInChIKey

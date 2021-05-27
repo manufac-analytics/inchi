@@ -1,10 +1,10 @@
-const ffi = require('ffi-napi');
-const { CheckINCHIKey } = ffi.Library('./libinchi.so.1.06.00', {
-    'CheckINCHIKey': ['int', [ 'string' ]]
-}); 
+const ffi = require("ffi-napi");
+const { CheckINCHIKey } = ffi.Library("./libinchi.so.1.06.00", {
+  CheckINCHIKey: ["int", ["string"]],
+});
 
 // More functions may be exported soon. PRs welcome.
-module.exports = {CheckINCHIKey}
+module.exports = { CheckINCHIKey };
 
 // Example usage
 console.log(CheckINCHIKey("ddddkhhkjhkjhkjhkjhkjhkj")); // Invalid length and format
