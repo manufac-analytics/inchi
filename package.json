@@ -20,5 +20,8 @@
   "publishConfig": {
     "registry":"https://registry.npmjs.org/",
     "access": "public"
+  },
+  "scripts": {
+    "postversion": "git push origin v$npm_package_version && yarn publish . --tag $npm_package_version",
   }
 }
