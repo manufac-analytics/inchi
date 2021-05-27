@@ -31,6 +31,7 @@
     "access": "public"
   },
   "scripts": {
+    "test": "node examples.test.js",
     "pretty": "prettier --write .",
     "postversion": "git push origin v$npm_package_version && git push && yarn publish --new-version $npm_package_version"
   },
