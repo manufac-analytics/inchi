@@ -69,14 +69,14 @@ D. Restoring structure from InChI or AuxInfo
 E. InChIKey
 
 - [ ] GetINCHIKeyFromINCHI
-- [ ] CheckINCHIKey
+- [x] CheckINCHIKey
 - [ ] GetStdINCHIKeyFromStdINCHI
 
 F. Test and utlity procedures
 
 - [ ] GetINCHIfromINCHI
-- [ ] CheckINCHI
-- [ ] GetStringLength
+- [x] CheckINCHI
+- [x] GetStringLength
 - [ ] FreeStructFromStdINCHI
 
 G. Status Objects
