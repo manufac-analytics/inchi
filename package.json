@@ -1,6 +1,6 @@
 {
   "name": "@manufac-analytics/inchi",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "InChI for NodeJS",
   "keywords": ["InChI", "InChiKey", "IUPAC", "NIST", "Line Notation", "Chemistry"],
   "main": "index.js",
