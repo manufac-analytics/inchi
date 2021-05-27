@@ -2,7 +2,7 @@
   "name": "@manufac-analytics/inchi",
   "version": "1.0.0-alpha.3",
   "description": "InChI for NodeJS",
-  "keywords": ["InChI", "IUPAC", "NIST", "Line Notation"],
+  "keywords": ["InChI", "InChiKey", "IUPAC", "NIST", "Line Notation", "Chemistry"],
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
