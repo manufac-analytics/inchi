@@ -37,6 +37,8 @@
     "postversion": "git push origin v$npm_package_version && git push && yarn publish --new-version $npm_package_version"
   },
   "devDependencies": {
-    "prettier": "^2.3.0"
+    "prettier": "^2.3.0",
+    "tslib": "^2.2.0",
+    "typescript": "^4.3.2"
   }
 }
