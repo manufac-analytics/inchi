@@ -34,7 +34,9 @@
     "access": "public"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc && cp src/libinchi.so.1.06.00 dist/tsc/",
+    "prebuild": "rm -rf dist",
+    "build": "tsc",
+    "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/",
     "test": "node dist/tsc/examples.test.js",
     "pretty": "prettier --write .",
     "preversion": "yarn build && yarn test",
