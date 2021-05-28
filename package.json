@@ -1,14 +1,16 @@
 {
   "name": "@manufac-analytics/inchi",
   "version": "1.0.0-alpha.13",
-  "description": "InChI for NodeJS",
+  "description": "InChI for NodeJS/TypeScript",
   "keywords": [
     "InChI",
-    "InChiKey",
+    "InChIKey",
     "IUPAC",
     "NIST",
     "Line Notation",
-    "Chemistry"
+    "Chemistry",
+    "NodeJS",
+    "TypeScript"
   ],
   "type": "commonjs",
   "exports": "./dist/tsc/index.js",
