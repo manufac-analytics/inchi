@@ -2,6 +2,34 @@
 # yarn lockfile v1
 
 
+"@types/ffi-napi@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/ffi-napi/-/ffi-napi-4.0.1.tgz#ac0c3c7df1b6731e1fde46be37050f48cfcdca9f"
+  integrity sha512-UOzFWt8jCQRo07WmiPbnEeMI5gfvisokMP3M751clxG3WRQb6+0shWLR0NI8Mqq/0l1zYA1ZPwOaN7H/O2vDlQ==
+  dependencies:
+    "@types/node" "*"
+    "@types/ref-napi" "*"
+    "@types/ref-struct-di" "*"
+
+"@types/node@*":
+  version "15.6.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.6.1.tgz#32d43390d5c62c5b6ec486a9bc9c59544de39a08"
+  integrity sha512-7EIraBEyRHEe7CH+Fm1XvgqU6uwZN8Q7jppJGcqjROMT29qhAuuOxYB1uEY5UMYQKEmA5D+5tBnhdaPXSsLONA==
+
+"@types/ref-napi@*":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@types/ref-napi/-/ref-napi-3.0.1.tgz#4bd1dde93c56022431940747c6294b557d651da6"
+  integrity sha512-tBRp8JLW0IoXiqP8bRoArlfXB84JSKkLvVfCNdQGSgBPOAKvhmgW7mjVCDyxypiUMR0RXwHsu6hZlPpunKEPzg==
+  dependencies:
+    "@types/node" "*"
+
+"@types/ref-struct-di@*":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@types/ref-struct-di/-/ref-struct-di-1.1.2.tgz#237fc8628b438d42d3788af00075740841510824"
+  integrity sha512-kwVgDc7W6AOqOCU8t4a7j7uWWCVSVB0OkUlbwVbFNd7pQebJ7kIZunhzouohvNdP3yXr0UOeT9Wm36JgMD7dSQ==
+  dependencies:
+    "@types/ref-napi" "*"
+
 debug@^3.1.0:
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.7.tgz#72580b7e9145fb39b6676f9c5e5fb100b934179a"
