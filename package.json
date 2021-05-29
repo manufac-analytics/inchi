@@ -17,9 +17,6 @@
   "main": "dist/tsc/index.js",
   "types": "dist/types/index.d.ts",
   "license": "MIT",
-  "dependencies": {
-    "ffi-napi": "^4.0.3"
-  },
   "files": [
     "dist"
   ],
@@ -39,10 +36,15 @@
     "prebuild": "rm -rf dist",
     "build": "tsc",
     "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/",
+    "serve": "node dist/tsc/server.js",
     "test": "node dist/tsc/examples.test.js",
     "pretty": "prettier --write .",
     "preversion": "yarn build && yarn test",
     "postversion": "git push origin v$npm_package_version && git push && yarn publish --new-version $npm_package_version"
+  },
+  "dependencies": {
+    "ffi-napi": "^4.0.3",
+    "jayson": "^3.6.3"
   },
   "devDependencies": {
     "@types/ffi-napi": "^4.0.1",
