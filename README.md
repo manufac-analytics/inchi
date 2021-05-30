@@ -18,13 +18,56 @@
 
 #### How to use this library?
 
-- This library has a dependency on [ffi-napi](https://www.npmjs.com/package/ffi-napi). You may need to install [some necessary build tools](https://github.com/nodejs/node-gyp#installation) for it to work.
-- Alternately, you can also use Docker to quickly set up your dev environment. [Here's](https://github.com/manufac-analytics/inchi/blob/main/.devcontainer/Dockerfile) the Dockerfile that we are using for the same.
-- We are slowly working towards exposing all the InCHI functions. PRs welcome.
+1. Using the library in your source code.
+
+   - This library has a dependency on [ffi-napi](https://www.npmjs.com/package/ffi-napi) so you may need to install [some necessary build tools](https://github.com/nodejs/node-gyp#installation) for it to work.
+   - Alternately, you can also use Docker to automatically set up your dev environment with required dependencies. [Here's](https://github.com/manufac-analytics/inchi/blob/main/.devcontainer/Dockerfile) the Dockerfile that we are using for the same.
+
+2. Running a [JSON-RPC 2.0](https://www.jsonrpc.org/specification) server (Work in progress).
+
+   - This library exposes a Docker image which you can run to spin off a JSON-RPC 2.0 server.
+   - You can interact with that server from your source code by making a HTTP `POST` request.
+   - The request's `body` should be JSON-RPC 2.0 compliant. For e.g.,
+
+   ```
+   {
+    "jsonrpc": "2.0",
+    "method": "GetStringLength",
+    "params": ["my-string"],
+    "id": 1
+   }
+   ```
+
+   - The response can look like:
+
+   ```
+   {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": 9
+   }
+   ```
+
+   - In case of an error, the response can look like:
+
+   ```
+   {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "error": {
+        "message": "Expected 1 arguments, got 2",
+        "code": -32602
+    }
+   }
+   ```
+
+```
 
 ---
 
 #### API Porting Status
+
+We are slowly working towards exposing all the InCHI functions. PRs welcome.
 
 A. Generation of InChI from structure
 
@@ -177,3 +220,4 @@ J. InChIKey Builder Objects
 - [ ] IXA_INCHIKEYBUILDER_SetInChI
 - [ ] IXA_INCHIKEYBUILDER_GetInChIKey
 - [ ] IXA_INCHIKEYBUILDER_Destroy
+```
