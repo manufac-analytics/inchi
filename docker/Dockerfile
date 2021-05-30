@@ -8,4 +8,4 @@ RUN apt-get update && apt-get install musl-dev -y
 ## Install and run @manufac-analytics/inchi
 RUN npm install -g  @manufac-analytics/inchi@latest
 WORKDIR /usr/local/lib/node_modules/@manufac-analytics/inchi
-RUN npm run serve
+CMD ["npm", "run", "serve"]
