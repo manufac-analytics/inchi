@@ -23,9 +23,9 @@
    - This library has a dependency on [ffi-napi](https://www.npmjs.com/package/ffi-napi) so you may need to install [some necessary build tools](https://github.com/nodejs/node-gyp#installation) for it to work.
    - Alternately, you can also use Docker to automatically set up your dev environment with required dependencies. [Here's](https://github.com/manufac-analytics/inchi/blob/main/.devcontainer/Dockerfile) the Dockerfile that we are using for the same.
 
-2. Running a [JSON-RPC 2.0](https://www.jsonrpc.org/specification) server (Work in progress).
+2. Running a [JSON-RPC 2.0](https://www.jsonrpc.org/specification) server.
 
-   - This library exposes a Docker image which you can run to spin off a JSON-RPC 2.0 server.
+   - This library exposes a [Docker image](https://hub.docker.com/r/manufacanalytics/inchi) which you can run to spin off a JSON-RPC 2.0 server.
    - You can interact with that server from your source code by making a HTTP `POST` request.
    - The request's `body` should be JSON-RPC 2.0 compliant. For e.g.,
 
