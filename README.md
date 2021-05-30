@@ -61,13 +61,11 @@
    }
    ```
 
-```
-
 ---
 
 #### API Porting Status
 
-We are slowly working towards exposing all the InCHI functions. PRs welcome.
+_We are slowly working towards exposing all the InCHI functions. PRs welcome._
 
 A. Generation of InChI from structure
 
@@ -220,4 +218,7 @@ J. InChIKey Builder Objects
 - [ ] IXA_INCHIKEYBUILDER_SetInChI
 - [ ] IXA_INCHIKEYBUILDER_GetInChIKey
 - [ ] IXA_INCHIKEYBUILDER_Destroy
+
+```
+
 ```
