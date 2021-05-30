@@ -29,35 +29,35 @@
    - You can interact with that server from your source code by making a HTTP `POST` request.
    - The request's `body` should be JSON-RPC 2.0 compliant. For e.g.,
 
-   ```
+   ```json
    {
-    "jsonrpc": "2.0",
-    "method": "GetStringLength",
-    "params": ["my-string"],
-    "id": 1
+     "jsonrpc": "2.0",
+     "method": "GetStringLength",
+     "params": ["my-string"],
+     "id": 1
    }
    ```
 
    - The response can look like:
 
-   ```
+   ```json
    {
-    "jsonrpc": "2.0",
-    "id": 1,
-    "result": 9
+     "jsonrpc": "2.0",
+     "id": 1,
+     "result": 9
    }
    ```
 
    - In case of an error, the response can look like:
 
-   ```
+   ```json
    {
-    "jsonrpc": "2.0",
-    "id": 1,
-    "error": {
-        "message": "Expected 1 arguments, got 2",
-        "code": -32602
-    }
+     "jsonrpc": "2.0",
+     "id": 1,
+     "error": {
+       "message": "Expected 1 arguments, got 2",
+       "code": -32602
+     }
    }
    ```
 
