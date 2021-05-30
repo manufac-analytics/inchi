@@ -2,6 +2,6 @@
 FROM node:latest
 
 ## Install and run @manufac-analytics/inchi
-RUN npm install -g  @manufac-analytics/inchi@latest
+RUN npm install -g @manufac-analytics/inchi@latest
 WORKDIR /usr/local/lib/node_modules/@manufac-analytics/inchi
 CMD ["npm", "run", "serve"]
