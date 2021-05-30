@@ -218,7 +218,3 @@ J. InChIKey Builder Objects
 - [ ] IXA_INCHIKEYBUILDER_SetInChI
 - [ ] IXA_INCHIKEYBUILDER_GetInChIKey
 - [ ] IXA_INCHIKEYBUILDER_Destroy
-
-```
-
-```
