@@ -76,3 +76,17 @@ export const inchi_BondStereo2D = new Enum({
  * INCHI_BOND_STEREO_SINGLE_?EITHER bonds are considered to determine    *
  * whether the stereochemistry is unknown.                               *
  *************************************************************************/
+
+// sizes definitions
+// #define MAXVAL                   20 /* max number of bonds per atom                 */
+// #define ATOM_EL_LEN               6 /* length of ASCIIZ element symbol field        */
+// #define NUM_H_ISOTOPES            3 /* number of hydrogen isotopes: protium, D, T   */
+// #define ISOTOPIC_SHIFT_FLAG   10000 /* add to isotopic mass if isotopic_mass =      */
+//                                     /* (isotopic mass - average atomic mass)        */
+// #define ISOTOPIC_SHIFT_MAX      100 /* max abs(isotopic mass - average atomic mass) */
+
+export const MAXVAL = 20; // max number of bonds per atom 
+export const ATOM_EL_LEN = 6; // length of ASCIIZ element symbol field 
+export const NUM_H_ISOTOPES = 3; // number of hydrogen isotopes: protium, D, T
+export const ISOTOPIC_SHIFT_FLAG = 10000; // add to isotopic mass if isotopic_mass = (isotopic mass - average atomic mass)                             /* (isotopic mass - average atomic mass)        */
+export const ISOTOPIC_SHIFT_MAX = 100; // max abs(isotopic mass - average atomic mass)
