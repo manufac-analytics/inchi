@@ -43,6 +43,7 @@
     "postversion": "git push origin v$npm_package_version && git push && yarn publish --new-version $npm_package_version"
   },
   "dependencies": {
+    "enum": "^3.0.4",
     "ffi-napi": "^4.0.3",
     "jayson": "^3.6.3",
     "ref-array-di": "^1.2.2",
