@@ -598,6 +598,25 @@ export const inchi_Input_Polymer = NAPIStructType({
 //                               /* sterac[k][0] - number from "STERACn" tag         */
 // } inchi_Input_V3000;
 
+export const inchi_Input_V3000 = NAPIStructType({
+  n_non_star_atoms: refNAPI.types.int,
+  n_star_atoms: refNAPI.types.int,
+  atom_index_orig: refNAPI.refType(refNAPI.types.int),
+  atom_index_fin: refNAPI.refType(refNAPI.types.int),
+  n_sgroups: refNAPI.types.int,
+  n_3d_constraints: refNAPI.types.int,
+  n_collections: refNAPI.types.int,
+  n_non_haptic_bonds: refNAPI.types.int,
+  n_haptic_bonds: refNAPI.types.int,
+  lists_haptic_bonds: refNAPI.refType(refNAPI.refType(refNAPI.types.int)),
+  n_steabs: refNAPI.types.int,
+  lists_steabs: refNAPI.refType(refNAPI.refType(refNAPI.types.int)),
+  n_sterel: refNAPI.types.int,
+  lists_sterel: refNAPI.refType(refNAPI.refType(refNAPI.types.int)),
+  n_sterac: refNAPI.types.int,
+  lists_sterac: refNAPI.refType(refNAPI.refType(refNAPI.types.int)),
+});
+
 // /* Input data structure for GetINCHIEx() */
 
 // typedef struct inchi_InputEx
