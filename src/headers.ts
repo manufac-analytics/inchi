@@ -697,6 +697,13 @@ export const inchi_InputINCHI = NAPIStructType({
 //                      /* of recognized options and possibly an Error/warning message */
 // } inchi_Output;
 
+export const inchi_Output = NAPIStructType({
+  szInChI: refNAPI.refType(refNAPI.types.char),
+  szAuxInfo: refNAPI.refType(refNAPI.types.char),
+  szMessage: refNAPI.refType(refNAPI.types.char),
+  szLog: refNAPI.refType(refNAPI.types.char),
+});
+
 // /* InChI -> Structure */
 
 // typedef struct tagINCHI_OutputStruct
