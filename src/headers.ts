@@ -1344,6 +1344,7 @@ export const INCHI_NUM = 2;
 
 // #endif
 // } NORM_ATOM;
+
 export const NORM_ATOM = NAPIStructType({
   elname: NAPIArrayType(refNAPI.types.char, ATOM_EL_LEN),
   el_number: refNAPI.types.uchar,
