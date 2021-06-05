@@ -458,6 +458,13 @@ export const inchi_StereoParity0D = new Enum({
 //                           /* ParityOfConnected | (ParityOfDisconnected << 3), see Note above */
 // }inchi_Stereo0D;
 
+export const inchi_Stereo0D = NAPIStructType({
+  neighbor: NAPIArrayType(refNAPI.types.short, 4),
+  central_atom: refNAPI.types.short,
+  type: refNAPI.types.char,
+  parity: refNAPI.types.char,
+});
+
 /*************************************************
  *
  *
