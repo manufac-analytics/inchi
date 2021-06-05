@@ -666,166 +666,6 @@ export const inchi_InputINCHI = NAPIStructType({
   szInChI: refNAPI.refType(refNAPI.types.char),
   szOptions: refNAPI.refType(refNAPI.types.char),
 });
-=======
-/*************************************************
- *
- *
- *  0D - S T E R E O  (if no coordinates given)
- *
- *
- *************************************************/
-
-//  typedef struct tagINCHIStereo0D {
-//   AT_NUM  neighbor[4];    /* 4 atoms always */
-//   AT_NUM  central_atom;   /* central tetrahedral atom or a central */
-//                           /* atom of allene; otherwise NO_ATOM */
-//   S_CHAR  type;           /* inchi_StereoType0D */
-//   S_CHAR  parity;         /* inchi_StereoParity0D: may be a combination of two parities: */
-//                           /* ParityOfConnected | (ParityOfDisconnected << 3), see Note above */
-// }inchi_Stereo0D;
-
-/*************************************************
- *
- *
- *  I N C h I    D L L     I n p u t
- *
- *
- *************************************************/
-
-/*
-  Structure -> InChI
-
-  GetINCHI()
-  GetStdINCHI()
-  GetINCHIEx()
-
-*/
-
-// typedef struct tagINCHI_Input
-// {
-//   /* the caller is responsible for the data allocation and deallocation               */
-//   inchi_Atom     *atom;         /* array of num_atoms elements                        */
-//   inchi_Stereo0D *stereo0D;     /* array of num_stereo0D 0D stereo elements or NULL   */
-//   char           *szOptions;    /* InChI options: space-delimited; each is preceded by*/
-//                                 /* '/' or '-' depending on OS and compiler            */
-//   AT_NUM          num_atoms;    /* number of atoms in the structure < MAX_ATOMS       */
-//   AT_NUM          num_stereo0D; /* number of 0D stereo elements                       */
-// }inchi_Input;
-
-// /*
-//   Extended input supporting v. 1.05+ extensions: V3000; polymers
-
-//   Mainly follows Accelrys CTFile cpecification.
-
-//   See:
-//   CTFile Formats. Accelrys, December 2011.
-//   http://accelrys.com/products/collaborative-science/biovia-draw/ctfile-no-fee.html
-
-//   Note that V3000 extensions are supported onlyprovisionally: the data are read but not used
-
-// */
-
-// /* Polymers */
-
-// typedef struct inchi_Input_PolymerUnit
-// {
-//   int id;             /* Unit id; it is what is called 'Sgroup number'        */
-//                       /* in CTFile (not used, kept for compatibility)         */
-//   int type;           /* Unit type as per CTFile format (STY)                 */
-//   int subtype;        /* Unit subtype as per CTFile format (SST)              */
-//   int conn;           /* Unit connection scheme  as per CTFile format (SCN)   */
-//   int label;          /* One more unit id; what is called 'unique Sgroup      */
-//                       /* identifier' in CTFile (not used, for compatibility)  */
-//   int na;             /* Number of atoms in the unit                          */
-//   int nb;             /* Number of bonds in the unit                          */
-//   double xbr1[4];     /* Bracket ends coordinates (SDI)                       */
-//   double xbr2[4];     /* Bracket ends coordinates (SDI)                       */
-//   char smt[80];       /* Sgroup Subscript (SMT) ('n' or so )                  */
-//   int *alist;         /* List of atoms in the unit (SAL), atomic numbers      */
-//   int *blist;         /* List of crossing bonds of unit:                      */
-//                       /* [bond1end1, bond1end2, bond2end1, bond2end2]         */
-// }  inchi_Input_PolymerUnit;
-
-// typedef struct inchi_Input_Polymer
-// {
-//   /* List of pointers to polymer units        */
-//   inchi_Input_PolymerUnit **units;
-//   int        n;   /* Number of polymer units  */
-// } inchi_Input_Polymer;
-
-// /*
-//   V3000 Extensions
-
-//   Note that V3000 extensions are supported only
-//   provisionally, the data are read but not used
-// */
-// typedef struct inchi_Input_V3000
-// {
-//   int n_non_star_atoms;
-//   int n_star_atoms;
-//   int *atom_index_orig;       /* Index as supplied for atoms                      */
-//   int *atom_index_fin;        /* = index or -1 for star atom                      */
-//   int n_sgroups;              /* Not used yet.                                    */
-//   int n_3d_constraints;       /* Not used yet.                                    */
-//   int n_collections;
-//   int n_non_haptic_bonds;
-//   int n_haptic_bonds;
-//   int **lists_haptic_bonds;   /* Haptic_bonds[i] is pointer to int                */
-//                               /*    array which contains:                         */
-//                               /* bond_type, non-star atom number,                 */
-//                               /* nendpts, then endpts themselves                  */
-//   /* Enhanced stereo collections */
-//   int n_steabs;
-//   int **lists_steabs;         /* steabs[k][0] - not used                          */
-//                               /* steabs[k][1] -  number of members in collection  */
-//                               /* steabs[k][2..] - member atom numbers             */
-//   int n_sterel;
-//   int **lists_sterel;         /* sterel[k][0] - n from "STERELn" tag              */
-//                               /* sterel[k][1] -  number of members in collection  */
-//                               /* sterel[k][2..] - member atom numbers             */
-//   int n_sterac;
-//   int **lists_sterac;         /* sterac[k][0] - n from "STERACn" tag              */
-//                               /* sterac[k][1] -  number of members in collection  */
-//                               /* sterac[k][0] - number from "STERACn" tag         */
-// } inchi_Input_V3000;
-
-// /* Input data structure for GetINCHIEx() */
-
-// typedef struct inchi_InputEx
-// {
-//   /* the caller is responsible for the data allocation and deallocation                           */
-
-//   /* same as in older inchi_Input                                                                 */
-//   inchi_Atom *atom;                       /* array of num_atoms elements                          */
-//   /* same as in older inchi_Input                                                                 */
-//   inchi_Stereo0D *stereo0D;               /* array of num_stereo0D 0D stereo elements or NULL     */
-//   /* same as in older inchi_Input                                                                 */
-//   char *szOptions;                        /* InChI options: space-delimited; each is preceded by  */
-//                                           /* '/' or '-' depending on OS and compiler              */
-//   /* same as in older inchi_Input                                                                 */
-//   AT_NUM num_atoms;                       /* number of atoms in the structure                     */
-//   /* same as in older inchi_Input                                                                 */
-//   AT_NUM num_stereo0D;                    /* number of 0D stereo elements                         */
-//   inchi_Input_Polymer *polymer;           /* v. 1.05+ extended data, polymers                      */
-//                                           /* NULL if not a polymer                                */
-//   inchi_Input_V3000 *v3000;               /* v. 1.05+ extended data, V3000 Molfile features        */
-//                                           /* NULL if no V3000 extensions present                  */
-// } inchi_InputEx;
-
-// /*
-//   InChI -> Structure
-
-//   GetStructFromINCHI()
-//   GetStructFromStdINCHI()
-//   GetStructFromINCHIEx()
-// */
-// typedef struct tagINCHI_InputINCHI
-// {
-//   /* the caller is responsible for the data allocation and deallocation       */
-//   char *szInChI;      /* InChI ASCIIZ string to be converted to a strucure    */
-//   char *szOptions;    /* InChI options: space-delimited; each is preceded by  */
-//                       /* '/' or '-' depending on OS and compiler */
-// } inchi_InputINCHI;
 
 // typedef inchi_Input_PolymerUnit inchi_Output_PolymerUnit;
 // typedef inchi_Input_Polymer inchi_Output_Polymer;
@@ -853,7 +693,6 @@ export const inchi_InputINCHI = NAPIStructType({
 //     char *szLog;       /* log-file ASCIIZ string, contains a human-readable list */
 //                        /* of recognized options and possibly an Error/warning message */
 // } inchi_Output;
-=======
 //   /* zero-terminated C-strings allocated by GetStdINCHI() */
 //   /* to deallocate all of them call FreeStdINCHI() (see below) */
 //   char *szInChI;     /* InChI ASCIIZ string */
@@ -1572,4 +1411,3 @@ MakeINCHIFromMolfileText
 // #include "ixa.h"
 
 // #endif    /* _INHCH_API_H_ */
-
