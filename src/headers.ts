@@ -493,6 +493,14 @@ export const inchi_Stereo0D = NAPIStructType({
 //   AT_NUM          num_stereo0D; /* number of 0D stereo elements                       */
 // }inchi_Input;
 
+export const inchi_Input = NAPIStructType({
+  atom: refNAPI.refType(inchi_Atom),
+  stereo0D: refNAPI.refType(inchi_Stereo0D),
+  szOptions: refNAPI.refType(refNAPI.types.char),
+  num_atoms: refNAPI.types.short,
+  num_stereo0D: refNAPI.types.short,
+});
+
 // /*
 //   Extended input supporting v. 1.05+ extensions: V3000; polymers
 
