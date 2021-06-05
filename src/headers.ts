@@ -665,6 +665,11 @@ export const inchi_InputEx = NAPIStructType({
 //                       /* '/' or '-' depending on OS and compiler */
 // } inchi_InputINCHI;
 
+export const inchi_InputINCHI = NAPIStructType({
+  szInChI: refNAPI.refType(refNAPI.types.char),
+  szOptions: refNAPI.refType(refNAPI.types.char),
+});
+
 // typedef inchi_Input_PolymerUnit inchi_Output_PolymerUnit;
 // typedef inchi_Input_Polymer inchi_Output_Polymer;
 // typedef inchi_Input_V3000 inchi_Output_V3000;
