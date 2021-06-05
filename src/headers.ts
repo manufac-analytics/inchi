@@ -431,10 +431,10 @@ export const inchi_StereoType0D = new Enum({
 
 export const inchi_StereoParity0D = new Enum({
   INCHI_PARITY_NONE: 0,
-  INCHI_PARITY_ODD: 1 /* 'o' */,
-  INCHI_PARITY_EVEN: 2 /* 'e' */,
-  INCHI_PARITY_UNKNOWN: 3 /* 'u' */ /* (see also readinch.c) used in: Extract0DParities, InchiToAtom  */,
-  INCHI_PARITY_UNDEFINED: 4 /* '?' -- should not be used; however, see Note above */,
+  INCHI_PARITY_ODD: 1, // 'o'
+  INCHI_PARITY_EVEN: 2, // 'e' 
+  INCHI_PARITY_UNKNOWN: 3, // 'u' 
+  INCHI_PARITY_UNDEFINED: 4, // '?' 
 });
 
 /*************************************************
