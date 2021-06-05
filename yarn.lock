@@ -52,6 +52,13 @@
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
+"@types/ref-array-di@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@types/ref-array-di/-/ref-array-di-1.2.2.tgz#12c3d61735d173723de16d8955f2ad9f645452c6"
+  integrity sha512-asQDDhXJJgzWC1v8DFuT3SnNae0T5CJf/eJRzJf84FBIYpwek44ksZ1zaoaO9KhSbelyiOS/E0AUB57ZpqJDFA==
+  dependencies:
+    "@types/ref-napi" "*"
+
 "@types/ref-napi@*":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@types/ref-napi/-/ref-napi-3.0.1.tgz#4bd1dde93c56022431940747c6294b557d651da6"
