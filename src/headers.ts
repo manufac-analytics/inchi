@@ -389,3 +389,40 @@ export const inchi_Atom = NAPIStructType({
    should be non-metals.
 
 ****************************************************************************/
+
+// #define NO_ATOM          (-1) /* non-existent (central) atom */
+
+export const NO_ATOM = -1; // non-existent (central) atom
+
+// /* 0D parity types */
+// typedef enum tagINCHIStereoType0D {
+//     INCHI_StereoType_None = 0,
+//     INCHI_StereoType_DoubleBond = 1,
+//     INCHI_StereoType_Tetrahedral = 2,
+//     INCHI_StereoType_Allene = 3
+// } inchi_StereoType0D;
+
+export const inchi_StereoType0D = new Enum({
+  INCHI_StereoType_None: 0,
+  INCHI_StereoType_DoubleBond: 1,
+  INCHI_StereoType_Tetrahedral: 2,
+  INCHI_StereoType_Allene: 3,
+});
+
+// /* 0D parities */
+// typedef enum tagINCHIStereoParity0D {
+//     INCHI_PARITY_NONE = 0,
+//     INCHI_PARITY_ODD = 1,  /* 'o' */
+//     INCHI_PARITY_EVEN = 2,  /* 'e' */
+//     INCHI_PARITY_UNKNOWN = 3,  /* 'u' */ /* (see also readinch.c)
+//                                            used in: Extract0DParities, InchiToAtom  */
+//     INCHI_PARITY_UNDEFINED = 4   /* '?' -- should not be used; however, see Note above */
+// } inchi_StereoParity0D;
+
+export const inchi_StereoParity0D = new Enum({
+  INCHI_PARITY_NONE: 0,
+  INCHI_PARITY_ODD: 1, // 'o'
+  INCHI_PARITY_EVEN: 2, // 'e'
+  INCHI_PARITY_UNKNOWN: 3, // 'u'
+  INCHI_PARITY_UNDEFINED: 4, // '?'
+});
