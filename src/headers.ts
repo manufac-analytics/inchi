@@ -406,7 +406,7 @@ export const inchi_Atom = NAPIStructType({
 
 // #define NO_ATOM          (-1) /* non-existent (central) atom */
 
-export const NO_ATOM = -1; // non-existent (central) atom// /* 0D parity types */
+export const NO_ATOM = -1; // non-existent (central) atom
 
 // /* 0D parity types */
 // typedef enum tagINCHIStereoType0D {
