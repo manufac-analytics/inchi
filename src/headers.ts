@@ -557,6 +557,11 @@ export const inchi_Input_PolymerUnit = NAPIStructType({
 //   int        n;   /* Number of polymer units  */
 // } inchi_Input_Polymer;
 
+export const inchi_Input_Polymer = NAPIStructType({
+  units: refNAPI.refType(refNAPI.refType(inchi_Input_PolymerUnit)),
+  n: refNAPI.types.int,
+});
+
 // /*
 //   V3000 Extensions
 
