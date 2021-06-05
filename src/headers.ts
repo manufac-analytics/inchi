@@ -640,6 +640,16 @@ export const inchi_Input_V3000 = NAPIStructType({
 //                                           /* NULL if no V3000 extensions present                  */
 // } inchi_InputEx;
 
+export const inchi_InputEx = NAPIStructType({
+  atom: refNAPI.refType(inchi_Atom),
+  Stereo0D: refNAPI.refType(inchi_Stereo0D),
+  szOptions: refNAPI.refType(refNAPI.types.char),
+  num_atoms: refNAPI.types.short,
+  num_stereo0D: refNAPI.types.short,
+  polymer: refNAPI.refType(inchi_Input_Polymer),
+  v3000: refNAPI.refType(inchi_Input_V3000),
+});
+
 // /*
 //   InChI -> Structure
 
