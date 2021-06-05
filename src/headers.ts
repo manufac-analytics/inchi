@@ -535,6 +535,21 @@ export const inchi_Input = NAPIStructType({
 //                       /* [bond1end1, bond1end2, bond2end1, bond2end2]         */
 // }  inchi_Input_PolymerUnit;
 
+export const inchi_Input_PolymerUnit = NAPIStructType({
+  id: refNAPI.types.int,
+  type: refNAPI.types.int,
+  subtype: refNAPI.types.int,
+  conn: refNAPI.types.int,
+  label: refNAPI.types.int,
+  na: refNAPI.types.int,
+  nb: refNAPI.types.int,
+  xbr1: NAPIArrayType(refNAPI.types.double, 4),
+  xbr2: NAPIArrayType(refNAPI.types.double, 4),
+  smt: NAPIArrayType(refNAPI.types.char, 80),
+  alist: refNAPI.refType(refNAPI.types.int),
+  blist: refNAPI.refType(refNAPI.types.int),
+});
+
 // typedef struct inchi_Input_Polymer
 // {
 //   /* List of pointers to polymer units        */
