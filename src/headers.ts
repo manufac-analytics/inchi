@@ -697,6 +697,13 @@ export const inchi_InputINCHI = NAPIStructType({
 //                      /* of recognized options and possibly an Error/warning message */
 // } inchi_Output;
 
+export const inchi_Outputz = NAPIStructType({
+  szInChI: refNAPI.refType(refNAPI.types.char),
+  szAuxInfo: refNAPI.refType(refNAPI.types.char),
+  szMessage: refNAPI.refType(refNAPI.types.char),
+  szLog: refNAPI.refType(refNAPI.types.char),
+});
+
 // /* InChI -> Structure */
 
 // typedef struct tagINCHI_OutputStruct
@@ -719,6 +726,16 @@ export const inchi_InputINCHI = NAPIStructType({
 //                                       /*  y=0 => Fixed-H layer                                    */
 // }inchi_OutputStruct;
 
+export const inchi_OutputStruct = NAPIStructType({
+  atom: refNAPI.refType(inchi_Atom),
+  stereo0D: refNAPI.refType(inchi_Stereo0D),
+  num_atoms: refNAPI.types.short,
+  num_stereo0D: refNAPI.types.short,
+  szMessage: refNAPI.refType(refNAPI.types.char),
+  szLog: refNAPI.refType(refNAPI.types.char),
+  WarningFlags: NAPIArrayType(NAPIArrayType(refNAPI.types.ulong, 2), 2),
+});
+
 // typedef struct tagINCHI_OutputStructEx
 // {
 //   /* Pointers are allocated by GetStructFromINCHIEx()                                                 */
@@ -739,6 +756,18 @@ export const inchi_InputINCHI = NAPIStructType({
 //   inchi_Output_Polymer *polymer;          /* v. 1.05+ extended data, polymers                          */
 //   inchi_Output_V3000   *v3000;            /* v. 1.05+ extended data, V3000 Molfile features            */
 // } inchi_OutputStructEx;
+
+export const inchi_OutputStructEx = NAPIStructType({
+  atom: refNAPI.refType(inchi_Atom),
+  stereo0D: refNAPI.refType(inchi_Stereo0D),
+  num_atoms: refNAPI.types.short,
+  num_stereo0D: refNAPI.types.short,
+  szMessage: refNAPI.refType(refNAPI.types.char),
+  szLog: refNAPI.refType(refNAPI.types.char),
+  WarningFlags: NAPIArrayType(NAPIArrayType(refNAPI.types.ulong, 2), 2),
+  polymer: refNAPI.refType(inchi_Input_Polymer),
+  v3000: refNAPI.refType(inchi_Input_V3000),
+});
 
 // void FreeInChIExtInput( inchi_Input_Polymer    *polymer, inchi_Input_V3000 *v3000 );
 
@@ -794,6 +823,18 @@ export const inchi_InputINCHI = NAPIStructType({
 //   inchi_Ret_BUSY = 5  /* Previuos call to InChI has not returned yet */
 // } RetValGetINCHI;
 
+export const RetValGetINCHI = new Enum({
+  inchi_Ret_BREAK: -100,
+  inchi_Ret_SKIP: -2,
+  inchi_Ret_EOF: -1,
+  inchi_Ret_OKAY: 0,
+  inchi_Ret_WARNING: 1,
+  inchi_Ret_ERROR: 2,
+  inchi_Ret_FATAL: 3,
+  inchi_Ret_UNKNOWN: 4,
+  inchi_Ret_BUSY: 5,
+});
+
 /* Return codes for
       MakeINCHIFromMolfileText
 */
@@ -807,6 +848,15 @@ export const inchi_InputINCHI = NAPIStructType({
 //   mol2inchi_Ret_ERROR_comp = 5  /* compute InChI Error: no InChI has been created */
 // } RetValMol2INCHI;
 
+export const RetValMol2INCHI = new Enum({
+  mol2inchi_Ret_OKAY: 0,
+  mol2inchi_Ret_WARNING: 1,
+  mol2inchi_Ret_EOF: -1,
+  mol2inchi_Ret_ERROR: 2,
+  mol2inchi_Ret_ERROR_get: 4,
+  mol2inchi_Ret_ERROR_comp: 5,
+});
+
 /* Return codes for CheckINCHI */
 // typedef enum tagRetValCheckINCHI
 // {
@@ -818,6 +868,16 @@ export const inchi_InputINCHI = NAPIStructType({
 //   INCHI_INVALID_LAYOUT = 5,
 //   INCHI_FAIL_I2I = 6
 // } RetValCheckINCHI;
+
+export const RetValCheckINCHI = new Enum({
+  INCHI_VALID_STANDARD: 0,
+  INCHI_VALID_NON_STANDARD: 1,
+  INCHI_VALID_BETA: 2,
+  INCHI_INVALID_PREFIX: 3,
+  INCHI_INVALID_VERSION: 4,
+  INCHI_INVALID_LAYOUT: 5,
+  INCHI_FAIL_I2I: 6,
+});
 
 /* to compile all InChI code as a C++ code #define COMPILE_ALL_CPP */
 // #ifndef COMPILE_ALL_CPP
@@ -963,11 +1023,19 @@ GetINCHI / GetStdINCHI
 // #define STR_ERR_LEN     256
 // #endif
 
+export const STR_ERR_LEN = 256;
+
 // typedef struct tagInchiInpData {
 //   inchi_Input *pInp;    /* a pointer to pInp that has all items 0 or NULL */
 //   int          bChiral; /* 1 => the structure was marked as chiral, 2=> not chiral, 0=> not marked */
 //   char         szErrMsg[STR_ERR_LEN];
 // } InchiInpData;
+
+export const InchiInpData = NAPIStructType({
+  pInp: refNAPI.refType(inchi_Input),
+  bChiral: refNAPI.types.int,
+  szErrMsg: NAPIArrayType(refNAPI.types.char, STR_ERR_LEN),
+});
 
 /* to compile all InChI code as a C++ code #define COMPILE_ALL_CPP */
 // #ifndef COMPILE_ALL_CPP
@@ -1088,6 +1156,14 @@ Output:
 // #define INCHIKEY_INVALID_INCHI 20
 // #define INCHIKEY_INVALID_STD_INCHI 21
 
+export const INCHIKEY_OK = 0;
+export const INCHIKEY_UNKNOWN_ERROR = 1;
+export const INCHIKEY_EMPTY_INPUT = 2;
+export const INCHIKEY_INVALID_INCHI_PREFIX = 3;
+export const INCHIKEY_NOT_ENOUGH_MEMORY = 4;
+export const INCHIKEY_INVALID_INCHI = 20;
+export const INCHIKEY_INVALID_STD_INCHI = 21;
+
 /* Return codes for CheckINCHIKey */
 // typedef enum tagRetValGetINCHIKey
 // {
@@ -1097,6 +1173,14 @@ Output:
 //   INCHIKEY_INVALID_LAYOUT = 2,
 //   INCHIKEY_INVALID_VERSION = 3
 // } RetValCheckINCHIKeyv;
+
+export const RetValCheckINCHIKeyv = new Enum({
+  INCHIKEY_VALID_STANDARD: 0,
+  INCHIKEY_VALID_NON_STANDARD: -1,
+  INCHIKEY_INVALID_LENGTH: 1,
+  INCHIKEY_INVALID_LAYOUT: 2,
+  INCHIKEY_INVALID_VERSION: 3,
+});
 
 /* EXPORTED FUNCTIONS */
 
@@ -1197,6 +1281,10 @@ Returns:
 // #define INCHI_NUM            2    /* = array size; member indexes: */
 // #endif
 
+export const MAX_NUM_STEREO_ATOM_NEIGH = 4;
+export const MAX_NUM_STEREO_BONDS = 3;
+export const INCHI_NUM = 2;
+
 // typedef unsigned short AT_NUMBR;
 // typedef signed short NUM_HS;
 // typedef unsigned long INCHI_MODES;
@@ -1256,6 +1344,38 @@ Returns:
 
 // #endif
 // } NORM_ATOM;
+export const NORM_ATOM = NAPIStructType({
+  elname: NAPIArrayType(refNAPI.types.char, ATOM_EL_LEN),
+  el_number: refNAPI.types.uchar,
+  neighbor: NAPIArrayType(refNAPI.types.ushort, MAXVAL),
+  orig_at_number: refNAPI.types.ushort,
+  orig_compt_at_numb: refNAPI.types.ushort,
+  bond_stereo: NAPIArrayType(refNAPI.types.char, MAXVAL),
+  bond_type: NAPIArrayType(refNAPI.types.uchar, MAXVAL),
+  valence: refNAPI.types.char,
+  chem_bonds_valence: refNAPI.types.char,
+  num_H: refNAPI.types.char,
+  num_iso_H: NAPIArrayType(refNAPI.types.char, NUM_H_ISOTOPES),
+  iso_atw_diff: refNAPI.types.char,
+  charge: refNAPI.types.char,
+  radical: refNAPI.types.char,
+  bAmbiguousStereo: refNAPI.types.char,
+  cFlags: refNAPI.types.char,
+  at_type: refNAPI.types.ushort,
+  component: refNAPI.types.ushort,
+  endpoint: refNAPI.types.ushort,
+  c_point: refNAPI.types.ushort,
+  x: refNAPI.types.double,
+  y: refNAPI.types.double,
+  z: refNAPI.types.double,
+  bUsed0DParity: refNAPI.types.char,
+  p_parity: refNAPI.types.char,
+  p_orig_at_num: NAPIArrayType(refNAPI.types.ushort, MAX_NUM_STEREO_ATOM_NEIGH),
+  sb_ord: NAPIArrayType(refNAPI.types.char, MAX_NUM_STEREO_BONDS),
+  sn_ord: NAPIArrayType(refNAPI.types.char, MAX_NUM_STEREO_BONDS),
+  sb_parity: NAPIArrayType(refNAPI.types.char, MAX_NUM_STEREO_BONDS),
+  sn_orig_at_num: NAPIArrayType(refNAPI.types.ushort, MAX_NUM_STEREO_BONDS),
+});
 
 // typedef struct tagNormAtomData
 // {
@@ -1281,6 +1401,26 @@ Returns:
 //   INCHI_MODES bNormalizationFlags;/* for internal use */
 // } NORM_ATOMS;
 
+export const NORM_ATOMS = NAPIStructType({
+  at: refNAPI.refType(NORM_ATOM),
+  at_fixed_bonds: refNAPI.refType(NORM_ATOM),
+  num_at: refNAPI.types.int,
+  num_removed_H: refNAPI.types.int,
+  num_bonds: refNAPI.types.int,
+  num_isotopic: refNAPI.types.int,
+  bExists: refNAPI.types.int,
+  bDeleted: refNAPI.types.int,
+  bHasIsotopicLayer: refNAPI.types.int,
+  bTautomeric: refNAPI.types.int,
+  bTautPreprocessed: refNAPI.types.int,
+  nNumRemovedProtons: refNAPI.types.int,
+  nNumRemovedProtonsIsotopic: NAPIArrayType(refNAPI.types.short, NUM_H_ISOTOPES),
+  num_iso_H: NAPIArrayType(refNAPI.types.short, NUM_H_ISOTOPES),
+  bTautFlags: refNAPI.types.ulong,
+  bTautFlagsDone: refNAPI.types.ulong,
+  bNormalizationFlags: refNAPI.types.ulong,
+});
+
 // typedef struct tagINCHIGEN_DATA
 // {
 
@@ -1293,6 +1433,13 @@ Returns:
 //   NORM_ATOMS   *NormAtomsNontaut[INCHI_NUM];
 //   NORM_ATOMS   *NormAtomsTaut[INCHI_NUM];
 // } INCHIGEN_DATA;
+
+export const INCHIGEN_DATA = NAPIStructType({
+  pStrErrStruct: NAPIArrayType(refNAPI.types.char, STR_ERR_LEN),
+  num_components: NAPIArrayType(refNAPI.types.int, INCHI_NUM),
+  NormAtomsNontaut: refNAPI.refType(NAPIArrayType(NORM_ATOMS, INCHI_NUM)),
+  NormAtomsTaut: refNAPI.refType(NAPIArrayType(NORM_ATOMS, INCHI_NUM)),
+});
 
 /* InChI Generator Handle */
 
