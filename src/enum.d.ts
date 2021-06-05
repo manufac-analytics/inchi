@@ -1,1 +1,1 @@
-declare module 'enum';
+declare module "enum";
