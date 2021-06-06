@@ -33,7 +33,7 @@
     "access": "public"
   },
   "scripts": {
-    "prebuild": "rm -rf dist",
+    "refresh": "rm -rf dist",
     "build": "tsc",
     "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/src",
     "serve": "node dist/tsc/src/server.js",
