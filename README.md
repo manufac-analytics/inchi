@@ -1,4 +1,4 @@
-### @manufac-analytics/inchi
+## @manufac-analytics/inchi
 
 ---
 
