@@ -1,4 +1,6 @@
 {
   "prettier.configPath": "./.prettierrc.json",
-  "conventionalCommits.emojiFormat": "emoji"
+  "conventionalCommits.emojiFormat": "emoji",
+  "conventionalCommits.promptFooter": false,
+  "conventionalCommits.promptScopes": false
 }
