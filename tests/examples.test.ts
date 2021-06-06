@@ -1,5 +1,9 @@
 import { strict } from "assert";
-import { INCHIAPI } from "../src";
+import refNAPI from "ref-napi";
+import ArrayType from "ref-array-di";
+import { ATOM_EL_LEN, INCHIAPI, inchi_Atom, MAXVAL, NUM_H_ISOTOPES } from "../src";
+
+const NAPIArrayType = ArrayType(refNAPI);
 
 /**
  * Check if the string represents valid InChIKey.
@@ -24,3 +28,29 @@ strict.equal(
  */
 strict.equal(INCHIAPI.GetStringLength("VNWKTOKETHGBQD-UHFFFAOYSA-N"), 27);
 strict.equal(INCHIAPI.GetStringLength("4444"), 4);
+
+/**
+ * Instantiate char pointer (char *)
+ */
+const charPointer = refNAPI.alloc(refNAPI.types.char, 2);
+strict.equal(refNAPI.deref(charPointer), 2);
+
+/**
+ * Instantiate inchi_Atom
+ */
+const inchiAtom = new inchi_Atom({
+  x: 1.1,
+  y: 2.2,
+  z: 3.3,
+  // neighbor: new NAPIArrayType(refNAPI.types.short)(MAXVAL),
+  // bond_type: new NAPIArrayType(refNAPI.types.char)(MAXVAL),
+  // bond_stereo: new NAPIArrayType(refNAPI.types.char)(MAXVAL),
+  // elname: new NAPIArrayType(refNAPI.types.char)(ATOM_EL_LEN),
+  num_bonds: 3,
+  // num_iso_H: new CharArray(NUM_H_ISOTOPES + 1),
+  // num_iso_H: new NAPIArrayType(refNAPI.types.char, NUM_H_ISOTOPES + 1)(NUM_H_ISOTOPES + 1),
+  isotopic_mass: 10,
+  radical: 2,
+  charge: -2,
+});
+console.log(inchiAtom);
