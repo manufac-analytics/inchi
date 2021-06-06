@@ -227,7 +227,7 @@ J. InChIKey Builder Objects
 #### How are the `types` ported?
 
 - Information given in this [tutorial](https://github.com/node-ffi/node-ffi/wiki/Node-FFI-Tutorial) was used.
-- But for compliance with NAPI, different type-mapping libraries were used as compared to what's prescribed in the above tutorial.
+- But for compliance with N-API, different type-mapping libraries were used as compared to what's prescribed in the above tutorial.
   - [ref](https://www.npmjs.com/package/ref) --> [ref-napi](https://www.npmjs.com/package/ref-napi)
   - [ref-array](https://github.com/TooTallNate/ref-array) --> [ref-array-di](https://www.npmjs.com/package/ref-array-di)
   - [ref-struct](https://github.com/TooTallNate/ref-struct) --> [ref-struct-di](https://www.npmjs.com/package/ref-struct-di)
