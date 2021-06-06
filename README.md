@@ -231,4 +231,5 @@ J. InChIKey Builder Objects
   - [ref](https://www.npmjs.com/package/ref) --> [ref-napi](https://www.npmjs.com/package/ref-napi)
   - [ref-array](https://github.com/TooTallNate/ref-array) --> [ref-array-di](https://www.npmjs.com/package/ref-array-di)
   - [ref-struct](https://github.com/TooTallNate/ref-struct) --> [ref-struct-di](https://www.npmjs.com/package/ref-struct-di)
+- Here's some [detailed docs](https://tootallnate.github.io/ref/) on how to use the `ref`/`ref-napi` modules.
 - For mapping Enums, [enum](https://github.com/adrai/enum) is used.
