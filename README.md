@@ -1,5 +1,3 @@
-## `inchi`
-
 ![@manufac-analytics/inchi Logo](https://user-images.githubusercontent.com/25290212/120916227-008d0c00-c6c6-11eb-871f-36ab7e5cd1c8.png)
 
 _NodeJS/TypeScript Port of [InChI 1.06](https://www.inchi-trust.org/downloads/)_
