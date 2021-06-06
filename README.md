@@ -1,6 +1,6 @@
 ## `inchi`
 
-![Structure is taken from ChemSpider. ID 4450907](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Morphine_ball-and-stick.png/640px-Morphine_ball-and-stick.png)
+![@manufac-analytics/inchi Logo](https://user-images.githubusercontent.com/25290212/120916227-008d0c00-c6c6-11eb-871f-36ab7e5cd1c8.png)
 
 _NodeJS/TypeScript Port of [InChI 1.06](https://www.inchi-trust.org/downloads/)_
 
