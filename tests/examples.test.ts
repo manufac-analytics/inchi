@@ -1,5 +1,5 @@
 import { strict } from "assert";
-import { INCHIAPI } from ".";
+import { INCHIAPI } from "../src";
 
 /**
  * Check if the string represents valid InChIKey.

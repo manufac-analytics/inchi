@@ -13,9 +13,9 @@
     "TypeScript"
   ],
   "type": "commonjs",
-  "exports": "./dist/tsc/index.js",
-  "main": "dist/tsc/index.js",
-  "types": "dist/types/index.d.ts",
+  "exports": "./dist/tsc/src/index.js",
+  "main": "dist/tsc/src/index.js",
+  "types": "dist/types/src/index.d.ts",
   "license": "MIT",
   "files": [
     "dist"
@@ -35,9 +35,9 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "tsc",
-    "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/",
-    "serve": "node dist/tsc/server.js",
-    "test": "node dist/tsc/examples.test.js",
+    "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/src",
+    "serve": "node dist/tsc/src/server.js",
+    "test": "node dist/tsc/tests/examples.test.js",
     "pretty": "prettier --write .",
     "preversion": "yarn build && yarn test",
     "postversion": "git push origin v$npm_package_version && git push && yarn publish --new-version $npm_package_version"
