@@ -213,7 +213,7 @@ J. InChIKey Builder Objects
 
 #### Intro
 
-- This library is NodeJS/TypeScript Port of [InChI 1.06](https://www.inchi-trust.org/downloads/). API documentation of the original C based library is present [here](https://www.inchi-trust.org/download/106/INCHI-1-DOC.zip). Derived some inspiration from [smikes/inchi](https://github.com/smikes/inchi).
+- This library is a NodeJS/TypeScript port of [InChI 1.06](https://www.inchi-trust.org/downloads/). API documentation of the original C based library is present [here](https://www.inchi-trust.org/download/106/INCHI-1-DOC.zip). Derived some inspiration from [smikes/inchi](https://github.com/smikes/inchi).
 - The Shared Object file, `libinchi.so.1.06.00`, contains all the InChI related business logic, is installed from [InChITRUST](https://www.inchi-trust.org/downloads/), and is licensed under [IUPAC/InChI Trust Licence](https://www.inchi-trust.org/download/106/LICENCE.pdf).
 
 #### Which porting approach is used?
