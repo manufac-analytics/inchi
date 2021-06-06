@@ -1,6 +1,8 @@
-### NodeJS/TypeScript Port of [InChI 1.06](https://www.inchi-trust.org/downloads/)
+## `inchi`
 
 ![Structure is taken from ChemSpider. ID 4450907](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Morphine_ball-and-stick.png/640px-Morphine_ball-and-stick.png)
+
+_NodeJS/TypeScript Port of [InChI 1.06](https://www.inchi-trust.org/downloads/)_
 
 ---
 
