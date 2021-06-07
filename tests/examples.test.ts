@@ -39,18 +39,29 @@ strict.equal(refNAPI.deref(charPointer), 2);
  * Instantiate inchi_Atom
  */
 const inchiAtom = new inchi_Atom({
+  // @ts-ignore
   x: 1.1,
   y: 2.2,
   z: 3.3,
-  // neighbor: new NAPIArrayType(refNAPI.types.short)(MAXVAL),
-  // bond_type: new NAPIArrayType(refNAPI.types.char)(MAXVAL),
-  // bond_stereo: new NAPIArrayType(refNAPI.types.char)(MAXVAL),
-  // elname: new NAPIArrayType(refNAPI.types.char)(ATOM_EL_LEN),
+  neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  elname: [1, 2, 3, 4, 5, 6],
   num_bonds: 3,
-  // num_iso_H: new CharArray(NUM_H_ISOTOPES + 1),
-  // num_iso_H: new NAPIArrayType(refNAPI.types.char, NUM_H_ISOTOPES + 1)(NUM_H_ISOTOPES + 1),
+  num_iso_H: [1, 2, 3, 4],
   isotopic_mass: 10,
   radical: 2,
   charge: -2,
 });
-console.log(inchiAtom);
+strict.equal(inchiAtom.x, 1.1);
+strict.equal(inchiAtom.y, 2.2);
+strict.equal(inchiAtom.z, 3.3);
+strict.equal(inchiAtom.neighbor.toArray().length, MAXVAL);
+strict.equal(inchiAtom.bond_type.toArray().length, MAXVAL);
+strict.equal(inchiAtom.bond_stereo.toArray().length, MAXVAL);
+strict.equal(inchiAtom.elname.toArray().length, ATOM_EL_LEN);
+strict.equal(inchiAtom.num_bonds, 3);
+strict.equal(inchiAtom.num_iso_H.toArray().length, NUM_H_ISOTOPES + 1);
+strict.equal(inchiAtom.isotopic_mass, 10);
+strict.equal(inchiAtom.radical, 2);
+strict.equal(inchiAtom.charge, -2);
