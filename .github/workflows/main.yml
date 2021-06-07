@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+    paths-ignore:
+      - "**.md"
+runs:
+  using: 'docker'
+  image: './devcontainer/Dockerfile'
+jobs:
+  build:
+    name: Build and test
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
+      - name: Build
+        run: yarn build
+      - name: Test
+        run: yarn test
+
