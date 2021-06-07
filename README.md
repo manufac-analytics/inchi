@@ -2,6 +2,8 @@
 
 _NodeJS/TypeScript Port of [InChI 1.06](https://www.inchi-trust.org/downloads/)_
 
+[![Build & Tests](https://github.com/manufac-analytics/inchi/actions/workflows/main.yml/badge.svg)](https://github.com/manufac-analytics/inchi/actions/workflows/main.yml)
+
 ---
 
 ### How to use this library?
