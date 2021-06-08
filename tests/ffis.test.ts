@@ -1,5 +1,7 @@
-import { INCHIAPI } from "../src";
+// @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
+import { INCHIAPI, inchi_Output } from "../src";
 import { strict } from "assert";
+import refNAPI from "ref-napi";
 
 /**
  * Check if the string represents valid InChIKey.
@@ -24,3 +26,38 @@ strict.equal(
  */
 strict.equal(INCHIAPI.GetStringLength("VNWKTOKETHGBQD-UHFFFAOYSA-N"), 27);
 strict.equal(INCHIAPI.GetStringLength("4444"), 4);
+
+/**
+ * Test MakeINCHIFromMolfileText
+ */
+const output = refNAPI.alloc(inchi_Output, {
+  szInChI: "",
+  szAuxInfo: "",
+  szMessage: "",
+  szLog: "",
+});
+strict.equal(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output), 0);
+strict.equal(output.deref().szInChI, "");
+
+const output2 = refNAPI.alloc(inchi_Output, {
+  szInChI: "",
+  szAuxInfo: "",
+  szMessage: "",
+  szLog: "",
+});
+strict.equal(
+  INCHIAPI.MakeINCHIFromMolfileText(
+    // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
+    `
+Actelion Java MolfileCreator 1.0
+
+  1  0  0  0  0  0  0  0  0  0999 V2000
+    0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+M  END
+`,
+    "",
+    output2
+  ),
+  0
+);
+strict.equal(output2.deref().szInChI, "InChI=1S/CH4/h1H4");
