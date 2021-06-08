@@ -11,6 +11,7 @@ import {
   NUM_H_ISOTOPES,
   inchi_Input_Polymer,
   inchi_Input_V3000,
+  inchi_InputEx,
 } from "../src";
 
 /**
@@ -221,3 +222,24 @@ strict.equal(inchiInputV3000.n_sterel, 19);
 strict.equal(inchiInputV3000.lists_sterel.deref().deref(), 11);
 strict.equal(inchiInputV3000.n_sterac, 21);
 strict.equal(inchiInputV3000.lists_sterac.deref().deref(), 11);
+
+/**
+ * Instantiate inchi_InputEx
+ */
+const inchiInputEx = new inchi_InputEx({
+  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
+  atom: refNAPI.alloc(inchi_Atom),
+  Stereo0D: refNAPI.alloc(inchi_Stereo0D),
+  szOptions: refNAPI.alloc(refNAPI.types.char, 12),
+  num_atoms: 11,
+  num_stereo0D: 13,
+  polymer: refNAPI.alloc(inchi_Input_Polymer),
+  v3000: refNAPI.alloc(inchi_Input_V3000),
+});
+strict.equal(inchiInputEx.atom.deref().x, 0);
+strict.equal(inchiInputEx.Stereo0D.deref().parity, 0);
+strict.equal(inchiInputEx.szOptions.deref(), 12);
+strict.equal(inchiInputEx.num_atoms, 11);
+strict.equal(inchiInputEx.num_stereo0D, 13);
+strict.equal(inchiInputEx.polymer.deref().n, 0);
+strict.equal(inchiInputEx.v3000.deref().n_non_star_atoms, 0);
