@@ -9,6 +9,7 @@ import {
   inchi_Input_PolymerUnit,
   MAXVAL,
   NUM_H_ISOTOPES,
+  inchi_Input_Polymer,
 } from "../src";
 
 /**
@@ -152,3 +153,31 @@ strict.equal(inchiInputPolymerUnit.xbr2.toArray().length, 4);
 strict.equal(inchiInputPolymerUnit.smt.toArray().length, 80);
 strict.equal(inchiInputPolymerUnit.alist.deref(), 11);
 strict.equal(inchiInputPolymerUnit.blist.deref(), 11);
+
+/**
+ * Instantiate inchi_Input_Polymer
+ */
+// @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
+const inchiInputPolymer = new inchi_Input_Polymer({
+  units: refNAPI
+    // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
+    .alloc(inchi_Input_PolymerUnit, {
+      id: 1,
+      type: 1,
+      subtype: 1,
+      conn: 1,
+      label: 1,
+      na: 1,
+      nb: 1,
+      xbr1: [1, 2, 3, 4],
+      xbr2: [1, 2, 3, 4],
+      smt: new Array(80).fill(7),
+      alist: refNAPI.alloc(refNAPI.types.int, 11),
+      blist: refNAPI.alloc(refNAPI.types.int, 11),
+    })
+    .ref(),
+  n: 1234,
+});
+strict.equal(inchiInputPolymer.units.deref().deref().id, 1);
+strict.equal(inchiInputPolymer.units.deref().deref().smt.toArray().length, 80);
+strict.equal(inchiInputPolymer.n, 1234);
