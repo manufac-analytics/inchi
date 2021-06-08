@@ -88,7 +88,7 @@ B. Generation of InChI from structure, step-by-step way
 
 C. Generation of InChI directly from Molfile
 
-- [ ] MakeINCHIFromMolfileText
+- [x] MakeINCHIFromMolfileText
 
 D. Restoring structure from InChI or AuxInfo
 
