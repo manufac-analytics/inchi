@@ -12,6 +12,7 @@ import {
   inchi_Input_Polymer,
   inchi_Input_V3000,
   inchi_InputEx,
+  inchi_InputINCHI,
 } from "../src";
 
 /**
@@ -243,3 +244,14 @@ strict.equal(inchiInputEx.num_atoms, 11);
 strict.equal(inchiInputEx.num_stereo0D, 13);
 strict.equal(inchiInputEx.polymer.deref().n, 0);
 strict.equal(inchiInputEx.v3000.deref().n_non_star_atoms, 0);
+
+/**
+ * Instantiate inchi_InputINCHI
+ */
+const inchiInputINCHI = new inchi_InputINCHI({
+  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
+  szInChI: refNAPI.alloc(refNAPI.types.char, 6),
+  szOptions: refNAPI.alloc(refNAPI.types.char, 7),
+});
+strict.equal(inchiInputINCHI.szInChI.deref(), 6);
+strict.equal(inchiInputINCHI.szOptions.deref(), 7);
