@@ -18,10 +18,10 @@
     "@types/qs" "*"
     "@types/range-parser" "*"
 
-"@types/ffi-napi@^4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@types/ffi-napi/-/ffi-napi-4.0.1.tgz#ac0c3c7df1b6731e1fde46be37050f48cfcdca9f"
-  integrity sha512-UOzFWt8jCQRo07WmiPbnEeMI5gfvisokMP3M751clxG3WRQb6+0shWLR0NI8Mqq/0l1zYA1ZPwOaN7H/O2vDlQ==
+"@types/ffi-napi@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@types/ffi-napi/-/ffi-napi-4.0.2.tgz#487494a4137f24ef756a1898bcdc9607458315cc"
+  integrity sha512-lTOx4Z2K0HI47Plh/+0fkTUy8dPVqohbPA1bFMkd2RHFzkUR43QqZlvQgGLHraO7drTzEM7frlKmU6oJv3jw8g==
   dependencies:
     "@types/node" "*"
     "@types/ref-napi" "*"
