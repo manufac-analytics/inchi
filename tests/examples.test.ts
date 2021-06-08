@@ -1,7 +1,15 @@
-// @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
 import { strict } from "assert";
 import refNAPI from "ref-napi";
-import { ATOM_EL_LEN, INCHIAPI, inchi_Atom, inchi_Stereo0D, inchi_Input, MAXVAL, NUM_H_ISOTOPES } from "../src";
+import {
+  ATOM_EL_LEN,
+  INCHIAPI,
+  inchi_Atom,
+  inchi_Stereo0D,
+  inchi_Input,
+  inchi_Input_PolymerUnit,
+  MAXVAL,
+  NUM_H_ISOTOPES,
+} from "../src";
 
 /**
  * Check if the string represents valid InChIKey.
@@ -37,6 +45,7 @@ strict.equal(refNAPI.deref(charPointer), 2);
  * Instantiate inchi_Atom
  */
 const inchiAtom = new inchi_Atom({
+  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   x: 1.1,
   y: 2.2,
   z: 3.3,
@@ -66,6 +75,7 @@ strict.equal(inchiAtom.charge, -2);
 /**
  * Instantiate inchi_Stereo0D
  */
+// @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
 const inchiStereo0D = new inchi_Stereo0D({
   neighbor: [1, 2, 3, 4],
   central_atom: 1,
@@ -81,6 +91,7 @@ strict.equal(inchiStereo0D.parity, 1);
  * Instantiate inchi_Input
  */
 const inchiInput = new inchi_Input({
+  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   atom: refNAPI.alloc(inchi_Atom, {
     x: 1.1,
     y: 2.2,
@@ -95,6 +106,7 @@ const inchiInput = new inchi_Input({
     radical: 2,
     charge: -2,
   }),
+  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   stereo0D: refNAPI.alloc(inchi_Stereo0D, {
     neighbor: [1, 2, 3, 4],
     central_atom: 1,
@@ -110,3 +122,33 @@ strict.equal(inchiInput.stereo0D.deref().neighbor.toArray().length, 4);
 strict.equal(inchiInput.szOptions.deref(), 1);
 strict.equal(inchiInput.num_atoms, 32767);
 strict.equal(inchiInput.num_stereo0D, -32768);
+
+/**
+ * Instantiate inchi_Input_PolymerUnit
+ */
+const inchiInputPolymerUnit = new inchi_Input_PolymerUnit({
+  id: 1,
+  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
+  type: 1,
+  subtype: 1,
+  conn: 1,
+  label: 1,
+  na: 1,
+  nb: 1,
+  xbr1: [1, 2, 3, 4],
+  xbr2: [1, 2, 3, 4],
+  smt: new Array(80).fill(7),
+  alist: refNAPI.alloc(refNAPI.types.int, 11),
+  blist: refNAPI.alloc(refNAPI.types.int, 11),
+});
+strict.equal(inchiInputPolymerUnit.id, 1);
+strict.equal(inchiInputPolymerUnit.type, 1);
+strict.equal(inchiInputPolymerUnit.conn, 1);
+strict.equal(inchiInputPolymerUnit.label, 1);
+strict.equal(inchiInputPolymerUnit.na, 1);
+strict.equal(inchiInputPolymerUnit.nb, 1);
+strict.equal(inchiInputPolymerUnit.xbr1.toArray().length, 4);
+strict.equal(inchiInputPolymerUnit.xbr2.toArray().length, 4);
+strict.equal(inchiInputPolymerUnit.smt.toArray().length, 80);
+strict.equal(inchiInputPolymerUnit.alist.deref(), 11);
+strict.equal(inchiInputPolymerUnit.blist.deref(), 11);
