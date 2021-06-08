@@ -496,7 +496,7 @@ export const inchi_Stereo0D = NAPIStructType({
 export const inchi_Input = NAPIStructType({
   atom: refNAPI.refType(inchi_Atom),
   stereo0D: refNAPI.refType(inchi_Stereo0D),
-  szOptions: refNAPI.refType(refNAPI.types.char),
+  szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
 });
@@ -643,7 +643,7 @@ export const inchi_Input_V3000 = NAPIStructType({
 export const inchi_InputEx = NAPIStructType({
   atom: refNAPI.refType(inchi_Atom),
   Stereo0D: refNAPI.refType(inchi_Stereo0D),
-  szOptions: refNAPI.refType(refNAPI.types.char),
+  szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
   polymer: refNAPI.refType(inchi_Input_Polymer),
@@ -666,8 +666,8 @@ export const inchi_InputEx = NAPIStructType({
 // } inchi_InputINCHI;
 
 export const inchi_InputINCHI = NAPIStructType({
-  szInChI: refNAPI.refType(refNAPI.types.char),
-  szOptions: refNAPI.refType(refNAPI.types.char),
+  szInChI: refNAPI.types.CString,
+  szOptions: refNAPI.types.CString,
 });
 
 // typedef inchi_Input_PolymerUnit inchi_Output_PolymerUnit;
@@ -698,10 +698,10 @@ export const inchi_InputINCHI = NAPIStructType({
 // } inchi_Output;
 
 export const inchi_Output = NAPIStructType({
-  szInChI: refNAPI.refType(refNAPI.types.char),
-  szAuxInfo: refNAPI.refType(refNAPI.types.char),
-  szMessage: refNAPI.refType(refNAPI.types.char),
-  szLog: refNAPI.refType(refNAPI.types.char),
+  szInChI: refNAPI.types.CString,
+  szAuxInfo: refNAPI.types.CString,
+  szMessage: refNAPI.types.CString,
+  szLog: refNAPI.types.CString,
 });
 
 // /* InChI -> Structure */
@@ -731,8 +731,8 @@ export const inchi_OutputStruct = NAPIStructType({
   stereo0D: refNAPI.refType(inchi_Stereo0D),
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
-  szMessage: refNAPI.refType(refNAPI.types.char),
-  szLog: refNAPI.refType(refNAPI.types.char),
+  szMessage: refNAPI.types.CString,
+  szLog: refNAPI.types.CString,
   WarningFlags: NAPIArrayType(NAPIArrayType(refNAPI.types.ulong, 2), 2),
 });
 
@@ -762,8 +762,8 @@ export const inchi_OutputStructEx = NAPIStructType({
   stereo0D: refNAPI.refType(inchi_Stereo0D),
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
-  szMessage: refNAPI.refType(refNAPI.types.char),
-  szLog: refNAPI.refType(refNAPI.types.char),
+  szMessage: refNAPI.types.CString,
+  szLog: refNAPI.types.CString,
   WarningFlags: NAPIArrayType(NAPIArrayType(refNAPI.types.ulong, 2), 2),
   polymer: refNAPI.refType(inchi_Input_Polymer),
   v3000: refNAPI.refType(inchi_Input_V3000),
