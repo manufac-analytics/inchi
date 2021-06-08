@@ -10,6 +10,7 @@ import {
   MAXVAL,
   NUM_H_ISOTOPES,
   inchi_Input_Polymer,
+  inchi_Input_V3000,
 } from "../src";
 
 /**
@@ -181,3 +182,42 @@ const inchiInputPolymer = new inchi_Input_Polymer({
 strict.equal(inchiInputPolymer.units.deref().deref().id, 1);
 strict.equal(inchiInputPolymer.units.deref().deref().smt.toArray().length, 80);
 strict.equal(inchiInputPolymer.n, 1234);
+
+/**
+ * Instantiate inchi_Input_V3000
+ */
+const inchiInputV3000 = new inchi_Input_V3000({
+  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
+  n_non_star_atoms: 4,
+  n_star_atoms: 3,
+  atom_index_orig: refNAPI.alloc(refNAPI.types.int, 11),
+  atom_index_fin: refNAPI.alloc(refNAPI.types.int, 11),
+  n_sgroups: 13,
+  n_3d_constraints: 13,
+  n_collections: 12,
+  n_non_haptic_bonds: 11,
+  n_haptic_bonds: 11,
+  lists_haptic_bonds: refNAPI.alloc(refNAPI.types.int, 11).ref(),
+  n_steabs: 14,
+  lists_steabs: refNAPI.alloc(refNAPI.types.int, 11).ref(),
+  n_sterel: 19,
+  lists_sterel: refNAPI.alloc(refNAPI.types.int, 11).ref(),
+  n_sterac: 21,
+  lists_sterac: refNAPI.alloc(refNAPI.types.int, 11).ref(),
+});
+strict.equal(inchiInputV3000.n_non_star_atoms, 4);
+strict.equal(inchiInputV3000.n_star_atoms, 3);
+strict.equal(inchiInputV3000.atom_index_orig.deref(), 11);
+strict.equal(inchiInputV3000.atom_index_fin.deref(), 11);
+strict.equal(inchiInputV3000.n_sgroups, 13);
+strict.equal(inchiInputV3000.n_3d_constraints, 13);
+strict.equal(inchiInputV3000.n_collections, 12);
+strict.equal(inchiInputV3000.n_non_haptic_bonds, 11);
+strict.equal(inchiInputV3000.n_haptic_bonds, 11);
+strict.equal(inchiInputV3000.lists_haptic_bonds.deref().deref(), 11);
+strict.equal(inchiInputV3000.n_steabs, 14);
+strict.equal(inchiInputV3000.lists_steabs.deref().deref(), 11);
+strict.equal(inchiInputV3000.n_sterel, 19);
+strict.equal(inchiInputV3000.lists_sterel.deref().deref(), 11);
+strict.equal(inchiInputV3000.n_sterac, 21);
+strict.equal(inchiInputV3000.lists_sterac.deref().deref(), 11);
