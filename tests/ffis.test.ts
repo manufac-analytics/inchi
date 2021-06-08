@@ -45,9 +45,9 @@ const output2 = refNAPI.alloc(inchi_Output, {
   szMessage: "",
   szLog: "",
 });
+// Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
 strict.equal(
   INCHIAPI.MakeINCHIFromMolfileText(
-    // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
     `
 Actelion Java MolfileCreator 1.0
 
@@ -61,3 +61,30 @@ M  END
   0
 );
 strict.equal(output2.deref().szInChI, "InChI=1S/CH4/h1H4");
+
+const output3 = refNAPI.alloc(inchi_Output, {
+  szInChI: "",
+  szAuxInfo: "",
+  szMessage: "",
+  szLog: "",
+});
+// Methanol mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
+strict.equal(
+  INCHIAPI.MakeINCHIFromMolfileText(
+    `
+Actelion Java MolfileCreator 1.0
+
+  3  2  0  0  0  0  0  0  0  0999 V2000
+    1.7321   -0.5000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.8660   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    0.0000   -0.5000   -0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+  2  1  1  0  0  0  0
+  3  2  1  0  0  0  0
+M  END
+`,
+    "",
+    output3
+  ),
+  0
+);
+strict.equal(output3.deref().szInChI, "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
