@@ -1,3 +1,4 @@
+// @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
 import { strict } from "assert";
 import refNAPI from "ref-napi";
 import {
@@ -50,7 +51,6 @@ strict.equal(refNAPI.deref(charPointer), 2);
  * Instantiate inchi_Atom
  */
 const inchiAtom = new inchi_Atom({
-  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   x: 1.1,
   y: 2.2,
   z: 3.3,
@@ -80,7 +80,6 @@ strict.equal(inchiAtom.charge, -2);
 /**
  * Instantiate inchi_Stereo0D
  */
-// @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
 const inchiStereo0D = new inchi_Stereo0D({
   neighbor: [1, 2, 3, 4],
   central_atom: 1,
@@ -96,7 +95,6 @@ strict.equal(inchiStereo0D.parity, 1);
  * Instantiate inchi_Input
  */
 const inchiInput = new inchi_Input({
-  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   atom: refNAPI.alloc(inchi_Atom, {
     x: 1.1,
     y: 2.2,
@@ -111,7 +109,6 @@ const inchiInput = new inchi_Input({
     radical: 2,
     charge: -2,
   }),
-  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   stereo0D: refNAPI.alloc(inchi_Stereo0D, {
     neighbor: [1, 2, 3, 4],
     central_atom: 1,
@@ -133,7 +130,6 @@ strict.equal(inchiInput.num_stereo0D, -32768);
  */
 const inchiInputPolymerUnit = new inchi_Input_PolymerUnit({
   id: 1,
-  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   type: 1,
   subtype: 1,
   conn: 1,
@@ -161,10 +157,8 @@ strict.equal(inchiInputPolymerUnit.blist.deref(), 11);
 /**
  * Instantiate inchi_Input_Polymer
  */
-// @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
 const inchiInputPolymer = new inchi_Input_Polymer({
   units: refNAPI
-    // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
     .alloc(inchi_Input_PolymerUnit, {
       id: 1,
       type: 1,
@@ -190,7 +184,6 @@ strict.equal(inchiInputPolymer.n, 1234);
  * Instantiate inchi_Input_V3000
  */
 const inchiInputV3000 = new inchi_Input_V3000({
-  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   n_non_star_atoms: 4,
   n_star_atoms: 3,
   atom_index_orig: refNAPI.alloc(refNAPI.types.int, 11),
@@ -229,7 +222,6 @@ strict.equal(inchiInputV3000.lists_sterac.deref().deref(), 11);
  * Instantiate inchi_InputEx
  */
 const inchiInputEx = new inchi_InputEx({
-  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   atom: refNAPI.alloc(inchi_Atom),
   Stereo0D: refNAPI.alloc(inchi_Stereo0D),
   szOptions: refNAPI.alloc(refNAPI.types.char, 12),
@@ -250,7 +242,6 @@ strict.equal(inchiInputEx.v3000.deref().n_non_star_atoms, 0);
  * Instantiate inchi_InputINCHI
  */
 const inchiInputINCHI = new inchi_InputINCHI({
-  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   szInChI: refNAPI.alloc(refNAPI.types.char, 6),
   szOptions: refNAPI.alloc(refNAPI.types.char, 7),
 });
@@ -261,7 +252,6 @@ strict.equal(inchiInputINCHI.szOptions.deref(), 7);
  * Instantiate inchi_Output
  */
 const inchiOutput = new inchi_Output({
-  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
   szInChI: refNAPI.alloc(refNAPI.types.char, 12),
   szAuxInfo: refNAPI.alloc(refNAPI.types.char, 12),
   szMessage: refNAPI.alloc(refNAPI.types.char, 12),
