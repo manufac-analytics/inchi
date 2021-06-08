@@ -115,13 +115,13 @@ const inchiInput = new inchi_Input({
     type: 1,
     parity: 1,
   }),
-  szOptions: refNAPI.alloc(refNAPI.types.char, 1),
+  szOptions: "some-string",
   num_atoms: 32767,
   num_stereo0D: -32768,
 });
 strict.equal(inchiInput.atom.deref().neighbor.toArray().length, MAXVAL);
 strict.equal(inchiInput.stereo0D.deref().neighbor.toArray().length, 4);
-strict.equal(inchiInput.szOptions.deref(), 1);
+strict.equal(inchiInput.szOptions, "some-string");
 strict.equal(inchiInput.num_atoms, 32767);
 strict.equal(inchiInput.num_stereo0D, -32768);
 
@@ -224,7 +224,7 @@ strict.equal(inchiInputV3000.lists_sterac.deref().deref(), 11);
 const inchiInputEx = new inchi_InputEx({
   atom: refNAPI.alloc(inchi_Atom),
   Stereo0D: refNAPI.alloc(inchi_Stereo0D),
-  szOptions: refNAPI.alloc(refNAPI.types.char, 12),
+  szOptions: "some-string",
   num_atoms: 11,
   num_stereo0D: 13,
   polymer: refNAPI.alloc(inchi_Input_Polymer),
@@ -232,7 +232,7 @@ const inchiInputEx = new inchi_InputEx({
 });
 strict.equal(inchiInputEx.atom.deref().x, 0);
 strict.equal(inchiInputEx.Stereo0D.deref().parity, 0);
-strict.equal(inchiInputEx.szOptions.deref(), 12);
+strict.equal(inchiInputEx.szOptions, "some-string");
 strict.equal(inchiInputEx.num_atoms, 11);
 strict.equal(inchiInputEx.num_stereo0D, 13);
 strict.equal(inchiInputEx.polymer.deref().n, 0);
@@ -242,22 +242,22 @@ strict.equal(inchiInputEx.v3000.deref().n_non_star_atoms, 0);
  * Instantiate inchi_InputINCHI
  */
 const inchiInputINCHI = new inchi_InputINCHI({
-  szInChI: refNAPI.alloc(refNAPI.types.char, 6),
-  szOptions: refNAPI.alloc(refNAPI.types.char, 7),
+  szInChI: "some-string",
+  szOptions: "some-string",
 });
-strict.equal(inchiInputINCHI.szInChI.deref(), 6);
-strict.equal(inchiInputINCHI.szOptions.deref(), 7);
+strict.equal(inchiInputINCHI.szInChI, "some-string");
+strict.equal(inchiInputINCHI.szOptions, "some-string");
 
 /**
  * Instantiate inchi_Output
  */
 const inchiOutput = new inchi_Output({
-  szInChI: refNAPI.alloc(refNAPI.types.char, 12),
-  szAuxInfo: refNAPI.alloc(refNAPI.types.char, 12),
-  szMessage: refNAPI.alloc(refNAPI.types.char, 12),
-  szLog: refNAPI.alloc(refNAPI.types.char, 12),
+  szInChI: "some-string",
+  szAuxInfo: "some-string",
+  szMessage: "some-string",
+  szLog: "some-string",
 });
-strict.equal(inchiOutput.szInChI.deref(), 12);
-strict.equal(inchiOutput.szAuxInfo.deref(), 12);
-strict.equal(inchiOutput.szMessage.deref(), 12);
-strict.equal(inchiOutput.szLog.deref(), 12);
+strict.equal(inchiOutput.szInChI, "some-string");
+strict.equal(inchiOutput.szAuxInfo, "some-string");
+strict.equal(inchiOutput.szMessage, "some-string");
+strict.equal(inchiOutput.szLog, "some-string");
