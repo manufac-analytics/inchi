@@ -68,7 +68,7 @@ const output3 = refNAPI.alloc(inchi_Output, {
   szMessage: "",
   szLog: "",
 });
-// Methanol mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
+// Ethanol mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
 strict.equal(
   INCHIAPI.MakeINCHIFromMolfileText(
     `
