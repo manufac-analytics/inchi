@@ -13,6 +13,7 @@ import {
   inchi_Input_V3000,
   inchi_InputEx,
   inchi_InputINCHI,
+  inchi_Output,
 } from "../src";
 
 /**
@@ -255,3 +256,18 @@ const inchiInputINCHI = new inchi_InputINCHI({
 });
 strict.equal(inchiInputINCHI.szInChI.deref(), 6);
 strict.equal(inchiInputINCHI.szOptions.deref(), 7);
+
+/**
+ * Instantiate inchi_Output
+ */
+const inchiOutput = new inchi_Output({
+  // @ts-expect-error There are some issues in the Definitely Typed packages of the "ref" related dependencies
+  szInChI: refNAPI.alloc(refNAPI.types.char, 12),
+  szAuxInfo: refNAPI.alloc(refNAPI.types.char, 12),
+  szMessage: refNAPI.alloc(refNAPI.types.char, 12),
+  szLog: refNAPI.alloc(refNAPI.types.char, 12),
+});
+strict.equal(inchiOutput.szInChI.deref(), 12);
+strict.equal(inchiOutput.szAuxInfo.deref(), 12);
+strict.equal(inchiOutput.szMessage.deref(), 12);
+strict.equal(inchiOutput.szLog.deref(), 12);
