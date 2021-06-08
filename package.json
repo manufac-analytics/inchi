@@ -37,7 +37,7 @@
     "build": "tsc",
     "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/src",
     "serve": "node dist/tsc/src/server.js",
-    "test": "node dist/tsc/tests/examples.test.js",
+    "test": "node dist/tsc/tests/headers.test.js",
     "pretty": "prettier --write .",
     "preversion": "yarn build && yarn test",
     "postversion": "git push origin v$npm_package_version && git push && yarn publish --new-version $npm_package_version"
