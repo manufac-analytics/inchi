@@ -61,7 +61,7 @@ const inchiAtom = new inchi_Atom({
   num_bonds: 3,
   num_iso_H: [1, 2, 3, 4],
   isotopic_mass: 10,
-  radical: 2,
+  radical: "3",
   charge: -2,
 });
 strict.equal(inchiAtom.x, 1.1);
@@ -74,7 +74,7 @@ strict.equal(inchiAtom.elname.toArray().length, ATOM_EL_LEN);
 strict.equal(inchiAtom.num_bonds, 3);
 strict.equal(inchiAtom.num_iso_H.toArray().length, NUM_H_ISOTOPES + 1);
 strict.equal(inchiAtom.isotopic_mass, 10);
-strict.equal(inchiAtom.radical, 2);
+strict.equal(inchiAtom.radical, "3".charCodeAt(0)); // ASCII code
 strict.equal(inchiAtom.charge, -2);
 
 /**
