@@ -9,7 +9,10 @@ export const INCHIAPI = Library(join(__dirname, "./libinchi.so.1.06.00"), {
   CheckINCHIKey: [refNAPI.types.int, [refNAPI.types.CString]],
   CheckINCHI: [refNAPI.types.int, [refNAPI.types.CString, refNAPI.types.int]],
   GetStringLength: [refNAPI.types.int, [refNAPI.types.CString]],
-  MakeINCHIFromMolfileText: [refNAPI.types.int, [refNAPI.types.CString, refNAPI.types.CString, inchi_Output]],
+  MakeINCHIFromMolfileText: [
+    refNAPI.types.int,
+    [refNAPI.types.CString, refNAPI.types.CString, refNAPI.refType(inchi_Output)],
+  ],
 });
 
 export * from "./headers";
