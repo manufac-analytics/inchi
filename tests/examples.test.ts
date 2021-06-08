@@ -1,7 +1,7 @@
 import { strict } from "assert";
 import refNAPI from "ref-napi";
 import ArrayType from "ref-array-di";
-import { ATOM_EL_LEN, INCHIAPI, inchi_Atom, MAXVAL, NUM_H_ISOTOPES } from "../src";
+import { ATOM_EL_LEN, INCHIAPI, inchi_Atom, inchi_Stereo0D, MAXVAL, NUM_H_ISOTOPES } from "../src";
 
 const NAPIArrayType = ArrayType(refNAPI);
 
@@ -65,3 +65,18 @@ strict.equal(inchiAtom.num_iso_H.toArray().length, NUM_H_ISOTOPES + 1);
 strict.equal(inchiAtom.isotopic_mass, 10);
 strict.equal(inchiAtom.radical, 2);
 strict.equal(inchiAtom.charge, -2);
+
+/**
+ * Instantiate inchi_Stereo0D
+ */
+// @ts-ignore
+const inchiStereo0D = new inchi_Stereo0D({
+  neighbor: [1, 2, 3, 4],
+  central_atom: 1,
+  type: 1,
+  parity: 1,
+});
+strict.equal(inchiStereo0D.neighbor.toArray().length, 4);
+strict.equal(inchiStereo0D.central_atom, 1);
+strict.equal(inchiStereo0D.type, 1);
+strict.equal(inchiStereo0D.parity, 1);
