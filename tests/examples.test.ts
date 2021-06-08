@@ -1,3 +1,4 @@
+// @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
 import { strict } from "assert";
 import refNAPI from "ref-napi";
 import { ATOM_EL_LEN, INCHIAPI, inchi_Atom, inchi_Stereo0D, inchi_Input, MAXVAL, NUM_H_ISOTOPES } from "../src";
@@ -36,7 +37,6 @@ strict.equal(refNAPI.deref(charPointer), 2);
  * Instantiate inchi_Atom
  */
 const inchiAtom = new inchi_Atom({
-  // @ts-ignore
   x: 1.1,
   y: 2.2,
   z: 3.3,
@@ -66,7 +66,6 @@ strict.equal(inchiAtom.charge, -2);
 /**
  * Instantiate inchi_Stereo0D
  */
-// @ts-ignore
 const inchiStereo0D = new inchi_Stereo0D({
   neighbor: [1, 2, 3, 4],
   central_atom: 1,
@@ -81,12 +80,33 @@ strict.equal(inchiStereo0D.parity, 1);
 /**
  * Instantiate inchi_Input
  */
-// @ts-ignore
 const inchiInput = new inchi_Input({
+  atom: refNAPI.alloc(inchi_Atom, {
+    x: 1.1,
+    y: 2.2,
+    z: 3.3,
+    neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    elname: [1, 2, 3, 4, 5, 6],
+    num_bonds: 3,
+    num_iso_H: [1, 2, 3, 4],
+    isotopic_mass: 10,
+    radical: 2,
+    charge: -2,
+  }),
+  stereo0D: refNAPI.alloc(inchi_Stereo0D, {
+    neighbor: [1, 2, 3, 4],
+    central_atom: 1,
+    type: 1,
+    parity: 1,
+  }),
   szOptions: refNAPI.alloc(refNAPI.types.char, 1),
   num_atoms: 32767,
   num_stereo0D: -32768,
 });
+strict.equal(inchiInput.atom.deref().neighbor.toArray().length, MAXVAL);
+strict.equal(inchiInput.stereo0D.deref().neighbor.toArray().length, 4);
 strict.equal(inchiInput.szOptions.deref(), 1);
 strict.equal(inchiInput.num_atoms, 32767);
 strict.equal(inchiInput.num_stereo0D, -32768);
