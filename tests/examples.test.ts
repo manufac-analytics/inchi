@@ -1,9 +1,6 @@
 import { strict } from "assert";
 import refNAPI from "ref-napi";
-import ArrayType from "ref-array-di";
-import { ATOM_EL_LEN, INCHIAPI, inchi_Atom, inchi_Stereo0D, MAXVAL, NUM_H_ISOTOPES } from "../src";
-
-const NAPIArrayType = ArrayType(refNAPI);
+import { ATOM_EL_LEN, INCHIAPI, inchi_Atom, inchi_Stereo0D, inchi_Input, MAXVAL, NUM_H_ISOTOPES } from "../src";
 
 /**
  * Check if the string represents valid InChIKey.
@@ -80,3 +77,16 @@ strict.equal(inchiStereo0D.neighbor.toArray().length, 4);
 strict.equal(inchiStereo0D.central_atom, 1);
 strict.equal(inchiStereo0D.type, 1);
 strict.equal(inchiStereo0D.parity, 1);
+
+/**
+ * Instantiate inchi_Input
+ */
+// @ts-ignore
+const inchiInput = new inchi_Input({
+  szOptions: refNAPI.alloc(refNAPI.types.char, 1),
+  num_atoms: 32767,
+  num_stereo0D: -32768,
+});
+strict.equal(inchiInput.szOptions.deref(), 1);
+strict.equal(inchiInput.num_atoms, 32767);
+strict.equal(inchiInput.num_stereo0D, -32768);
