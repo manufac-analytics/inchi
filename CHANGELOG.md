@@ -1,4 +1,4 @@
-# Unreleased (2021-06-08)
+# Unreleased (2021-06-09)
 
 # [1.0.0-alpha.24](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2021-06-08)
 
