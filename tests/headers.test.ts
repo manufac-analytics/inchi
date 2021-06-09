@@ -25,9 +25,8 @@ import {
   NORM_ATOMS,
   NAPIArrayType,
   INCHI_NUM,
-  INCHIGEN_DATA
+  INCHIGEN_DATA,
 } from "../src";
-
 
 /**
  * Instantiate inchi_Atom
@@ -298,35 +297,11 @@ strict.equal(inchiOutputStructEx.v3000.deref().n_non_star_atoms, 0);
  * Instantiate InchiInpData
  */
 const InchiInpData1 = new InchiInpData({
-  pInp: refNAPI.alloc(inchi_Input, {
-    atom: refNAPI.alloc(inchi_Atom, {
-      x: 1.1,
-      y: 2.2,
-      z: 3.3,
-      neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-      bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-      bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-      elname: [1, 2, 3, 4, 5, 6],
-      num_bonds: 3,
-      num_iso_H: [1, 2, 3, 4],
-      isotopic_mass: 10,
-      radical: 2,
-      charge: -2,
-    }),
-    stereo0D: refNAPI.alloc(inchi_Stereo0D, {
-      neighbor: [1, 2, 3, 4],
-      central_atom: 1,
-      type: 1,
-      parity: 1,
-    }),
-    szOptions: "some-string",
-    num_atoms: 32767,
-    num_stereo0D: -32768,
-  }),
+  pInp: refNAPI.alloc(inchi_Input),
   bChiral: 1,
-  szErrMsg: Array.from({ length: STR_ERR_LEN }, (_, index) => `${index + 1}`),
+  szErrMsg: new Array(STR_ERR_LEN).fill(0),
 });
-strict.equal(InchiInpData1.pInp.deref().num_atoms, 32767);
+strict.equal(InchiInpData1.pInp.deref().num_atoms, 0);
 strict.equal(InchiInpData1.bChiral, 1);
 strict.equal(InchiInpData1.szErrMsg.toArray().length, STR_ERR_LEN);
 
@@ -399,48 +374,48 @@ strict.equal(NORMATOM.sn_orig_at_num.toArray().length, MAX_NUM_STEREO_BONDS);
 /**
  * Instantiate NORM_ATOMS
  */
-const NORMATOMS=new NORM_ATOMS({
-  at:refNAPI.alloc(NORM_ATOM),
-  at_fixed_bonds:refNAPI.alloc(NORM_ATOM),
-  num_at:1,
-  num_removed_H:1,
-  num_bonds:1,
-  num_isotopic:1,
-  bExists:1,
-  bDeleted:1,
-  bHasIsotopicLayer:1,
-  bTautomeric:1,
-  bTautPreprocessed:1,
-  nNumRemovedProtons:1,
-  nNumRemovedProtonsIsotopic:[1,2,3],
-  num_iso_H:[1,2,3],
-  bTautFlags:1,
-  bTautFlagsDone:1,
-  bNormalizationFlags:1,
+const NORMATOMS = new NORM_ATOMS({
+  at: refNAPI.alloc(NORM_ATOM),
+  at_fixed_bonds: refNAPI.alloc(NORM_ATOM),
+  num_at: 1,
+  num_removed_H: 1,
+  num_bonds: 1,
+  num_isotopic: 1,
+  bExists: 1,
+  bDeleted: 1,
+  bHasIsotopicLayer: 1,
+  bTautomeric: 1,
+  bTautPreprocessed: 1,
+  nNumRemovedProtons: 1,
+  nNumRemovedProtonsIsotopic: [1, 2, 3],
+  num_iso_H: [1, 2, 3],
+  bTautFlags: 1,
+  bTautFlagsDone: 1,
+  bNormalizationFlags: 1,
 });
 strict.equal(NORMATOMS.at.deref().num_H, 0);
 strict.equal(NORMATOMS.at_fixed_bonds.deref().num_H, 0);
-strict.equal(NORMATOMS.num_at,1);
-strict.equal(NORMATOMS.num_removed_H,1);
-strict.equal(NORMATOMS.num_bonds,1);
-strict.equal(NORMATOMS.num_isotopic,1);
-strict.equal(NORMATOMS.bExists,1);
-strict.equal(NORMATOMS.bDeleted,1);
-strict.equal(NORMATOMS.bHasIsotopicLayer,1);
-strict.equal(NORMATOMS.bTautomeric,1);
-strict.equal(NORMATOMS.bTautPreprocessed,1);
-strict.equal(NORMATOMS.nNumRemovedProtons,1);
-strict.equal(NORMATOMS.nNumRemovedProtonsIsotopic.toArray().length,NUM_H_ISOTOPES);
-strict.equal(NORMATOMS.num_iso_H.toArray().length,NUM_H_ISOTOPES);
-strict.equal(NORMATOMS.bTautFlags,1);
-strict.equal(NORMATOMS.bTautFlagsDone,1);
-strict.equal(NORMATOMS.bNormalizationFlags,1);
+strict.equal(NORMATOMS.num_at, 1);
+strict.equal(NORMATOMS.num_removed_H, 1);
+strict.equal(NORMATOMS.num_bonds, 1);
+strict.equal(NORMATOMS.num_isotopic, 1);
+strict.equal(NORMATOMS.bExists, 1);
+strict.equal(NORMATOMS.bDeleted, 1);
+strict.equal(NORMATOMS.bHasIsotopicLayer, 1);
+strict.equal(NORMATOMS.bTautomeric, 1);
+strict.equal(NORMATOMS.bTautPreprocessed, 1);
+strict.equal(NORMATOMS.nNumRemovedProtons, 1);
+strict.equal(NORMATOMS.nNumRemovedProtonsIsotopic.toArray().length, NUM_H_ISOTOPES);
+strict.equal(NORMATOMS.num_iso_H.toArray().length, NUM_H_ISOTOPES);
+strict.equal(NORMATOMS.bTautFlags, 1);
+strict.equal(NORMATOMS.bTautFlagsDone, 1);
+strict.equal(NORMATOMS.bNormalizationFlags, 1);
 
 /**
  * Instantiate INCHIGEN_DATA
  */
 // const INCHIGENDATA= new INCHIGEN_DATA({
-//   pStrErrStruct: Array.from({ length: STR_ERR_LEN }, (_, index) => `${index + 1}`),
+//   pStrErrStruct: new Array(STR_ERR_LEN).fill(0),
 //   num_components:[1,2],
 //   NormAtomsNontaut:refNAPI.alloc([1,2]),
 //   NormAtomsTaut:refNAPI.alloc([1,2]),
