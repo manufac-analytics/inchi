@@ -88,3 +88,18 @@ M  END
   0
 );
 strict.equal(output3.deref().szInChI, "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
+
+/**
+ * Test GetINCHIKeyFromINCHI
+ * refNAPI.allocCString | Returns a new Buffer instance with the given String written to it with the given encoding (defaults to 'utf8').
+ * The buffer is 1 byte longer than the string itself, and is NUL terminated.
+ */
+const x = refNAPI.allocCString(" ".repeat(27));
+const y = refNAPI.allocCString(" ".repeat(64));
+const z = refNAPI.allocCString(" ".repeat(64));
+const out = INCHIAPI.GetINCHIKeyFromINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", 1, 1, x, y, z);
+strict.equal(out, 0);
+strict.equal(x.toString(), "LFQSCWFLJHTTHZ-UHFFFAOYSA-N\x00");
+strict.equal(x.length, 28);
+strict.equal(y.length, 65);
+strict.equal(z.length, 65);
