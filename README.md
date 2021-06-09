@@ -99,7 +99,7 @@ D. Restoring structure from InChI or AuxInfo
 
 E. InChIKey
 
-- [ ] GetINCHIKeyFromINCHI
+- [x] GetINCHIKeyFromINCHI
 - [x] CheckINCHIKey
 - [ ] GetStdINCHIKeyFromStdINCHI
 
