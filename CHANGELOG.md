@@ -1,5 +1,11 @@
 # Unreleased (2021-06-09)
 
+# [1.0.0-alpha.25](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2021-06-09)
+
+### Features
+
+- ✨ Expose GetINCHIKeyFromINCHI ([181efc9](https://github.com/manufac-analytics/inchi/commit/181efc9c1ce552839d56cd3b267e35c9c14d93c7))
+
 # [1.0.0-alpha.24](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2021-06-08)
 
 ### Bug Fixes
