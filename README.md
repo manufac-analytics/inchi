@@ -6,7 +6,7 @@ _NodeJS/TypeScript Port of [InChI 1.06](https://www.inchi-trust.org/downloads/)_
 
 ---
 
-### How to use this library? dddd
+### How to use this library?
 
 1. Using the library in your source code.
 
