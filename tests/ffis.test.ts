@@ -1,5 +1,5 @@
 // @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
-import { INCHIAPI, inchi_Output } from "../src";
+import { INCHIAPI, inchi_InputINCHI, inchi_Output } from "../src";
 import { strict } from "assert";
 import refNAPI from "ref-napi";
 
@@ -39,7 +39,7 @@ const output = refNAPI.alloc(inchi_Output, {
 strict.equal(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output), 0);
 strict.equal(output.deref().szInChI, "");
 
-const output2 = refNAPI.alloc(inchi_Output, {
+const output2 = new inchi_Output({
   szInChI: "",
   szAuxInfo: "",
   szMessage: "",
@@ -56,11 +56,11 @@ Actelion Java MolfileCreator 1.0
 M  END
 `,
     "",
-    output2
+    output2.ref()
   ),
   0
 );
-strict.equal(output2.deref().szInChI, "InChI=1S/CH4/h1H4");
+strict.equal(output2.szInChI, "InChI=1S/CH4/h1H4");
 
 const output3 = refNAPI.alloc(inchi_Output, {
   szInChI: "",
@@ -111,3 +111,12 @@ const x2 = refNAPI.allocCString(" ".repeat(27));
 const out2 = INCHIAPI.GetStdINCHIKeyFromStdINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", x2);
 strict.equal(out2, 0);
 strict.equal(x2.toString(), "LFQSCWFLJHTTHZ-UHFFFAOYSA-N\x00");
+
+/**
+ * Test GetINCHIfromINCHI
+ */
+const inchiOut = new inchi_Output();
+const inchiIn = new inchi_InputINCHI({ szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", szOptions: "" });
+const out3 = INCHIAPI.GetINCHIfromINCHI(inchiIn.ref(), inchiOut.ref());
+strict.equal(out3, 0);
+strict.equal(inchiIn.szInChI, inchiOut.szInChI);
