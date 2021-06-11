@@ -105,7 +105,7 @@ E. InChIKey
 
 F. Test and utlity procedures
 
-- [ ] GetINCHIfromINCHI
+- [x] GetINCHIfromINCHI
 - [x] CheckINCHI
 - [x] GetStringLength
 - [ ] FreeStructFromStdINCHI
