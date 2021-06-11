@@ -103,3 +103,11 @@ strict.equal(x.toString(), "LFQSCWFLJHTTHZ-UHFFFAOYSA-N\x00");
 strict.equal(x.length, 28);
 strict.equal(y.length, 65);
 strict.equal(z.length, 65);
+
+/**
+ * Test GetStdINCHIKeyFromStdINCHI
+ */
+const x2 = refNAPI.allocCString(" ".repeat(27));
+const out2 = INCHIAPI.GetStdINCHIKeyFromStdINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", x2);
+strict.equal(out2, 0);
+strict.equal(x2.toString(), "LFQSCWFLJHTTHZ-UHFFFAOYSA-N\x00");
