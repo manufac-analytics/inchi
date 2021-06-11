@@ -24,6 +24,7 @@ export const INCHIAPI = Library(join(__dirname, "./libinchi.so.1.06.00"), {
       refNAPI.types.CString,
     ],
   ],
+  GetStdINCHIKeyFromStdINCHI: [refNAPI.types.int, [refNAPI.types.CString, refNAPI.types.CString]],
 });
 
 export * from "./headers";

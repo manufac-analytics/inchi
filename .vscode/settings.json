@@ -3,5 +3,6 @@
   "conventionalCommits.emojiFormat": "emoji",
   "conventionalCommits.promptFooter": false,
   "conventionalCommits.promptScopes": false,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.formatOnSave": true
 }
