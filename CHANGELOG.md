@@ -1,4 +1,10 @@
-# Unreleased (2021-06-09)
+# Unreleased (2021-06-11)
+
+# [1.0.0-alpha.26](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.25...v1.0.0-alpha.26) (2021-06-11)
+
+### Features
+
+- ✨ Expose GetStdINCHIKeyFromStdINCHI ([070ea93](https://github.com/manufac-analytics/inchi/commit/070ea9305911ac7c6e946531fbeb136f1d887759))
 
 # [1.0.0-alpha.25](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.24...v1.0.0-alpha.25) (2021-06-09)
 
