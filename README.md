@@ -101,7 +101,7 @@ E. InChIKey
 
 - [x] GetINCHIKeyFromINCHI
 - [x] CheckINCHIKey
-- [ ] GetStdINCHIKeyFromStdINCHI
+- [x] GetStdINCHIKeyFromStdINCHI
 
 F. Test and utlity procedures
 
