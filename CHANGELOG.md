@@ -1,4 +1,8 @@
-# Unreleased (2021-06-11)
+# [1.0.0-alpha.27](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.26...v1.0.0-alpha.27) (2021-06-11)
+
+### Features
+
+- Expose GetINCHIfromINCHI ([fb119d3](https://github.com/manufac-analytics/inchi/commit/fb119d36e9170472a8b76171b386bd21496394ec))
 
 # [1.0.0-alpha.26](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.25...v1.0.0-alpha.26) (2021-06-11)
 
