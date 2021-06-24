@@ -1,5 +1,5 @@
 import { Server } from "jayson";
-import { INCHIAPI } from ".";
+import { INCHIAPI } from "./ffis";
 
 const server = new Server({
   GetStringLength: (args: [string], callback: Function) => {

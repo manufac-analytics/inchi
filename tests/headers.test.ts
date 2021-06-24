@@ -3,7 +3,6 @@ import { strict } from "assert";
 import refNAPI from "ref-napi";
 import {
   ATOM_EL_LEN,
-  INCHIAPI,
   inchi_Atom,
   inchi_Stereo0D,
   inchi_Input,
@@ -23,9 +22,6 @@ import {
   MAX_NUM_STEREO_ATOM_NEIGH,
   MAX_NUM_STEREO_BONDS,
   NORM_ATOMS,
-  NAPIArrayType,
-  INCHI_NUM,
-  INCHIGEN_DATA,
 } from "../src";
 
 /**
