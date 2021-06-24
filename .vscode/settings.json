@@ -4,5 +4,6 @@
   "conventionalCommits.promptFooter": false,
   "conventionalCommits.promptScopes": false,
   "typescript.tsdk": "node_modules/typescript/lib",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "conventionalCommits.gitmoji": false
 }
