@@ -45,7 +45,7 @@ describe("test inchi ffis", () => {
     expect(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output)).toBe(0);
     expect(output.deref().szInChI).toBe("");
 
-    const output2 = new inchi_Output({
+    const output2 = refNAPI.alloc(inchi_Output, {
       szInChI: "",
       szAuxInfo: "",
       szMessage: "",
