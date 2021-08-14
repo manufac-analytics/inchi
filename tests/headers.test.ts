@@ -23,7 +23,7 @@ import {
   NORM_ATOMS,
 } from "../src";
 
-describe("test inchi", () => {
+describe("test inchi headers", () => {
   test("Check inchi_Atom", () => {
     /**
      * Instantiate inchi_Atom
