@@ -38,7 +38,7 @@
     "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/src",
     "serve": "node dist/tsc/src/server.js",
     "test": "jest --verbose",
-    "test:ci": "jest --verbose --runInBand",
+    "test:ci": "jest --verbose --maxWorkers=4",
     "pretty": "prettier --write .",
     "preversion": "yarn build && yarn test",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
