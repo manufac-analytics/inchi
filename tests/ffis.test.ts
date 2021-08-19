@@ -37,16 +37,16 @@ describe("test inchi ffis", () => {
      * Test MakeINCHIFromMolfileText
      */
     const output = new inchi_Output({
-      szInChI: "1S/C5H10/c1-2-4-5-3-1/h1-5H2",
+      szInChI: "",
       szAuxInfo: "",
       szMessage: "",
       szLog: "",
     });
     expect(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output.ref())).toBe(0);
-    expect(output.szInChI).toBe("1S/C5H10/c1-2-4-5-3-1/h1-5H2");
+    expect(output.szInChI).toBe("");
 
-    const output2 = new inchi_Output({
-      szInChI: "1S/C5H10/c1-2-4-5-3-1/h1-5H2",
+    /* const output2 = new inchi_Output({
+      szInChI: "",
       szAuxInfo: "",
       szMessage: "",
       szLog: "",
@@ -54,30 +54,20 @@ describe("test inchi ffis", () => {
     // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
     expect(
       INCHIAPI.MakeINCHIFromMolfileText(
-        `C1CCCC1
-        JME 2016-02-24 Sat Mar 05 09:08:54 GMT+100 2016
-        
-          5  5  0  0  0  0  0  0  0  0999 V2000
-            1.8326    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-            2.2652    1.3315    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-            1.1326    2.1544    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-            0.0000    1.3315    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-            0.4326    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-          1  2  1  0  0  0  0
-          2  3  1  0  0  0  0
-          3  4  1  0  0  0  0
-          4  5  1  0  0  0  0
-          5  1  1  0  0  0  0
+        `
+        Actelion Java MolfileCreator 1.0
+          1  0  0  0  0  0  0  0  0  0999 V2000
+            0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
         M  END
         `,
         "",
         output2.ref()
       )
-    ).toBe(2);
-    expect(output2.szInChI).toBe("1S/C5H10/c1-2-4-5-3-1/h1-5H2");
+    ).toBe(0);
+    expect(output2.szInChI).toBe("InChI=1S/CH4/h1H4");
 
     const output3 = new inchi_Output({
-      szInChI: "1S/C5H10/c1-2-4-5-3-1/h1-5H2",
+      szInChI: "",
       szAuxInfo: "",
       szMessage: "",
       szLog: "",
@@ -85,27 +75,21 @@ describe("test inchi ffis", () => {
     // Ethanol mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
     expect(
       INCHIAPI.MakeINCHIFromMolfileText(
-        `C1CCCC1
-        JME 2016-02-24 Sat Mar 05 09:08:54 GMT+100 2016
-        
-          5  5  0  0  0  0  0  0  0  0999 V2000
-            1.8326    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-            2.2652    1.3315    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-            1.1326    2.1544    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-            0.0000    1.3315    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-            0.4326    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-          1  2  1  0  0  0  0
-          2  3  1  0  0  0  0
-          3  4  1  0  0  0  0
-          4  5  1  0  0  0  0
-          5  1  1  0  0  0  0
+        `
+        Actelion Java MolfileCreator 1.0
+          3  2  0  0  0  0  0  0  0  0999 V2000
+            1.7321   -0.5000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+            0.8660   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+            0.0000   -0.5000   -0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+          2  1  1  0  0  0  0
+          3  2  1  0  0  0  0
         M  END
         `,
         "",
         output3.ref()
       )
-    ).toBe(2);
-    expect(output3.szInChI).toBe("1S/C5H10/c1-2-4-5-3-1/h1-5H2");
+    ).toBe(0);
+    expect(output3.szInChI).toBe("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3"); */
   });
 
   test("Test GetINCHIKeyFromINCHI", () => {
