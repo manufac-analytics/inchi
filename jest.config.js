@@ -2,8 +2,15 @@
 
 /** @type {import('@ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  preset: "ts-jest",
+  globals: {
+    "ts-jest": {
+      tsconfig: "tsconfig.json",
+    },
+  },
+  moduleFileExtensions: ["ts", "js"],
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest",
+  },
+  testMatch: ["**/tests/**/*.test.ts"],
   testEnvironment: "node",
-  testMatch: ["**/tests/*.test.ts"],
-  testTimeout: 30000,
 };
