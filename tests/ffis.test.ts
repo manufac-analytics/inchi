@@ -36,14 +36,14 @@ describe("test inchi ffis", () => {
     /**
      * Test MakeINCHIFromMolfileText
      */
-    const output = refNAPI.alloc(inchi_Output, {
+    const output = new inchi_Output({
       szInChI: "",
       szAuxInfo: "",
       szMessage: "",
       szLog: "",
     });
-    expect(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output)).toBe(0);
-    expect(output.deref().szInChI).toBe("");
+    expect(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output.ref())).toBe(0);
+    expect(output.szInChI).toBe("");
 
     const output2 = new inchi_Output({
       szInChI: "",
@@ -76,7 +76,7 @@ describe("test inchi ffis", () => {
     ).toBe(2);
     expect(output2.szInChI).toBe("");
 
-    const output3 = refNAPI.alloc(inchi_Output, {
+    const output3 = new inchi_Output({
       szInChI: "",
       szAuxInfo: "",
       szMessage: "",
@@ -102,10 +102,10 @@ describe("test inchi ffis", () => {
         M  END
         `,
         "",
-        output3
+        output3.ref()
       )
     ).toBe(2);
-    expect(output3.deref().szInChI).toBe("");
+    expect(output3.szInChI).toBe("");
   });
 
   test("Test GetINCHIKeyFromINCHI", () => {
