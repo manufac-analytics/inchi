@@ -37,16 +37,16 @@ describe("test inchi ffis", () => {
      * Test MakeINCHIFromMolfileText
      */
     const output = new inchi_Output({
-      szInChI: "",
+      szInChI: "1S/C5H10/c1-2-4-5-3-1/h1-5H2",
       szAuxInfo: "",
       szMessage: "",
       szLog: "",
     });
     expect(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output.ref())).toBe(0);
-    expect(output.szInChI).toBe("");
+    expect(output.szInChI).toBe("1S/C5H10/c1-2-4-5-3-1/h1-5H2");
 
     const output2 = new inchi_Output({
-      szInChI: "",
+      szInChI: "1S/C5H10/c1-2-4-5-3-1/h1-5H2",
       szAuxInfo: "",
       szMessage: "",
       szLog: "",
@@ -74,10 +74,10 @@ describe("test inchi ffis", () => {
         output2.ref()
       )
     ).toBe(2);
-    expect(output2.szInChI).toBe("");
+    expect(output2.szInChI).toBe("1S/C5H10/c1-2-4-5-3-1/h1-5H2");
 
     const output3 = new inchi_Output({
-      szInChI: "",
+      szInChI: "1S/C5H10/c1-2-4-5-3-1/h1-5H2",
       szAuxInfo: "",
       szMessage: "",
       szLog: "",
@@ -105,7 +105,7 @@ describe("test inchi ffis", () => {
         output3.ref()
       )
     ).toBe(2);
-    expect(output3.szInChI).toBe("");
+    expect(output3.szInChI).toBe("1S/C5H10/c1-2-4-5-3-1/h1-5H2");
   });
 
   test("Test GetINCHIKeyFromINCHI", () => {
