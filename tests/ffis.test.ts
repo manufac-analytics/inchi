@@ -90,7 +90,7 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    if (process.env.CI) {
+    if (process.env.CI === "true") {
       const molString4 = readFileSync(join(process.cwd(), "./tests/CheBI_16716.mol")); // Not able to read file in CI, may be because of Docker
       const status4 = INCHIAPI.MakeINCHIFromMolfileText(molString4.toString(), "", output4.ref());
       expect(status4).toBe(0);
