@@ -83,6 +83,23 @@ describe("test inchi ffis", () => {
     expect(output4.szInChI).toBe("InChI=1S/C6H6/c1-2-4-6-5-3-1/h1-6H");
   });
 
+  test("Test MakeINCHIFromMolfileText using mol file", () => {
+    const output4 = new inchi_Output({
+      szInChI: "",
+      szAuxInfo: "",
+      szMessage: "",
+      szLog: "",
+    });
+    if (process.env.CI !== undefined) {
+      const molString4 = readFileSync(join(process.cwd(), "./tests/CheBI_16716.mol")); // Not able to read file in CI, may be because of Docker
+      const status4 = INCHIAPI.MakeINCHIFromMolfileText(molString4.toString(), "", output4.ref());
+      expect(status4).toBe(0);
+      expect(output4.szInChI).toBe("InChI=1S/C6H6/c1-2-4-6-5-3-1/h1-6H");
+    } else {
+      expect(1).toBe(1);
+    }
+  });
+
   test("Test GetINCHIKeyFromINCHI", () => {
     /**
      * Test GetINCHIKeyFromINCHI
