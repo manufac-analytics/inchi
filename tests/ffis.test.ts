@@ -46,15 +46,16 @@ const output2 = new inchi_Output({
   szLog: "",
 });
 // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
-strict.equal(
-  INCHIAPI.MakeINCHIFromMolfileText(
-    `
+const molString = `
 Actelion Java MolfileCreator 1.0
 
   1  0  0  0  0  0  0  0  0  0999 V2000
     0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
 M  END
-`,
+`;
+strict.equal(
+  INCHIAPI.MakeINCHIFromMolfileText(
+    molString,
     "",
     output2.ref()
   ),
