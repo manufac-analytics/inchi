@@ -42,7 +42,7 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    expect(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output.ref())).toBe(0);
+    expect(INCHIAPI.MakeINCHIFromMolfileText(refNAPI.allocCString(""), "-SNON -ChiralFlagOFF", output.ref())).toBe(0);
     expect(output.szInChI).toBe("");
 
     const output2 = new inchi_Output({
@@ -51,47 +51,12 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    const molString = `
-Actelion Java MolfileCreator 1.0
-
-  1  0  0  0  0  0  0  0  0  0999 V2000
-    0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-M  END
-`;
+    const molString =
+      refNAPI.allocCString("\nActelion Java MolfileCreator 1.0\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n    0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n");
+    const status = INCHIAPI.MakeINCHIFromMolfileText(molString, "", output2.ref());
     // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
-    expect(
-      INCHIAPI.MakeINCHIFromMolfileText(
-        molString,
-        "",
-        output2.ref()
-      )
-    ).toBe(0);
+    expect(status).toBe(0);
     expect(output2.szInChI).toBe("InChI=1S/CH4/h1H4");
-
-    const output3 = new inchi_Output({
-      szInChI: "",
-      szAuxInfo: "",
-      szMessage: "",
-      szLog: "",
-    });
-    // Ethanol mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
-    expect(
-      INCHIAPI.MakeINCHIFromMolfileText(
-        `
-        Actelion Java MolfileCreator 1.0
-          3  2  0  0  0  0  0  0  0  0999 V2000
-            1.7321   -0.5000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-            0.8660   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-            0.0000   -0.5000   -0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
-          2  1  1  0  0  0  0
-          3  2  1  0  0  0  0
-        M  END
-        `,
-        "",
-        output3.ref()
-      )
-    ).toBe(0);
-    expect(output3.szInChI).toBe("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
   });
 
   test("Test GetINCHIKeyFromINCHI", () => {

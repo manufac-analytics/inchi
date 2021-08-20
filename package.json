@@ -37,7 +37,7 @@
     "build": "tsc",
     "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/src",
     "serve": "node dist/tsc/src/server.js",
-    "test": "jest --verbose --maxWorkers=4",
+    "test": "jest",
     "pretty": "prettier --write .",
     "preversion": "yarn build && yarn test",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
