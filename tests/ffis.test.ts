@@ -51,12 +51,23 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    const molString =
-      refNAPI.allocCString("\nActelion Java MolfileCreator 1.0\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n    0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n");
+    const molString = "\nActelion Java MolfileCreator 1.0\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n    0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n";
     const status = INCHIAPI.MakeINCHIFromMolfileText(molString, "", output2.ref());
     // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
     expect(status).toBe(0);
     expect(output2.szInChI).toBe("InChI=1S/CH4/h1H4");
+
+    const output3 = new inchi_Output({
+      szInChI: "",
+      szAuxInfo: "",
+      szMessage: "",
+      szLog: "",
+    });
+    const molString2 = "\nActelion Java MolfileCreator 1.0\n\n  3  2  0  0  0  0  0  0  0  0999 V2000\n    1.7321   -0.5000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.8660   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0000   -0.5000   -0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n  2  1  1  0  0  0  0\n  3  2  1  0  0  0  0\nM  END\n";
+    const status2 = INCHIAPI.MakeINCHIFromMolfileText(molString2, "", output3.ref());
+    // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
+    expect(status2).toBe(0);
+    expect(output3.szInChI).toBe("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
   });
 
   test("Test GetINCHIKeyFromINCHI", () => {
