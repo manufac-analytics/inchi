@@ -14,7 +14,7 @@ jobs:
     container: 
       image: node:latest
       volumes: 
-       - ${{ github.workspace }}:/workspace
+       - ${{ github.workspace }}:${{ github.workspace }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2.3.4
