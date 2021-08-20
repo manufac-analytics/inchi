@@ -1,6 +1,8 @@
 // @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
 import { INCHIAPI, inchi_InputINCHI, inchi_Output } from "../src";
 import refNAPI from "ref-napi";
+import { readFileSync } from "fs";
+import { join } from "path";
 
 describe("test inchi ffis", () => {
   test("Check if the string represents valid InChIKey", () => {
@@ -68,6 +70,18 @@ describe("test inchi ffis", () => {
     // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
     expect(status2).toBe(0);
     expect(output3.szInChI).toBe("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
+
+    const output4 = new inchi_Output({
+      szInChI: "",
+      szAuxInfo: "",
+      szMessage: "",
+      szLog: "",
+    });
+    const molString3 = readFileSync(join(__dirname, "./CheBI_16716.mol"));
+    const status4 = INCHIAPI.MakeINCHIFromMolfileText(molString3, "", output4.ref());
+    // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
+    expect(status4).toBe(0);
+    expect(output4.szInChI).toBe("InChI=1S/C6H6/c1-2-4-6-5-3-1/h1-6H");
   });
 
   test("Test GetINCHIKeyFromINCHI", () => {
