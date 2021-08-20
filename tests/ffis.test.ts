@@ -30,14 +30,14 @@ strict.equal(INCHIAPI.GetStringLength("4444"), 4);
 /**
  * Test MakeINCHIFromMolfileText
  */
-const output = refNAPI.alloc(inchi_Output, {
+const output = new inchi_Output({
   szInChI: "",
   szAuxInfo: "",
   szMessage: "",
   szLog: "",
 });
-strict.equal(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output), 0);
-strict.equal(output.deref().szInChI, "");
+strict.equal(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output.ref()), 0);
+strict.equal(output.szInChI, "");
 
 const output2 = new inchi_Output({
   szInChI: "",
@@ -62,7 +62,7 @@ M  END
 );
 strict.equal(output2.szInChI, "InChI=1S/CH4/h1H4");
 
-const output3 = refNAPI.alloc(inchi_Output, {
+const output3 = new inchi_Output({
   szInChI: "",
   szAuxInfo: "",
   szMessage: "",
@@ -83,11 +83,11 @@ Actelion Java MolfileCreator 1.0
 M  END
 `,
     "",
-    output3
+    output3.ref()
   ),
   0
 );
-strict.equal(output3.deref().szInChI, "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
+strict.equal(output3.szInChI, "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
 
 /**
  * Test GetINCHIKeyFromINCHI
