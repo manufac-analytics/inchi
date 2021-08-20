@@ -48,12 +48,14 @@ export interface GetINCHIExOptions extends GetINCHIOptions {
 }
 
 export function generateOptionsString(input: GetINCHIOptions | GetINCHIExOptions): string {
-  const marker = process.platform === "win32" ? "/" : "-"
-  let options = Object.keys(input).filter((ele) => {
-    return input[ele as keyof (GetINCHIOptions | GetINCHIExOptions)] === true;
-  }).map((ele) => {
-    return `${marker}${ele}`;
-  });
+  const marker = process.platform === "win32" ? "/" : "-";
+  let options = Object.keys(input)
+    .filter((ele) => {
+      return input[ele as keyof (GetINCHIOptions | GetINCHIExOptions)] === true;
+    })
+    .map((ele) => {
+      return `${marker}${ele}`;
+    });
   return options.join(" ");
 }
 

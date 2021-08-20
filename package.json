@@ -37,9 +37,7 @@
     "build": "tsc",
     "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/src",
     "serve": "node dist/tsc/src/server.js",
-    "test:headers": "node dist/tsc/tests/headers.test.js",
-    "test:ffis": "node dist/tsc/tests/ffis.test.js",
-    "test": "yarn test:headers && yarn test:ffis",
+    "test": "jest",
     "pretty": "prettier --write .",
     "preversion": "yarn build && yarn test",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
@@ -48,17 +46,20 @@
   "dependencies": {
     "enum": "^3.0.4",
     "ffi-napi": "^4.0.3",
-    "jayson": "^3.6.3",
+    "jayson": "^3.6.4",
     "ref-array-di": "^1.2.2",
     "ref-napi": "^3.0.3",
     "ref-struct-di": "^1.1.1"
   },
   "devDependencies": {
-    "@types/ffi-napi": "^4.0.2",
-    "@types/ref-array-di": "^1.2.2",
+    "@types/ffi-napi": "^4.0.4",
+    "@types/jest": "^27.0.1",
+    "@types/ref-array-di": "^1.2.3",
     "conventional-changelog-cli": "^2.1.1",
-    "prettier": "^2.3.1",
-    "tslib": "^2.2.0",
+    "jest": "^27.0.6",
+    "prettier": "^2.3.2",
+    "ts-jest": "^27.0.5",
+    "tslib": "^2.3.1",
     "typescript": "^4.3.2"
   }
 }
