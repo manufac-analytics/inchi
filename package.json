@@ -18,7 +18,7 @@
   "types": "dist/types/src/index.d.ts",
   "license": "MIT",
   "files": [
-    "dist"
+    "dist/tsc/src", "dist/types/src"
   ],
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
   "scripts": {
     "refresh": "rm -rf dist tsconfig.tsbuildinfo",
     "build": "tsc",
-    "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/src",
+    "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/src && cp tests/ChEBI_16716.mol dist/tsc/tests",
     "serve": "node dist/tsc/src/server.js",
     "test": "jest",
     "pretty": "prettier --write .",
