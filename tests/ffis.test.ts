@@ -45,21 +45,23 @@ describe("test inchi ffis", () => {
     expect(INCHIAPI.MakeINCHIFromMolfileText("", "-SNON -ChiralFlagOFF", output.ref())).toBe(0);
     expect(output.szInChI).toBe("");
 
-    /* const output2 = new inchi_Output({
+    const output2 = new inchi_Output({
       szInChI: "",
       szAuxInfo: "",
       szMessage: "",
       szLog: "",
     });
+    const molString = `
+Actelion Java MolfileCreator 1.0
+
+  1  0  0  0  0  0  0  0  0  0999 V2000
+    0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+M  END
+`;
     // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
     expect(
       INCHIAPI.MakeINCHIFromMolfileText(
-        `
-        Actelion Java MolfileCreator 1.0
-          1  0  0  0  0  0  0  0  0  0999 V2000
-            0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
-        M  END
-        `,
+        molString,
         "",
         output2.ref()
       )
@@ -89,7 +91,7 @@ describe("test inchi ffis", () => {
         output3.ref()
       )
     ).toBe(0);
-    expect(output3.szInChI).toBe("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3"); */
+    expect(output3.szInChI).toBe("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
   });
 
   test("Test GetINCHIKeyFromINCHI", () => {
