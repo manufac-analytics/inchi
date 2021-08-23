@@ -109,7 +109,6 @@ F. Test and utlity procedures
 - [x] GetINCHIfromINCHI
 - [x] CheckINCHI
 - [x] GetStringLength
-- [ ] FreeStructFromStdINCHI
 
 G. Status Objects
 
