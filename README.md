@@ -92,10 +92,11 @@ C. Generation of InChI directly from Molfile
 
 D. Restoring structure from InChI or AuxInfo
 
-- [ ] GetStructFromINCHI
-- [ ] GetStructFromINCHIEx
-- [ ] FreeStructFromINCHI
-- [ ] GetStructFromStdINCHI
+- [x] GetStructFromINCHI
+- [x] GetStructFromINCHIEx
+- [x] FreeStructFromINCHI
+- [x] GetStructFromStdINCHI
+- [x] FreeStructFromStdINCHI
 
 E. InChIKey
 
