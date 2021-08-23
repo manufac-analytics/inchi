@@ -1,5 +1,5 @@
 // @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
-import { INCHIAPI, inchi_InputINCHI, inchi_Output } from "../src";
+import { INCHIAPI, inchi_InputINCHI, inchi_Output, inchi_OutputStruct, inchi_OutputStructEx } from "../src";
 import refNAPI from "ref-napi";
 import { readFileSync } from "fs";
 import { join } from "path";
@@ -53,7 +53,8 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    const molString2 = "\nActelion Java MolfileCreator 1.0\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n    0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n";
+    const molString2 =
+      "\nActelion Java MolfileCreator 1.0\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n    0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n";
     const status2 = INCHIAPI.MakeINCHIFromMolfileText(molString2, "", output2.ref());
     // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
     expect(status2).toBe(0);
@@ -65,7 +66,8 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    const molString3 = "\nActelion Java MolfileCreator 1.0\n\n  3  2  0  0  0  0  0  0  0  0999 V2000\n    1.7321   -0.5000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.8660   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0000   -0.5000   -0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n  2  1  1  0  0  0  0\n  3  2  1  0  0  0  0\nM  END\n";
+    const molString3 =
+      "\nActelion Java MolfileCreator 1.0\n\n  3  2  0  0  0  0  0  0  0  0999 V2000\n    1.7321   -0.5000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.8660   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0000   -0.5000   -0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n  2  1  1  0  0  0  0\n  3  2  1  0  0  0  0\nM  END\n";
     const status3 = INCHIAPI.MakeINCHIFromMolfileText(molString3, "", output3.ref());
     // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
     expect(status3).toBe(0);
@@ -124,13 +126,49 @@ describe("test inchi ffis", () => {
   });
 
   test("Test GetINCHIfromINCHI", () => {
-    /**
-     * Test GetINCHIfromINCHI
-     */
     const inchiOut = new inchi_Output();
     const inchiIn = new inchi_InputINCHI({ szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", szOptions: "" });
     const out3 = INCHIAPI.GetINCHIfromINCHI(inchiIn.ref(), inchiOut.ref());
     expect(out3).toBe(0);
     expect(inchiIn.szInChI).toBe(inchiOut.szInChI);
+  });
+
+  test("Test GetStructFromINCHI", () => {
+    const inchiOutStruct = new inchi_OutputStruct();
+    const inchiIn2 = new inchi_InputINCHI({ szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", szOptions: "" });
+    const out4 = INCHIAPI.GetStructFromINCHI(inchiIn2.ref(), inchiOutStruct.ref());
+    expect(out4).toBe(0);
+  });
+
+  test("Test GetStructFromINCHIEx", () => {
+    const inchiOutStructEx = new inchi_OutputStructEx();
+    const inchiIn3 = new inchi_InputINCHI({ szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", szOptions: "" });
+    const out5 = INCHIAPI.GetStructFromINCHIEx(inchiIn3.ref(), inchiOutStructEx.ref());
+    expect(out5).toBe(0);
+  });
+
+  test("Test GetStructFromStdINCHI", () => {
+    const inchiOutStruct2 = new inchi_OutputStruct();
+    const inchiIn4 = new inchi_InputINCHI({ szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", szOptions: "" });
+    const out6 = INCHIAPI.GetStructFromStdINCHI(inchiIn4.ref(), inchiOutStruct2.ref());
+    expect(out6).toBe(0);
+  });
+
+  test("Test FreeStructFromINCHI", () => {
+    const inchiOutStruct = new inchi_OutputStruct({ num_atoms: 10, num_stereo0D: 20 });
+    expect(inchiOutStruct.num_atoms).toBe(10);
+    expect(inchiOutStruct.num_stereo0D).toBe(20);
+    INCHIAPI.FreeStructFromINCHI(inchiOutStruct.ref());
+    expect(inchiOutStruct.num_atoms).toBe(0);
+    expect(inchiOutStruct.num_stereo0D).toBe(0);
+  });
+
+  test("Test FreeStructFromStdINCHI", () => {
+    const inchiOutStruct = new inchi_OutputStruct({ num_atoms: 10, num_stereo0D: 20 });
+    expect(inchiOutStruct.num_atoms).toBe(10);
+    expect(inchiOutStruct.num_stereo0D).toBe(20);
+    INCHIAPI.FreeStructFromStdINCHI(inchiOutStruct.ref());
+    expect(inchiOutStruct.num_atoms).toBe(0);
+    expect(inchiOutStruct.num_stereo0D).toBe(0);
   });
 });
