@@ -1,14 +1,11 @@
 # [1.0.0-alpha.28](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.27...v1.0.0-alpha.28) (2021-08-20)
 
-
 ### Features
 
-* Add easy api ([5252787](https://github.com/manufac-analytics/inchi/commit/5252787a723b4be6341e91e874e5a934f3c33915))
-* Add easy api | GetInchi options, getinchiex options, etc ([31c1165](https://github.com/manufac-analytics/inchi/commit/31c11651fde898242b9f448ffd413bf7ebd6a37e))
-* Add mol file for testing ([ebf97b9](https://github.com/manufac-analytics/inchi/commit/ebf97b9eda107a4e1ee8f9a50af6c4d56c5089aa))
-* Automate CHNAGELOG generation ([613fae1](https://github.com/manufac-analytics/inchi/commit/613fae17f3265e1757d189abe25158f0a394b5fc))
-
-
+- Add easy api ([5252787](https://github.com/manufac-analytics/inchi/commit/5252787a723b4be6341e91e874e5a934f3c33915))
+- Add easy api | GetInchi options, getinchiex options, etc ([31c1165](https://github.com/manufac-analytics/inchi/commit/31c11651fde898242b9f448ffd413bf7ebd6a37e))
+- Add mol file for testing ([ebf97b9](https://github.com/manufac-analytics/inchi/commit/ebf97b9eda107a4e1ee8f9a50af6c4d56c5089aa))
+- Automate CHNAGELOG generation ([613fae1](https://github.com/manufac-analytics/inchi/commit/613fae17f3265e1757d189abe25158f0a394b5fc))
 
 # [1.0.0-alpha.27](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.26...v1.0.0-alpha.27) (2021-06-11)
 

@@ -4,8 +4,6 @@ import refNAPI from "ref-napi";
 import { readFileSync } from "fs";
 import { join } from "path";
 
-
-
 describe("test inchi ffis", () => {
   test("Check if the string represents valid InChIKey", () => {
     /**
@@ -55,7 +53,8 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    const molString2 = "\nActelion Java MolfileCreator 1.0\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n    0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n";
+    const molString2 =
+      "\nActelion Java MolfileCreator 1.0\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n    0.0000   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n";
     const status2 = INCHIAPI.MakeINCHIFromMolfileText(molString2, "", output2.ref());
     // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
     expect(status2).toBe(0);
@@ -67,7 +66,8 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    const molString3 = "\nActelion Java MolfileCreator 1.0\n\n  3  2  0  0  0  0  0  0  0  0999 V2000\n    1.7321   -0.5000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.8660   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0000   -0.5000   -0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n  2  1  1  0  0  0  0\n  3  2  1  0  0  0  0\nM  END\n";
+    const molString3 =
+      "\nActelion Java MolfileCreator 1.0\n\n  3  2  0  0  0  0  0  0  0  0999 V2000\n    1.7321   -0.5000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.8660   -0.0000   -0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    0.0000   -0.5000   -0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n  2  1  1  0  0  0  0\n  3  2  1  0  0  0  0\nM  END\n";
     const status3 = INCHIAPI.MakeINCHIFromMolfileText(molString3, "", output3.ref());
     // Methane mol file | Ref: http://www.cheminfo.org/Chemistry/Generate_molfiles/index.html
     expect(status3).toBe(0);
@@ -163,7 +163,6 @@ describe("test inchi ffis", () => {
     expect(inchiOutStruct.num_stereo0D).toBe(0);
   });
 
-
   test("Test FreeStructFromStdINCHI", () => {
     const inchiOutStruct = new inchi_OutputStruct({ num_atoms: 10, num_stereo0D: 20 });
     expect(inchiOutStruct.num_atoms).toBe(10);
@@ -173,4 +172,3 @@ describe("test inchi ffis", () => {
     expect(inchiOutStruct.num_stereo0D).toBe(0);
   });
 });
-

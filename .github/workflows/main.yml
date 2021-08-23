@@ -11,7 +11,7 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest
     # Ref: https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idcontainer
-    container: 
+    container:
       image: node:latest
     steps:
       - name: Checkout repo

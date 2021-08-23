@@ -6,5 +6,5 @@ module.exports = {
   testEnvironment: "node",
   testMatch: ["**/tests/**/*.test.ts"],
   maxWorkers: 4, // Without this tests are failing in CI
-  verbose: true
+  verbose: true,
 };
