@@ -1,13 +1,17 @@
 import { INCHIAPI } from "./ffis";
-import {inchi_InputINCHI, inchi_OutputStruct} from "./headers";
-import refNAPI from "ref-napi"; 
+import { inchi_InputINCHI, inchi_OutputStruct } from "./headers";
+import refNAPI from "ref-napi";
 
-export function CheckINCHIKey(input: string): 0 | -1 | 1 | 2 | 3 {
-  return INCHIAPI.CheckINCHIKey(input) as 0 | -1 | 1 | 2 | 3;
+type returnTypeCheckINCHIKey = 0 | -1 | 1 | 2 | 3;
+
+export function CheckINCHIKey(input: string): returnTypeCheckINCHIKey {
+  return INCHIAPI.CheckINCHIKey(input) as returnTypeCheckINCHIKey;
 }
 
-export function CheckINCHI(input: string, strict?: boolean): 0 | -1 | 1 | 2 | 3 | 4 {
-  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as 0 | -1 | 1 | 2 | 3 | 4;
+type returnTypeCheckINCHI = 0 | -1 | 1 | 2 | 3 | 4;
+
+export function CheckINCHI(input: string, strict?: boolean): returnTypeCheckINCHI {
+  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as returnTypeCheckINCHI;
 }
 
 export function GetStringLength(input: string): number {
@@ -68,48 +72,49 @@ export interface INCHIOutput {
   szLog: string;
 }
 
-export function GetStructFromINCHI(input: string,options: string[] = [""]):0 | -1 | -2 | 1 | 2 | 3 | 4 | 5 {
-  let inputInchiOptions:GetINCHIExOptions = {
-  NEWPSOFF: false,
-  DoNotAddH: false,
-  SNon: false,
-  SRel: false,
-  SRac: false,
-  SUCF: false,
-  ChiralFlagON: false,
-  ChiralFlagOFF: false,
-  SUU: false,
-  SLUUD: false,
-  FixedH: false,
-  RecMet: false,
-  KET: false,
-  "15T": false,
-  AuxNone: false,
-  Wnumber: false,
-  Wmnumber: false,
-  NoWarnings: false,
-  OutputSDF: false,
-  WarnOnEmptyStructure: false,
-  SaveOpt: false,
-  LooseTSACheck: false,
-  Polymers: false,
-  Polymers105: false,
-  NoFrameShift: false,
-  FoldCRU: false,
-  NPZz: false,
-  SAtZZ: false,
-  LargeMolecules: false,
-  };
+type returnTypeGetStructINCHI = 0 | -1 | -2 | 1 | 2 | 3 | 4 | 5;
 
-  for(let opt of options){
+export function GetStructFromINCHI(input: string, options: string[] = [""]): returnTypeGetStructINCHI {
+  let inputInchiOptions: GetINCHIExOptions = {
+    NEWPSOFF: false,
+    DoNotAddH: false,
+    SNon: false,
+    SRel: false,
+    SRac: false,
+    SUCF: false,
+    ChiralFlagON: false,
+    ChiralFlagOFF: false,
+    SUU: false,
+    SLUUD: false,
+    FixedH: false,
+    RecMet: false,
+    KET: false,
+    "15T": false,
+    AuxNone: false,
+    Wnumber: false,
+    Wmnumber: false,
+    NoWarnings: false,
+    OutputSDF: false,
+    WarnOnEmptyStructure: false,
+    SaveOpt: false,
+    LooseTSACheck: false,
+    Polymers: false,
+    Polymers105: false,
+    NoFrameShift: false,
+    FoldCRU: false,
+    NPZz: false,
+    SAtZZ: false,
+    LargeMolecules: false,
+  };
+  for (let opt of options) {
     inputInchiOptions[opt as keyof GetINCHIExOptions] = true;
   }
   const optionString = generateOptionsString(inputInchiOptions);
-  const inchiInputObj = {szInChI:"",szOptions: ""};
+  const inchiInputObj = { szInChI: "", szOptions: "" };
   inchiInputObj.szInChI = input;
   inchiInputObj.szOptions = optionString;
   const inchiIn = new inchi_InputINCHI(inchiInputObj);
   const inchiOutStruct = new inchi_OutputStruct();
-  const Output =  INCHIAPI.GetStructFromINCHI(inchiIn.ref(),inchiOutStruct.ref());
-  return Output as 0 | -1 | -2 | 1 | 2 | 3 | 4 | 5;
+  const Output = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
+  return Output as returnTypeGetStructINCHI;
 }
