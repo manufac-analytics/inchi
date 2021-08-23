@@ -3,7 +3,7 @@
 ### Features
 
 
-Expose GetStructFromINCHI, GetStructFromINCHIEx, FreeStructFromINCHI, GetStructFromStdINCHI, FreeStructFromStdINCHI.
+- Expose GetStructFromINCHI, GetStructFromINCHIEx, FreeStructFromINCHI, GetStructFromStdINCHI, FreeStructFromStdINCHI.
 
 # [1.0.0-alpha.28](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.27...v1.0.0-alpha.28) (2021-08-20)
 
