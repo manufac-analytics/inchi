@@ -1,7 +1,7 @@
 // @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
-import { INCHIAPI, inchi_InputINCHI, inchi_Output } from "../src";
+import { INCHIAPI, inchi_InputINCHI, inchi_Output, inchi_OutputStruct, inchi_OutputStructEx } from "../src";
 import { strict } from "assert";
-import refNAPI from "ref-napi";
+import refNAPI, { isNull, NULL_POINTER } from "ref-napi";
 
 /**
  * Check if the string represents valid InChIKey.
@@ -120,3 +120,39 @@ const inchiIn = new inchi_InputINCHI({ szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1
 const out3 = INCHIAPI.GetINCHIfromINCHI(inchiIn.ref(), inchiOut.ref());
 strict.equal(out3, 0);
 strict.equal(inchiIn.szInChI, inchiOut.szInChI);
+
+/**
+ * Test GetStructFromINCHI
+ */
+const inchiOutStruct = new inchi_OutputStruct();
+const inchiIn2 = new inchi_InputINCHI({ szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", szOptions: "" });
+const out4 = INCHIAPI.GetStructFromINCHI(inchiIn2.ref(),inchiOutStruct.ref());
+strict.equal(out4,0);
+
+/**
+ * Test GetStructFromINCHIEx
+ */
+ const inchiOutStructEx = new inchi_OutputStructEx();
+ const inchiIn3 = new inchi_InputINCHI({ szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", szOptions: "" });
+ const out5 = INCHIAPI.GetStructFromINCHIEx(inchiIn3.ref(),inchiOutStructEx.ref());
+ strict.equal(out5,0);
+
+ /**
+  * Test GetStructFromStdINCHI
+  */
+  const inchiOutStruct2 = new inchi_OutputStruct();
+  const inchiIn4 = new inchi_InputINCHI({ szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3", szOptions: "" });
+  const out6 = INCHIAPI.GetStructFromStdINCHI(inchiIn4.ref(),inchiOutStruct2.ref());
+  strict.equal(out6,0);
+
+  /**
+   * Test FreeStructFromINCHI
+   */
+  INCHIAPI.FreeStructFromINCHI(inchiOutStruct.ref());
+  strict.equal(refNAPI.isNull(inchiOutStruct.ref()),true);
+
+  /**
+   * Test FreeStructFromStdINCHI
+   */
+  INCHIAPI.FreeStructFromStdINCHI(inchiOutStruct2.ref());
+  strict.equal(refNAPI.isNull(inchiOutStruct2.ref()),true);
