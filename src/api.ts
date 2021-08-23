@@ -1,6 +1,5 @@
 import { INCHIAPI } from "./ffis";
 import { inchi_InputINCHI, inchi_OutputStruct } from "./headers";
-import refNAPI from "ref-napi";
 
 type StatusReturnType1 = 0 | -1 | 1 | 2 | 3;
 type StatusReturnType2 = 0 | -1 | 1 | 2 | 3 | 4;
