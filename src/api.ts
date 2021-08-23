@@ -68,7 +68,7 @@ export interface INCHIOutput {
   szLog: string;
 }
 
-export function GetStructFromINCHI(input: string,options: string[] = [""]):0 | -1 | 1 | 2 | 3 {
+export function GetStructFromINCHI(input: string,options: string[] = [""]):0 | -1 | -2 | 1 | 2 | 3 | 4 | 5 {
   let inputInchiOptions:GetINCHIExOptions = {
   NEWPSOFF: false,
   DoNotAddH: false,
@@ -111,5 +111,5 @@ export function GetStructFromINCHI(input: string,options: string[] = [""]):0 | -
   const inchiIn = new inchi_InputINCHI(inchiInputObj);
   const inchiOutStruct = new inchi_OutputStruct();
   const Output =  INCHIAPI.GetStructFromINCHI(inchiIn.ref(),inchiOutStruct.ref());
-  return Output as 0 | -1 | 1 | 2 | 3 ;
+  return Output as 0 | -1 | -2 | 1 | 2 | 3 | 4 | 5;
 }
