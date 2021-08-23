@@ -4,8 +4,6 @@ import refNAPI from "ref-napi";
 import { readFileSync } from "fs";
 import { join } from "path";
 
-
-
 describe("test inchi ffis", () => {
   test("Check if the string represents valid InChIKey", () => {
     /**
