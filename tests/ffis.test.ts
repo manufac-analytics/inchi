@@ -164,7 +164,7 @@ describe("test inchi ffis", () => {
   });
 
 
-  test("Test FreeStructFromINCHI", () => {
+  test("Test FreeStructFromStdINCHI", () => {
     const inchiOutStruct = new inchi_OutputStruct({ num_atoms: 10, num_stereo0D: 20 });
     expect(inchiOutStruct.num_atoms).toBe(10);
     expect(inchiOutStruct.num_stereo0D).toBe(20);
