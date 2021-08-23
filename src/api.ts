@@ -2,16 +2,17 @@ import { INCHIAPI } from "./ffis";
 import { inchi_InputINCHI, inchi_OutputStruct } from "./headers";
 import refNAPI from "ref-napi";
 
-type ReturnTypeCheckINCHIKey = 0 | -1 | 1 | 2 | 3;
+type StatusReturnType1 = 0 | -1 | 1 | 2 | 3;
+type StatusReturnType2 = 0 | -1 | 1 | 2 | 3 | 4;
+type StatusReturnType3 = 0 | -1 | -2 | 1 | 2 | 3 | 4 | 5;
 
-export function CheckINCHIKey(input: string): ReturnTypeCheckINCHIKey {
-  return INCHIAPI.CheckINCHIKey(input) as ReturnTypeCheckINCHIKey;
+export function CheckINCHIKey(input: string): StatusReturnType1 {
+  return INCHIAPI.CheckINCHIKey(input) as StatusReturnType1;
 }
 
-type ReturnTypeCheckINCHI = 0 | -1 | 1 | 2 | 3 | 4;
 
-export function CheckINCHI(input: string, strict?: boolean): ReturnTypeCheckINCHI {
-  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as ReturnTypeCheckINCHI;
+export function CheckINCHI(input: string, strict?: boolean): StatusReturnType2 {
+  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as StatusReturnType2;
 }
 
 export function GetStringLength(input: string): number {
@@ -72,9 +73,9 @@ export interface INCHIOutput {
   szLog: string;
 }
 
-type ReturnTypeGetStructINCHI = 0 | -1 | -2 | 1 | 2 | 3 | 4 | 5;
 
-export function GetStructFromINCHI(input: string, options: string[] = [""]): ReturnTypeGetStructINCHI {
+
+export function GetStructFromINCHI(input: string, options: string[] = [""]): StatusReturnType3 {
   let inputInchiOptions: GetINCHIExOptions = {
     NEWPSOFF: false,
     DoNotAddH: false,
@@ -116,5 +117,5 @@ export function GetStructFromINCHI(input: string, options: string[] = [""]): Ret
   const inchiIn = new inchi_InputINCHI(inchiInputObj);
   const inchiOutStruct = new inchi_OutputStruct();
   const output = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
-  return output as ReturnTypeGetStructINCHI;
+  return output as StatusReturnType3;
 }
