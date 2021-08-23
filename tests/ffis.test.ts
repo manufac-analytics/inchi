@@ -155,16 +155,22 @@ describe("test inchi ffis", () => {
   });
 
   test("Test FreeStructFromINCHI", () => {
-    const inchiOutStruct = new inchi_OutputStruct();
+    const inchiOutStruct = new inchi_OutputStruct({ num_atoms: 10, num_stereo0D: 20 });
+    expect(inchiOutStruct.num_atoms).toBe(10);
+    expect(inchiOutStruct.num_stereo0D).toBe(20);
     INCHIAPI.FreeStructFromINCHI(inchiOutStruct.ref());
-    expect(refNAPI.isNull(inchiOutStruct.ref())).toBe(true);
+    expect(inchiOutStruct.num_atoms).toBe(0);
+    expect(inchiOutStruct.num_stereo0D).toBe(0);
   });
 
 
   test("Test FreeStructFromINCHI", () => {
-    const inchiOutStruct = new inchi_OutputStruct();
+    const inchiOutStruct = new inchi_OutputStruct({ num_atoms: 10, num_stereo0D: 20 });
+    expect(inchiOutStruct.num_atoms).toBe(10);
+    expect(inchiOutStruct.num_stereo0D).toBe(20);
     INCHIAPI.FreeStructFromStdINCHI(inchiOutStruct.ref());
-    expect(refNAPI.isNull(inchiOutStruct.ref())).toBe(true);
+    expect(inchiOutStruct.num_atoms).toBe(0);
+    expect(inchiOutStruct.num_stereo0D).toBe(0);
   });
 });
 
