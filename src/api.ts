@@ -2,16 +2,16 @@ import { INCHIAPI } from "./ffis";
 import { inchi_InputINCHI, inchi_OutputStruct } from "./headers";
 import refNAPI from "ref-napi";
 
-type returnTypeCheckINCHIKey = 0 | -1 | 1 | 2 | 3;
+type ReturnTypeCheckINCHIKey = 0 | -1 | 1 | 2 | 3;
 
-export function CheckINCHIKey(input: string): returnTypeCheckINCHIKey {
-  return INCHIAPI.CheckINCHIKey(input) as returnTypeCheckINCHIKey;
+export function CheckINCHIKey(input: string): ReturnTypeCheckINCHIKey {
+  return INCHIAPI.CheckINCHIKey(input) as ReturnTypeCheckINCHIKey;
 }
 
-type returnTypeCheckINCHI = 0 | -1 | 1 | 2 | 3 | 4;
+type ReturnTypeCheckINCHI = 0 | -1 | 1 | 2 | 3 | 4;
 
-export function CheckINCHI(input: string, strict?: boolean): returnTypeCheckINCHI {
-  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as returnTypeCheckINCHI;
+export function CheckINCHI(input: string, strict?: boolean): ReturnTypeCheckINCHI {
+  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as ReturnTypeCheckINCHI;
 }
 
 export function GetStringLength(input: string): number {
@@ -72,9 +72,9 @@ export interface INCHIOutput {
   szLog: string;
 }
 
-type returnTypeGetStructINCHI = 0 | -1 | -2 | 1 | 2 | 3 | 4 | 5;
+type ReturnTypeGetStructINCHI = 0 | -1 | -2 | 1 | 2 | 3 | 4 | 5;
 
-export function GetStructFromINCHI(input: string, options: string[] = [""]): returnTypeGetStructINCHI {
+export function GetStructFromINCHI(input: string, options: string[] = [""]): ReturnTypeGetStructINCHI {
   let inputInchiOptions: GetINCHIExOptions = {
     NEWPSOFF: false,
     DoNotAddH: false,
@@ -115,6 +115,6 @@ export function GetStructFromINCHI(input: string, options: string[] = [""]): ret
   inchiInputObj.szOptions = optionString;
   const inchiIn = new inchi_InputINCHI(inchiInputObj);
   const inchiOutStruct = new inchi_OutputStruct();
-  const Output = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
-  return Output as returnTypeGetStructINCHI;
+  const output = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
+  return output as ReturnTypeGetStructINCHI;
 }
