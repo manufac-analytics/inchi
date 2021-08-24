@@ -9,7 +9,15 @@ export type StatusReturnType2 = -1 | 0 | 1 | 2 | 3 | 4;
 export type StatusReturnType3 = -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
 
 export interface GetINCHIOptions {
+  /**
+   * Meaning: Both ends of wedge point to stereocenters.
+   * Default behavior: Only narrow end of wedge points to stereocenter
+   */
   NEWPSOFF?: boolean;
+  /**
+   * Meaning: All hydrogens in input structure are explicit
+   * Default behavior: Add H according to usual valences
+   */
   DoNotAddH?: boolean;
   SNon?: boolean;
   SRel?: boolean;
