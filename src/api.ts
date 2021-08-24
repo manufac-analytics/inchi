@@ -2,9 +2,9 @@
 import { INCHIAPI } from "./ffis";
 import { inchi_OutputStruct, inchi_OutputStructEx } from "./headers";
 
-export type StatusReturnType1 = 0 | -1 | 1 | 2 | 3;
-export type StatusReturnType2 = 0 | -1 | 1 | 2 | 3 | 4;
-export type StatusReturnType3 = 0 | -1 | -2 | 1 | 2 | 3 | 4 | 5;
+export type StatusReturnType1 = -1 | 0 | 1 | 2 | 3;
+export type StatusReturnType2 = -1 | 0 | 1 | 2 | 3 | 4;
+export type StatusReturnType3 = -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
 
 export function CheckINCHIKey(input: string): StatusReturnType1 {
   return INCHIAPI.CheckINCHIKey(input) as StatusReturnType1;
@@ -72,72 +72,22 @@ export interface INCHIOutput {
   szLog: string;
 }
 
-function generateOptionStringFromOptionsArray(optionStringArray: string[] = [""]): string {
-  let inputInchiOptions: GetINCHIExOptions = {
-    NEWPSOFF: false,
-    DoNotAddH: false,
-    SNon: false,
-    SRel: false,
-    SRac: false,
-    SUCF: false,
-    ChiralFlagON: false,
-    ChiralFlagOFF: false,
-    SUU: false,
-    SLUUD: false,
-    FixedH: false,
-    RecMet: false,
-    KET: false,
-    "15T": false,
-    AuxNone: false,
-    Wnumber: false,
-    Wmnumber: false,
-    NoWarnings: false,
-    OutputSDF: false,
-    WarnOnEmptyStructure: false,
-    SaveOpt: false,
-    LooseTSACheck: false,
-    Polymers: false,
-    Polymers105: false,
-    NoFrameShift: false,
-    FoldCRU: false,
-    NPZz: false,
-    SAtZZ: false,
-    LargeMolecules: false,
-  };
-  for (let opt of optionStringArray) {
-    inputInchiOptions[opt as keyof GetINCHIExOptions] = true;
-  }
-  return generateOptionsString(inputInchiOptions);
-}
-
-export function GetStructFromINCHI(input: string, options: string[] = [""]): StatusReturnType3 {
-  let optionString = "";
-  if (options.length > 0) {
-    optionString = generateOptionStringFromOptionsArray(options);
-  }
-  const inchiIn = { szInChI: input, szOptions: optionString };
+export function GetStructFromINCHI(input: string, options: GetINCHIOptions): StatusReturnType3 {
+  const inchiIn = { szInChI: input, szOptions: generateOptionsString(options) };
   const inchiOutStruct = new inchi_OutputStruct();
   const output = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   return output as StatusReturnType3;
 }
 
-export function GetStructFromINCHIEx(input: string, options: string[] = [""]): StatusReturnType3 {
-  let optionString = "";
-  if (options.length > 0) {
-    optionString = generateOptionStringFromOptionsArray(options);
-  }
-  const inchiIn = { szInChI: input, szOptions: optionString };
+export function GetStructFromINCHIEx(input: string, options: GetINCHIExOptions): StatusReturnType3 {
+  const inchiIn = { szInChI: input, szOptions: generateOptionsString(options) };
   const inchiOutStructEx = new inchi_OutputStructEx();
   const output = INCHIAPI.GetStructFromINCHIEx(inchiIn.ref(), inchiOutStructEx.ref());
   return output as StatusReturnType3;
 }
 
-export function GetStructFromStdINCHI(input: string, options: string[] = [""]): StatusReturnType3 {
-  let optionString = "";
-  if (options.length > 0) {
-    optionString = generateOptionStringFromOptionsArray(options);
-  }
-  const inchiIn = { szInChI: input, szOptions: optionString };
+export function GetStructFromStdINCHI(input: string, options: GetINCHIOptions): StatusReturnType3 {
+  const inchiIn = { szInChI: input, szOptions: generateOptionsString(options) };
   const inchiOutStruct = new inchi_OutputStruct();
   const output = INCHIAPI.GetStructFromStdINCHI(inchiIn.ref(), inchiOutStruct.ref());
   return output as StatusReturnType3;
