@@ -1,6 +1,6 @@
+// @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
 import { INCHIAPI } from "./ffis";
-import { inchi_InputINCHI, inchi_OutputStruct, inchi_OutputStructEx } from "./headers";
-import refNAPI from "ref-napi";
+import { inchi_OutputStruct, inchi_OutputStructEx } from "./headers";
 
 type StatusReturnType1 = 0 | -1 | 1 | 2 | 3;
 type StatusReturnType2 = 0 | -1 | 1 | 2 | 3 | 4;
