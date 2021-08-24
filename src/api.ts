@@ -52,7 +52,23 @@ export interface INCHIOutput {
 
 // #endregion
 
-// #region Functions
+// #region Private Functions
+
+function generateOptionsString(input: GetINCHIOptions | GetINCHIExOptions): string {
+  const marker = process.platform === "win32" ? "/" : "-";
+  let options = Object.keys(input)
+    .filter((ele) => {
+      return input[ele as keyof (GetINCHIOptions | GetINCHIExOptions)] === true;
+    })
+    .map((ele) => {
+      return `${marker}${ele}`;
+    });
+  return options.join(" ");
+}
+
+// #endregion
+
+// #region Public Functions
 
 export function CheckINCHIKey(input: string): StatusReturnType1 {
   return INCHIAPI.CheckINCHIKey(input) as StatusReturnType1;
@@ -64,18 +80,6 @@ export function CheckINCHI(input: string, strict?: boolean): StatusReturnType2 {
 
 export function GetStringLength(input: string): number {
   return INCHIAPI.GetStringLength(input);
-}
-
-export function generateOptionsString(input: GetINCHIOptions | GetINCHIExOptions): string {
-  const marker = process.platform === "win32" ? "/" : "-";
-  let options = Object.keys(input)
-    .filter((ele) => {
-      return input[ele as keyof (GetINCHIOptions | GetINCHIExOptions)] === true;
-    })
-    .map((ele) => {
-      return `${marker}${ele}`;
-    });
-  return options.join(" ");
 }
 
 export function GetStructFromINCHI(input: string, options: GetINCHIOptions): StatusReturnType3 {
