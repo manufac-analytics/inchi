@@ -2,21 +2,11 @@
 import { INCHIAPI } from "./ffis";
 import { inchi_OutputStruct, inchi_OutputStructEx } from "./headers";
 
+// #region Types and Interfaces
+
 export type StatusReturnType1 = -1 | 0 | 1 | 2 | 3;
 export type StatusReturnType2 = -1 | 0 | 1 | 2 | 3 | 4;
 export type StatusReturnType3 = -2 | -1 | 0 | 1 | 2 | 3 | 4 | 5;
-
-export function CheckINCHIKey(input: string): StatusReturnType1 {
-  return INCHIAPI.CheckINCHIKey(input) as StatusReturnType1;
-}
-
-export function CheckINCHI(input: string, strict?: boolean): StatusReturnType2 {
-  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as StatusReturnType2;
-}
-
-export function GetStringLength(input: string): number {
-  return INCHIAPI.GetStringLength(input);
-}
 
 export interface GetINCHIOptions {
   NEWPSOFF?: boolean;
@@ -53,6 +43,29 @@ export interface GetINCHIExOptions extends GetINCHIOptions {
   LargeMolecules?: boolean;
 }
 
+export interface INCHIOutput {
+  szInChI: string;
+  szAuxInfo: string;
+  szMessage: string;
+  szLog: string;
+}
+
+// #endregion
+
+// #region Functions
+
+export function CheckINCHIKey(input: string): StatusReturnType1 {
+  return INCHIAPI.CheckINCHIKey(input) as StatusReturnType1;
+}
+
+export function CheckINCHI(input: string, strict?: boolean): StatusReturnType2 {
+  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as StatusReturnType2;
+}
+
+export function GetStringLength(input: string): number {
+  return INCHIAPI.GetStringLength(input);
+}
+
 export function generateOptionsString(input: GetINCHIOptions | GetINCHIExOptions): string {
   const marker = process.platform === "win32" ? "/" : "-";
   let options = Object.keys(input)
@@ -63,13 +76,6 @@ export function generateOptionsString(input: GetINCHIOptions | GetINCHIExOptions
       return `${marker}${ele}`;
     });
   return options.join(" ");
-}
-
-export interface INCHIOutput {
-  szInChI: string;
-  szAuxInfo: string;
-  szMessage: string;
-  szLog: string;
 }
 
 export function GetStructFromINCHI(input: string, options: GetINCHIOptions): StatusReturnType3 {
@@ -92,3 +98,5 @@ export function GetStructFromStdINCHI(input: string, options: GetINCHIOptions): 
   const output = INCHIAPI.GetStructFromStdINCHI(inchiIn.ref(), inchiOutStruct.ref());
   return output as StatusReturnType3;
 }
+
+// #endregion
