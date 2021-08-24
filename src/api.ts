@@ -2,9 +2,9 @@
 import { INCHIAPI } from "./ffis";
 import { inchi_OutputStruct, inchi_OutputStructEx } from "./headers";
 
-type StatusReturnType1 = 0 | -1 | 1 | 2 | 3;
-type StatusReturnType2 = 0 | -1 | 1 | 2 | 3 | 4;
-type StatusReturnType3 = 0 | -1 | -2 | 1 | 2 | 3 | 4 | 5;
+export type StatusReturnType1 = 0 | -1 | 1 | 2 | 3;
+export type StatusReturnType2 = 0 | -1 | 1 | 2 | 3 | 4;
+export type StatusReturnType3 = 0 | -1 | -2 | 1 | 2 | 3 | 4 | 5;
 
 export function CheckINCHIKey(input: string): StatusReturnType1 {
   return INCHIAPI.CheckINCHIKey(input) as StatusReturnType1;
