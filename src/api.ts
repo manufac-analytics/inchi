@@ -1,4 +1,4 @@
-// @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
+// @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies.
 import { INCHIAPI } from "./ffis";
 import { inchi_OutputStruct, inchi_OutputStructEx } from "./headers";
 
