@@ -84,7 +84,7 @@ export const CheckINCHIReturnCode = {
   /**
    * Checking InChI through InChI2InChI either failed or produced a result which does not match the source InChI string
    */
-   INCHI_FAIL_I2I: 4,
+  INCHI_FAIL_I2I: 4,
   /**
    * InChI is valid and non-standard
    */
