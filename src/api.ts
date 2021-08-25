@@ -154,13 +154,45 @@ export interface GetINCHIOptions {
 }
 
 export interface GetINCHIExOptions extends GetINCHIOptions {
+  /**
+   * Meaning: (new in v. 1.06) Relax strictness of tetrahedral stereo ambiguity check for stereo atoms in (large) rings
+   * Default behaviour: Use strict criteria (as in v. 1.05 and previous
+   */
   LooseTSACheck?: boolean;
+  /**
+   * Meaning: Experimental support of simple polymers, current mode
+   * Default behaviour: Disabled
+   */
   Polymers?: boolean;
+  /**
+   * Meaning: (new in v. 1.06) Experimental support of simple polymers in legacy v. 1.05 mode
+   * Default behaviour: Disabled
+   */
   Polymers105?: boolean;
+  /**
+   * Meaning: (new in v. 1.06) Disable polymer CRU frame shift
+   * Default behaviour: Attempt CRU frame shift
+   */
   NoFrameShift?: boolean;
+  /**
+   * Meaning: (new in v. 1.06)In polymer treatment, try to fold constitutional repeating units which themselves contain repeats
+   * Default behaviour: Disabled
+   */
   FoldCRU?: boolean;
+  /**
+   * Meaning: (new in v. 1.06) Allow non-polymer Zz pseudo element atoms
+   * Default behaviour: Disabled
+   */
   NPZz?: boolean;
+  /**
+   * Meaning: (new in v. 1.06) Allow stereo at atoms connected to Zz
+   * Default behaviour: Disabled
+   */
   SAtZZ?: boolean;
+  /**
+   * Meaning: Experimental support of molecules up to 32767 atoms
+   * Default behaviour: Disabled
+   */
   LargeMolecules?: boolean;
 }
 
