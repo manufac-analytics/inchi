@@ -1,6 +1,6 @@
 // @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies.
 import { INCHIAPI } from "./ffis";
-import { inchi_OutputStruct, inchi_OutputStructEx } from "./headers";
+import { inchi_InputINCHI, inchi_OutputStruct, inchi_OutputStructEx } from "./headers";
 
 // #region Types and Interfaces
 
@@ -285,21 +285,21 @@ export function GetStringLength(input: string): number {
 }
 
 export function GetStructFromINCHI(input: string, options: GetINCHIOptions): GetINCHIReturnCode {
-  const inchiIn = { szInChI: input, szOptions: generateOptionsString(options) };
+  const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
   const output = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   return output;
 }
 
 export function GetStructFromINCHIEx(input: string, options: GetINCHIExOptions): GetINCHIReturnCode {
-  const inchiIn = { szInChI: input, szOptions: generateOptionsString(options) };
+  const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStructEx = new inchi_OutputStructEx();
   const output = INCHIAPI.GetStructFromINCHIEx(inchiIn.ref(), inchiOutStructEx.ref());
   return output;
 }
 
 export function GetStructFromStdINCHI(input: string, options: GetINCHIOptions): GetINCHIReturnCode {
-  const inchiIn = { szInChI: input, szOptions: generateOptionsString(options) };
+  const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
   const output = INCHIAPI.GetStructFromStdINCHI(inchiIn.ref(), inchiOutStruct.ref());
   return output;
