@@ -4,9 +4,6 @@ import { inchi_OutputStruct, inchi_OutputStructEx } from "./headers";
 
 // #region Types and Interfaces
 
-export type StatusReturnType1 = -1 | 0 | 1 | 2 | 3;
-export type StatusReturnType2 = -1 | 0 | 1 | 2 | 3 | 4;
-
 export const GetINCHIReturnCode = {
   /**
    * Success; no errors or warnings
@@ -42,6 +39,58 @@ export const GetINCHIReturnCode = {
   inchi_Ret_SKIP: -2,
 } as const;
 export type GetINCHIReturnCode = typeof GetINCHIReturnCode[keyof typeof GetINCHIReturnCode];
+
+export const CheckINCHIKeyReturnCode = {
+  /**
+   * InChIKey is valid and standard
+   */
+  INCHIKEY_VALID_STANDARD: 0,
+  /**
+   * InChIKey has invalid length
+   */
+  INCHIKEY_INVALID_LENGTH: 1,
+  /**
+   * InChIKey has invalid layout
+   */
+  INCHIKEY_INVALID_LAYOUT: 2,
+  /**
+   * InChIKey has invalid version number (not equal to 1)
+   */
+  INCHIKEY_INVALID_VERSION: 3,
+  /**
+   * InChIKey is valid and non-standard
+   */
+  INCHIKEY_VALID_NON_STANDARD: -1,
+} as const;
+export type CheckINCHIKeyReturnCode = typeof CheckINCHIKeyReturnCode[keyof typeof CheckINCHIKeyReturnCode];
+
+export const CheckINCHIReturnCode = {
+  /**
+   * InChI is valid and standard
+   */
+  INCHI_VALID_STANDARD: 0,
+  /**
+   * InChI has invalid Prefix
+   */
+  INCHI_INVALID_PREFIX: 1,
+  /**
+   * InChI has invalid version number (not equal to 1)
+   */
+  INCHI_INVALID_VERSION: 2,
+  /**
+   * InChI has invalid layout
+   */
+  INCHI_INVALID_LAYOUT: 3,
+  /**
+   * Checking InChI through InChI2InChI either failed or produced a result which does not match the source InChI string
+   */
+   INCHI_FAIL_I2I: 4,
+  /**
+   * InChI is valid and non-standard
+   */
+  INCHI_VALID_NON_STANDARD: -1,
+} as const;
+export type CheckINCHIReturnCode = typeof CheckINCHIReturnCode[keyof typeof CheckINCHIReturnCode];
 
 export interface GetINCHIOptions {
   /**
@@ -223,12 +272,12 @@ function generateOptionsString(input: GetINCHIOptions | GetINCHIExOptions): stri
 
 // #region Public Functions
 
-export function CheckINCHIKey(input: string): StatusReturnType1 {
-  return INCHIAPI.CheckINCHIKey(input) as StatusReturnType1;
+export function CheckINCHIKey(input: string): CheckINCHIKeyReturnCode {
+  return INCHIAPI.CheckINCHIKey(input);
 }
 
-export function CheckINCHI(input: string, strict?: boolean): StatusReturnType2 {
-  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as StatusReturnType2;
+export function CheckINCHI(input: string, strict?: boolean): CheckINCHIReturnCode {
+  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0);
 }
 
 export function GetStringLength(input: string): number {
@@ -239,21 +288,21 @@ export function GetStructFromINCHI(input: string, options: GetINCHIOptions): Get
   const inchiIn = { szInChI: input, szOptions: generateOptionsString(options) };
   const inchiOutStruct = new inchi_OutputStruct();
   const output = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
-  return output as StatusReturnType3;
+  return output;
 }
 
 export function GetStructFromINCHIEx(input: string, options: GetINCHIExOptions): GetINCHIReturnCode {
   const inchiIn = { szInChI: input, szOptions: generateOptionsString(options) };
   const inchiOutStructEx = new inchi_OutputStructEx();
   const output = INCHIAPI.GetStructFromINCHIEx(inchiIn.ref(), inchiOutStructEx.ref());
-  return output as StatusReturnType3;
+  return output;
 }
 
 export function GetStructFromStdINCHI(input: string, options: GetINCHIOptions): GetINCHIReturnCode {
   const inchiIn = { szInChI: input, szOptions: generateOptionsString(options) };
   const inchiOutStruct = new inchi_OutputStruct();
   const output = INCHIAPI.GetStructFromStdINCHI(inchiIn.ref(), inchiOutStruct.ref());
-  return output as StatusReturnType3;
+  return output;
 }
 
 // #endregion
