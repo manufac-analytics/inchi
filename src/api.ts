@@ -39,7 +39,7 @@ export const GetINCHIReturnCode = {
   /**
    * Not used in InChI library
    */
-  inchi_Ret_SKIP: -2
+  inchi_Ret_SKIP: -2,
 } as const;
 export type GetINCHIReturnCode = typeof GetINCHIReturnCode[keyof typeof GetINCHIReturnCode];
 
@@ -54,24 +54,102 @@ export interface GetINCHIOptions {
    * Default behavior: Add H according to usual valences
    */
   DoNotAddH?: boolean;
+  /**
+   * Meaning: Ignore stereo
+   * Default behaviour: Use absolute stereo
+   */
   SNon?: boolean;
+  /**
+   * Meaning: Use relative stereo
+   * Default behaviour: Use absolute stereo
+   */
   SRel?: boolean;
+  /**
+   * Meaning: Use racemic stereo
+   * Default behaviour: Use absolute stereo
+   */
   SRac?: boolean;
+  /**
+   * Meaning: Use Chiral Flag in MOL/SD file record: 
+     if On – use Absolute stereo,
+        Off – use Relative stereo
+   * Default behaviour: Use absolute stereo
+   */
   SUCF?: boolean;
+  /**
+   * Meaning: Set chiral flag ON
+   * Default behaviour: -
+   */
   ChiralFlagON?: boolean;
+  /**
+   * Meaning: Set chiral flag OFF
+   * Default behaviour: -
+   */
   ChiralFlagOFF?: boolean;
+  /**
+   * Meaning: Always indicate unknown/undefined stereo
+   * Default behaviour: Does not indicate unknown/undefined stereo unless at least one defined stereo is present
+   */
   SUU?: boolean;
+  /**
+   * Meaning: Stereo labels for “unknown” and “undefined” are different,‘u’ and ‘?’, resp. (new option)
+   * Default behaviour: Stereo labels for “unknown” and “undefined” are the same (‘?’)
+   */
   SLUUD?: boolean;
+  /**
+   * Meaning: Include reconnected metals results
+   * Default behaviour: Do not include
+   */
   FixedH?: boolean;
+  /**
+   * Meaning: Include Fixed H layer
+   * Default behaviour: Do not include
+   */
   RecMet?: boolean;
+  /**
+   * Meaning: Account for keto-enol tautomerism (experimental; extension to InChI 1)
+   * Default behaviour: Ignore keto-enol tautomerism
+   */
   KET?: boolean;
+  /**
+   * Meaning: Account for 1,5-tautomerism (experimental; extension to InChI 1)
+   * Default behaviour: Ignore 1,5-tautomerism
+   */
   "15T"?: boolean;
+  /**
+   * Meaning: Omit auxiliary information
+   * Default behaviour: Include
+   */
   AuxNone?: boolean;
+  /**
+   * Meaning: Set time-out per structure in seconds; W0 means unlimited
+   * Default behaviour: The default value is unlimited
+   */
   Wnumber?: boolean;
+  /**
+   * Meaning: (new in v. 1.06) Set time-out per structure in milliseconds; W0 means unlimited
+   * Default behaviour: The default value is unlimited
+   */
   Wmnumber?: boolean;
+  /**
+   * Meaning: (new in v. 1.06) Suppress allwarning messages(default:show)
+   * Default behaviour: Output warnings as usuals
+   */
   NoWarnings?: boolean;
+  /**
+   * Meaning: Output SDfile instead of InChI
+   * Default behaviour: -
+   */
   OutputSDF?: boolean;
+  /**
+   * Meaning: Warn and produce empty InChI for empty structure
+   * Default behaviour: Just skip empty structure
+   */
   WarnOnEmptyStructure?: boolean;
+  /**
+   * Meaning: Save custom InChI creation options (non-standard InChI)
+   * Default behaviour: Do not save custom opts
+   */
   SaveOpt?: boolean;
 }
 
