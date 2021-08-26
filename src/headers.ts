@@ -630,6 +630,10 @@ export const inchi_Input_Polymer = NAPIStructType({
   units: refNAPI.refType(refNAPI.refType(inchi_Input_PolymerUnit)),
   n: refNAPI.types.int,
 });
+export interface INCHIInputPolymer {
+  units: INCHIInputPolymerUnit[];
+  n: number;
+}
 
 // /*
 //   V3000 Extensions
