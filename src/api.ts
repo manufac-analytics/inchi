@@ -7,6 +7,7 @@ import {
   inchi_OutputStruct,
   inchi_OutputStructEx,
 } from "./headers";
+import { generateINCHIAtom } from "./deref";
 
 // #region Types and Interfaces
 
@@ -274,7 +275,7 @@ export interface GetStructFromINCHIExOutput {
 
 function generateOptionsString(input?: GetINCHIOptions | GetINCHIExOptions): string {
   let optionString = "";
-  if (typeof input !== undefined) {
+  if (input !== undefined) {
     const marker = process.platform === "win32" ? "/" : "-";
     let options = Object.keys(input)
       .filter((ele) => {
@@ -309,7 +310,7 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
   const inchiOutStruct = new inchi_OutputStruct();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
-    atom: inchiOutStruct.atom.deref(),
+    atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
     stereo0D: inchiOutStruct.stereo0D.deref(),
     numAtoms: inchiOutStruct.num_atoms,
     numStereo0D: inchiOutStruct.num_stereo0D,
@@ -326,7 +327,7 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
   const inchiOutStructEx = new inchi_OutputStructEx();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStructEx.ref());
   const outputDataEx: INCHIOutputStructEx = {
-    atom: inchiOutStructEx.atom.deref(),
+    atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
     stereo0D: inchiOutStructEx.stereo0D.deref(),
     numAtoms: inchiOutStructEx.num_atoms,
     numStereo0D: inchiOutStructEx.num_stereo0D,
@@ -345,7 +346,7 @@ export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions):
   const inchiOutStruct = new inchi_OutputStruct();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
-    atom: inchiOutStruct.atom.deref(),
+    atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
     stereo0D: inchiOutStruct.stereo0D.deref(),
     numAtoms: inchiOutStruct.num_atoms,
     numStereo0D: inchiOutStruct.num_stereo0D,
