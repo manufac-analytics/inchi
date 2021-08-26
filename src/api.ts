@@ -304,7 +304,7 @@ export function GetStringLength(input: string): number {
   return INCHIAPI.GetStringLength(input);
 }
 
-export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): GetINCHIReturnCode {
+export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): GetStructFromINCHIOutput {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
@@ -321,7 +321,7 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
   return output;
 }
 
-export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions): GetINCHIReturnCode {
+export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions): GetStructFromINCHIExOutput {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStructEx = new inchi_OutputStructEx();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStructEx.ref());
@@ -340,7 +340,7 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
   return output;
 }
 
-export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions): GetINCHIReturnCode {
+export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions): GetStructFromINCHIOutput {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
