@@ -845,6 +845,15 @@ export const inchi_OutputStruct = NAPIStructType({
   szLog: refNAPI.types.CString,
   WarningFlags: NAPIArrayType(NAPIArrayType(refNAPI.types.ulong, 2), 2),
 });
+export interface INCHIOutputStruct {
+  atom: INCHIAtom;
+  stereo0D: INCHIStereo0D;
+  numAtoms: number;
+  numStereo0D: number;
+  szMessage: string;
+  szLog: string;
+  warningFlags: [[number, number], [number, number]];
+}
 
 // typedef struct tagINCHI_OutputStructEx
 // {
@@ -878,6 +887,17 @@ export const inchi_OutputStructEx = NAPIStructType({
   polymer: refNAPI.refType(inchi_Input_Polymer),
   v3000: refNAPI.refType(inchi_Input_V3000),
 });
+export interface INCHIOutputStructEx {
+  atom: INCHIAtom;
+  stereo0D: INCHIStereo0D;
+  numAtoms: number;
+  numStereo0D: number;
+  szMessage: string;
+  szLog: string;
+  warningFlags: [[number, number], [number, number]];
+  polymer: INCHIInputPolymer;
+  v3000: INCHIInputV3000;
+}
 
 // void FreeInChIExtInput( inchi_Input_Polymer    *polymer, inchi_Input_V3000 *v3000 );
 
