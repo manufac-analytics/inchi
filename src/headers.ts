@@ -135,6 +135,7 @@ export type MAXVALTuple = [
 ];
 export type ATOMELLENTuple = [number, number, number, number, number, number];
 export type NUMHISOTOPESTuple = [number, number, number, number];
+export type FourNumberTuple = [number, number, number, number];
 
 /*************************************************
  *
@@ -503,6 +504,12 @@ export const inchi_Stereo0D = NAPIStructType({
   type: refNAPI.types.char,
   parity: refNAPI.types.char,
 });
+export interface INCHIStereo0D {
+  neighbor: FourNumberTuple;
+  centralAtom: number;
+  type: number;
+  parity: number;
+}
 
 /*************************************************
  *
