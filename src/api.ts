@@ -256,16 +256,20 @@ export interface INCHIOutput {
 
 // #region Private Functions
 
-function generateOptionsString(input: GetINCHIOptions | GetINCHIExOptions): string {
-  const marker = process.platform === "win32" ? "/" : "-";
-  let options = Object.keys(input)
-    .filter((ele) => {
-      return input[ele as keyof (GetINCHIOptions | GetINCHIExOptions)] === true;
-    })
-    .map((ele) => {
-      return `${marker}${ele}`;
-    });
-  return options.join(" ");
+function generateOptionsString(input?: GetINCHIOptions | GetINCHIExOptions): string {
+  let optionString = "";
+  if (typeof input !== undefined) {
+    const marker = process.platform === "win32" ? "/" : "-";
+    let options = Object.keys(input)
+      .filter((ele) => {
+        return input[ele as keyof (GetINCHIOptions | GetINCHIExOptions)] === true;
+      })
+      .map((ele) => {
+        return `${marker}${ele}`;
+      });
+    optionString = options.join(" ");
+  }
+  return optionString;
 }
 
 // #endregion
@@ -284,21 +288,21 @@ export function GetStringLength(input: string): number {
   return INCHIAPI.GetStringLength(input);
 }
 
-export function GetStructFromINCHI(input: string, options: GetINCHIOptions): GetINCHIReturnCode {
+export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): GetINCHIReturnCode {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
   const output = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   return output;
 }
 
-export function GetStructFromINCHIEx(input: string, options: GetINCHIExOptions): GetINCHIReturnCode {
+export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions): GetINCHIReturnCode {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStructEx = new inchi_OutputStructEx();
   const output = INCHIAPI.GetStructFromINCHIEx(inchiIn.ref(), inchiOutStructEx.ref());
   return output;
 }
 
-export function GetStructFromStdINCHI(input: string, options: GetINCHIOptions): GetINCHIReturnCode {
+export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions): GetINCHIReturnCode {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
   const output = INCHIAPI.GetStructFromStdINCHI(inchiIn.ref(), inchiOutStruct.ref());
