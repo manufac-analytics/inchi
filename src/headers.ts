@@ -769,6 +769,10 @@ export const inchi_InputINCHI = NAPIStructType({
   szInChI: refNAPI.types.CString,
   szOptions: refNAPI.types.CString,
 });
+export interface INCHIInputINCHI {
+  szINCHI: string;
+  szOptions: string;
+}
 
 // typedef inchi_Input_PolymerUnit inchi_Output_PolymerUnit;
 // typedef inchi_Input_Polymer inchi_Output_Polymer;
@@ -803,6 +807,12 @@ export const inchi_Output = NAPIStructType({
   szMessage: refNAPI.types.CString,
   szLog: refNAPI.types.CString,
 });
+export interface INCHIOutput {
+  szINCHI: string;
+  szAuxInfo: string;
+  szMessage: string;
+  szLog: string;
+}
 
 // /* InChI -> Structure */
 
