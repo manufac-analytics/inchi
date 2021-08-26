@@ -308,7 +308,7 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
-  const outputData = {
+  const outputData: INCHIOutputStruct = {
     atom: inchiOutStruct.atom.deref(),
     stereo0D: inchiOutStruct.stereo0D.deref(),
     numAtoms: inchiOutStruct.num_atoms,
@@ -325,7 +325,7 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStructEx = new inchi_OutputStructEx();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStructEx.ref());
-  const outputDataEx = {
+  const outputDataEx: INCHIOutputStructEx = {
     atom: inchiOutStructEx.atom.deref(),
     stereo0D: inchiOutStructEx.stereo0D.deref(),
     numAtoms: inchiOutStructEx.num_atoms,
@@ -344,7 +344,7 @@ export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions):
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
-  const outputData = {
+  const outputData: INCHIOutputStruct = {
     atom: inchiOutStruct.atom.deref(),
     stereo0D: inchiOutStruct.stereo0D.deref(),
     numAtoms: inchiOutStruct.num_atoms,
