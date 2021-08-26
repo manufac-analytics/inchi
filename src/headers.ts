@@ -136,6 +136,8 @@ export type MAXVALTuple = [
 export type ATOMELLENTuple = [number, number, number, number, number, number];
 export type NUMHISOTOPESTuple = [number, number, number, number];
 export type FourNumberTuple = [number, number, number, number];
+export type TenNumberTuple = [...FourNumberTuple, ...FourNumberTuple, number, number];
+export type EightyNumberTuple = [...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple]
 
 /*************************************************
  *
@@ -602,6 +604,20 @@ export const inchi_Input_PolymerUnit = NAPIStructType({
   alist: refNAPI.refType(refNAPI.types.int),
   blist: refNAPI.refType(refNAPI.types.int),
 });
+export interface INCHIInputPolymerUnit {
+  id: number;
+  type: number;
+  subType: number;
+  conn: number;
+  label: number;
+  nA: number
+  nB: number;
+  xBr1: FourNumberTuple;
+  xBr2: FourNumberTuple;
+  smt: EightyNumberTuple;
+  aList: number;
+  bList: number;
+}
 
 // typedef struct inchi_Input_Polymer
 // {
