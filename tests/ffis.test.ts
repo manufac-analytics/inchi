@@ -1,5 +1,6 @@
 // @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
-import { INCHIAPI, inchi_InputINCHI, inchi_Output, inchi_OutputStruct, inchi_OutputStructEx } from "../src";
+import { INCHIAPI } from "../src/ffis";
+import { inchi_InputINCHI, inchi_Output, inchi_OutputStruct, inchi_OutputStructEx } from "../src/headers";
 import refNAPI from "ref-napi";
 import { readFileSync } from "fs";
 import { join } from "path";

@@ -21,7 +21,7 @@ import {
   MAX_NUM_STEREO_ATOM_NEIGH,
   MAX_NUM_STEREO_BONDS,
   NORM_ATOMS,
-} from "../src";
+} from "../src/headers";
 
 describe("test inchi headers", () => {
   test("Check inchi_Atom", () => {
