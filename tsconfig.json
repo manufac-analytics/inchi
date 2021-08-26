@@ -20,7 +20,7 @@
     "tsBuildInfoFile": "./tsconfig.tsbuildinfo",
     "outDir": "./dist/tsc" /* Redirect output structure to the directory. */,
     "declarationDir": "./dist/types",
-    "rootDir": "." /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */,
+    "rootDir": "." /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
   },
   "include": ["./src", "./tests"]
 }
