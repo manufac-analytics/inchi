@@ -546,6 +546,13 @@ export const inchi_Input = NAPIStructType({
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
 });
+export interface INCHIInput {
+  atom: INCHIAtom;
+  stereo0D: INCHIStereo0D;
+  szOptions: string;
+  numAtoms: number;
+  numStereo0D: number;
+}
 
 // /*
 //   Extended input supporting v. 1.05+ extensions: V3000; polymers
