@@ -111,6 +111,31 @@ export const NUM_H_ISOTOPES = 3; // number of hydrogen isotopes: protium, D, T
 export const ISOTOPIC_SHIFT_FLAG = 10000; // add to isotopic mass if isotopic_mass = (isotopic mass - average atomic mass)                             /* (isotopic mass - average atomic mass)        */
 export const ISOTOPIC_SHIFT_MAX = 100; // max abs(isotopic mass - average atomic mass)
 
+export type MAXVALTuple = [
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number
+];
+export type ATOMELLENTuple = [number, number, number, number, number, number];
+export type NUMHISOTOPESTuple = [number, number, number, number];
+
 /*************************************************
  *
  *
