@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html class="default no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@manufac-analytics/inchi</title>
+    <meta name="description" content="Documentation for @manufac-analytics/inchi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script async src="assets/js/search.js" id="search-script"></script>
+  </head>
+  <body>
+    <header>
+      <div class="tsd-page-toolbar">
+        <div class="container">
+          <div class="table-wrap">
+            <div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+              <div class="field">
+                <label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+                <input id="tsd-search-field" type="text" />
+              </div>
+              <ul class="results">
+                <li class="state loading">Preparing search index...</li>
+                <li class="state failure">The search index is not available</li>
+              </ul>
+              <a href="index.html" class="title">@manufac-analytics/inchi</a>
+            </div>
+            <div class="table-cell" id="tsd-widgets">
+              <div id="tsd-filter">
+                <a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+                <div class="tsd-filter-group">
+                  <div class="tsd-select" id="tsd-filter-visibility">
+                    <span class="tsd-select-label">All</span>
+                    <ul class="tsd-select-list">
+                      <li data-value="public">Public</li>
+                      <li data-value="protected">Public/Protected</li>
+                      <li data-value="private" class="selected">All</li>
+                    </ul>
+                  </div>
+                  <input type="checkbox" id="tsd-filter-inherited" checked />
+                  <label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+                  <input type="checkbox" id="tsd-filter-externals" checked />
+                  <label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+                </div>
+              </div>
+              <a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tsd-page-title">
+        <div class="container">
+          <h1>@manufac-analytics/inchi</h1>
+        </div>
+      </div>
+    </header>
+    <div class="container container-main">
+      <div class="row">
+        <div class="col-8 col-content">
+          <div class="tsd-panel tsd-typography">
+            <p>
+              <img
+                src="https://user-images.githubusercontent.com/25290212/120916404-15b66a80-c6c7-11eb-8604-6409546342c0.png"
+                alt="@manufac-analytics/inchi Logo"
+              />
+            </p>
+            <p>
+              <em>NodeJS/TypeScript Port of <a href="https://www.inchi-trust.org/downloads/">InChI 1.06</a></em>
+            </p>
+            <p>
+              <a href="https://github.com/manufac-analytics/inchi/actions/workflows/main.yml"
+                ><img
+                  src="https://github.com/manufac-analytics/inchi/actions/workflows/main.yml/badge.svg"
+                  alt="Build &amp; Tests"
+              /></a>
+            </p>
+            <hr />
+            <a
+              href="#how-to-use-this-library"
+              id="how-to-use-this-library"
+              style="color: inherit; text-decoration: none"
+            >
+              <h3>How to use this library?</h3>
+            </a>
+            <ol>
+              <li>
+                <p>Using the library in your source code.</p>
+                <ul>
+                  <li>
+                    This library has a dependency on <a href="https://www.npmjs.com/package/ffi-napi">ffi-napi</a> so
+                    you may need to install
+                    <a href="https://github.com/nodejs/node-gyp#installation">some necessary build tools</a> for it to
+                    work.
+                  </li>
+                  <li>
+                    Alternately, you can also use Docker to automatically set up your dev environment with required
+                    dependencies.
+                    <a href="https://github.com/manufac-analytics/inchi/blob/main/.devcontainer/Dockerfile"
+                      >Here&#39;s</a
+                    >
+                    the Dockerfile that we are using for the same.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p>Running a <a href="https://www.jsonrpc.org/specification">JSON-RPC 2.0</a> server.</p>
+                <ul>
+                  <li>
+                    This library exposes a
+                    <a href="https://hub.docker.com/r/manufacanalytics/inchi">Docker image</a> which you can run to spin
+                    off a JSON-RPC 2.0 server.
+                  </li>
+                  <li>
+                    You can interact with that server from your source code by making a HTTP <code>POST</code> request.
+                  </li>
+                  <li>The request&#39;s <code>body</code> should be JSON-RPC 2.0 compliant. For e.g.,</li>
+                </ul>
+                <pre><code class="language-json"><span style="color: #000000">{</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;jsonrpc&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;2.0&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;method&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;GetStringLength&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;params&quot;</span><span style="color: #000000">: [</span><span style="color: #A31515">&quot;my-string&quot;</span><span style="color: #000000">],</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;id&quot;</span><span style="color: #000000">: </span><span style="color: #098658">1</span>
+<span style="color: #000000">}</span>
+</code></pre>
+                <ul>
+                  <li>The response can look like:</li>
+                </ul>
+                <pre><code class="language-json"><span style="color: #000000">{</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;jsonrpc&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;2.0&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;id&quot;</span><span style="color: #000000">: </span><span style="color: #098658">1</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;result&quot;</span><span style="color: #000000">: </span><span style="color: #098658">9</span>
+<span style="color: #000000">}</span>
+</code></pre>
+                <ul>
+                  <li>In case of an error, the response can look like:</li>
+                </ul>
+                <pre><code class="language-json"><span style="color: #000000">{</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;jsonrpc&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;2.0&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;id&quot;</span><span style="color: #000000">: </span><span style="color: #098658">1</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;error&quot;</span><span style="color: #000000">: {</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;message&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;Expected 1 arguments, got 2&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #0451A5">&quot;code&quot;</span><span style="color: #000000">: </span><span style="color: #098658">-32602</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
+</code></pre>
+              </li>
+            </ol>
+            <hr />
+            <a href="#api-porting-status" id="api-porting-status" style="color: inherit; text-decoration: none">
+              <h3>API Porting Status</h3>
+            </a>
+            <p><em>We are slowly working towards exposing all the InCHI functions. PRs welcome.</em></p>
+            <p>A. Generation of InChI from structure</p>
+            <ul>
+              <li><input disabled="" type="checkbox" /> GetINCHI</li>
+              <li><input disabled="" type="checkbox" /> GetINCHIEx</li>
+              <li><input disabled="" type="checkbox" /> FreeINCHI</li>
+              <li><input disabled="" type="checkbox" /> Free_inchi_Input</li>
+              <li><input disabled="" type="checkbox" /> Get_inchi_Input_FromAuxInfo</li>
+              <li><input disabled="" type="checkbox" /> GetStdINCHI</li>
+              <li><input disabled="" type="checkbox" /> FreeStdINCHI</li>
+              <li><input disabled="" type="checkbox" /> Free_std_inchi_Input</li>
+              <li><input disabled="" type="checkbox" /> Get_std_inchi_Input_FromAuxInfo</li>
+            </ul>
+            <p>B. Generation of InChI from structure, step-by-step way</p>
+            <ul>
+              <li><input disabled="" type="checkbox" /> INCHIGEN_Create</li>
+              <li><input disabled="" type="checkbox" /> INCHIGEN_Setup</li>
+              <li><input disabled="" type="checkbox" /> INCHIGEN_DoNormalization</li>
+              <li><input disabled="" type="checkbox" /> INCHIGEN_DoCanonicalization</li>
+              <li><input disabled="" type="checkbox" /> INCHIGEN_DoSerialization</li>
+              <li><input disabled="" type="checkbox" /> INCHIGEN_Reset</li>
+              <li><input disabled="" type="checkbox" /> INCHIGEN_Destroy</li>
+              <li><input disabled="" type="checkbox" /> STDINCHIGEN_Create</li>
+              <li><input disabled="" type="checkbox" /> STDINCHIGEN_Setup</li>
+              <li><input disabled="" type="checkbox" /> STDINCHIGEN_DoNormalization</li>
+              <li><input disabled="" type="checkbox" /> STDINCHIGEN_DoCanonicalization</li>
+              <li><input disabled="" type="checkbox" /> STDINCHIGEN_DoSerialization</li>
+              <li><input disabled="" type="checkbox" /> STDINCHIGEN_Reset</li>
+              <li><input disabled="" type="checkbox" /> STDINCHIGEN_Destroy</li>
+            </ul>
+            <p>C. Generation of InChI directly from Molfile</p>
+            <ul>
+              <li><input checked="" disabled="" type="checkbox" /> MakeINCHIFromMolfileText</li>
+            </ul>
+            <p>D. Restoring structure from InChI or AuxInfo</p>
+            <ul>
+              <li><input checked="" disabled="" type="checkbox" /> GetStructFromINCHI</li>
+              <li><input checked="" disabled="" type="checkbox" /> GetStructFromINCHIEx</li>
+              <li><input checked="" disabled="" type="checkbox" /> FreeStructFromINCHI</li>
+              <li><input checked="" disabled="" type="checkbox" /> GetStructFromStdINCHI</li>
+              <li><input checked="" disabled="" type="checkbox" /> FreeStructFromStdINCHI</li>
+            </ul>
+            <p>E. InChIKey</p>
+            <ul>
+              <li><input checked="" disabled="" type="checkbox" /> GetINCHIKeyFromINCHI</li>
+              <li><input checked="" disabled="" type="checkbox" /> CheckINCHIKey</li>
+              <li><input checked="" disabled="" type="checkbox" /> GetStdINCHIKeyFromStdINCHI</li>
+            </ul>
+            <p>F. Test and utlity procedures</p>
+            <ul>
+              <li><input checked="" disabled="" type="checkbox" /> GetINCHIfromINCHI</li>
+              <li><input checked="" disabled="" type="checkbox" /> CheckINCHI</li>
+              <li><input checked="" disabled="" type="checkbox" /> GetStringLength</li>
+            </ul>
+            <p>G. Status Objects</p>
+            <ul>
+              <li><input disabled="" type="checkbox" /> IXA_STATUS_Create</li>
+              <li><input disabled="" type="checkbox" /> IXA_STATUS_Clear</li>
+              <li><input disabled="" type="checkbox" /> IXA_STATUS_Destroy</li>
+              <li><input disabled="" type="checkbox" /> IXA_STATUS_HasError</li>
+              <li><input disabled="" type="checkbox" /> IXA_STATUS_HasWarning</li>
+              <li><input disabled="" type="checkbox" /> IXA_STATUS_GetCount</li>
+              <li><input disabled="" type="checkbox" /> IXA_STATUS_GetSeverity</li>
+              <li><input disabled="" type="checkbox" /> IXA_STATUS_GetMessage</li>
+            </ul>
+            <p>H. Molecule Objects</p>
+            <ul>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_Create</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_Clear</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_Destroy</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_ReadMolfile</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_ReadInChI</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetChiral</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetChiral</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_CreateAtom</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetAtomElement</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetAtomAtomicNumber</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetAtomMass</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetAtomCharge</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetAtomRadical</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetAtomHydrogens</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetAtomX</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetAtomY</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetAtomZ</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_CreateBond</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetBondType</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetBondWedge</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetDblBondConfig</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_CreateStereoTetrahedron</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_CreateStereoRectangle</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_CreateStereoAntiRectangle</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetStereoParity</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_CreatePolymerUnit (new in v. 1.06)</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetPolymerUnitId (new in v. 1.06)</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetPolymerUnitIndex (new in v. 1.06)</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_SetPolymerUnit (new in v. 1.06)</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetNumAtoms</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetNumBonds</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomId</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetBondId</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomIndex</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetBondIndex</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomNumBonds</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomBond</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetCommonBond</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetBondAtom1</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetBondAtom2</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetBondOtherAtom (new in v. 1.06)</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomElement</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomAtomicNumber</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomMass</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomCharge</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomRadical</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomHydrogens</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomX</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomY</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetAtomZ</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetBondType</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetBondWedge</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetDblBondConfig</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetNumStereos</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetStereoId</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetStereoIndex</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetStereoTopology</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetStereoCentralAtom</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetStereoCentralBond</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetStereoNumVertices</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetStereoVertex</li>
+              <li><input disabled="" type="checkbox" /> IXA_MOL_GetStereoParity</li>
+            </ul>
+            <p>I. InChI Builder Objects</p>
+            <ul>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_Create</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_SetMolecule</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_GetInChI</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_GetAuxInfo</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_GetLog</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_Destroy</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_SetOption</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_SetOption_Stereo</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_SetOption_Timeout</li>
+              <li>
+                <input disabled="" type="checkbox" /> IXA_INCHIBUILDER_SetOption_Timeout_Milliseconds (new in v. 1.06)
+              </li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_CheckOption (new in v. 1.06)</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIBUILDER_CheckOption_Stereo (new in v. 1.06)</li>
+              <li>
+                <input disabled="" type="checkbox" /> IXA_INCHIBUILDER_IXA_INCHIBUILDER_GetOption_Timeout_MilliSeconds
+                (new in v. 1.06)
+              </li>
+            </ul>
+            <p>J. InChIKey Builder Objects</p>
+            <ul>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIKEYBUILDER_Create</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIKEYBUILDER_SetInChI</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIKEYBUILDER_GetInChIKey</li>
+              <li><input disabled="" type="checkbox" /> IXA_INCHIKEYBUILDER_Destroy</li>
+            </ul>
+            <hr />
+            <a href="#contributors39-notes" id="contributors39-notes" style="color: inherit; text-decoration: none">
+              <h3>Contributors&#39; Notes</h3>
+            </a>
+            <a href="#intro" id="intro" style="color: inherit; text-decoration: none">
+              <h4>Intro</h4>
+            </a>
+            <ul>
+              <li>
+                This library is a NodeJS/TypeScript port of
+                <a href="https://www.inchi-trust.org/downloads/">InChI 1.06</a>. API documentation of the original C
+                based library is present <a href="https://www.inchi-trust.org/download/106/INCHI-1-DOC.zip">here</a>.
+                Derived some inspiration from <a href="https://github.com/smikes/inchi">smikes/inchi</a>.
+              </li>
+              <li>
+                The Shared Object file, <code>libinchi.so.1.06.00</code>, contains all the InChI related business logic,
+                is installed from <a href="https://www.inchi-trust.org/downloads/">InChITRUST</a>, and is licensed under
+                <a href="https://www.inchi-trust.org/download/106/LICENCE.pdf">IUPAC/InChI Trust Licence</a>.
+              </li>
+            </ul>
+            <a
+              href="#which-porting-approach-is-used"
+              id="which-porting-approach-is-used"
+              style="color: inherit; text-decoration: none"
+            >
+              <h4>Which porting approach is used?</h4>
+            </a>
+            <ul>
+              <li>
+                Here&#39;s a cool overview of integrating native modules with NodeJS applications:
+                <a href="https://www.youtube.com/watch?v=E0w7Tc0f2fA"
+                  >N-API - The new native in Node.JS by Atishay Jain</a
+                >.
+              </li>
+              <li>
+                This library uses foreign function interface to access the native InChI module. The decision was mainly
+                taken to achieve an ease of development that ffi provides as compared to using
+                <a href="https://github.com/nodejs/nan">nan</a>,
+                <a href="https://nodejs.org/api/n-api.html">Node-API</a>, or
+                <a href="https://github.com/nodejs/node-addon-api">node-addon-api</a>.
+              </li>
+              <li>
+                One can port the InChI library using the above tools also. These
+                <a href="https://github.com/nodejs/node-addon-examples">examples</a> may provide you a good idea on how
+                to move forward.
+              </li>
+              <li>
+                For using ffi, 2 libraries were considered: <a href="https://www.npmjs.com/package/ffi">ffi</a> and
+                <a href="https://www.npmjs.com/package/ffi-napi">ffi-napi</a>. <code>ffi-napi</code> was adopted because
+                it supports the latest/recent versions of NodeJS; it is tested to run on Node 6 and above, whereas
+                <code>ffi</code> is only tested to run on Node v0.6, v0.8, v0.9 and v0.10.
+              </li>
+              <li>
+                You can learn more about <code>ffi-napi</code>/<code>ffi</code> via this
+                <a href="https://github.com/node-ffi/node-ffi/wiki/Node-FFI-Tutorial">tutorial</a>.
+              </li>
+            </ul>
+            <a
+              href="#how-are-the-types-ported"
+              id="how-are-the-types-ported"
+              style="color: inherit; text-decoration: none"
+            >
+              <h4>How are the <code>types</code> ported?</h4>
+            </a>
+            <ul>
+              <li>
+                Information given in this
+                <a href="https://github.com/node-ffi/node-ffi/wiki/Node-FFI-Tutorial">tutorial</a> was used.
+              </li>
+              <li>
+                But for compliance with N-API, different type-mapping libraries were used as compared to what&#39;s
+                prescribed in the above tutorial.
+                <ul>
+                  <li>
+                    <a href="https://www.npmjs.com/package/ref">ref</a> --&gt;
+                    <a href="https://www.npmjs.com/package/ref-napi">ref-napi</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/TooTallNate/ref-array">ref-array</a> --&gt;
+                    <a href="https://www.npmjs.com/package/ref-array-di">ref-array-di</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/TooTallNate/ref-struct">ref-struct</a> --&gt;
+                    <a href="https://www.npmjs.com/package/ref-struct-di">ref-struct-di</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Here&#39;s some <a href="https://tootallnate.github.io/ref/">detailed docs</a> on how to use the
+                <code>ref</code>/<code>ref-napi</code> modules.
+              </li>
+              <li>For mapping Enums, <a href="https://github.com/adrai/enum">enum</a> is used.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+          <nav class="tsd-navigation primary">
+            <ul>
+              <li class="">
+                <a href="modules.html">Exports</a>
+              </li>
+            </ul>
+          </nav>
+          <nav class="tsd-navigation secondary menu-sticky">
+            <ul class="before-current">
+              <li class="tsd-kind-interface">
+                <a href="interfaces/GetINCHIExOptions.html" class="tsd-kind-icon">GetINCHIEx<wbr />Options</a>
+              </li>
+              <li class="tsd-kind-interface">
+                <a href="interfaces/GetINCHIOptions.html" class="tsd-kind-icon">GetINCHIOptions</a>
+              </li>
+              <li class="tsd-kind-interface">
+                <a href="interfaces/INCHIOutput.html" class="tsd-kind-icon">INCHIOutput</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#ATOM_EL_LEN" class="tsd-kind-icon">ATOM_<wbr />EL_<wbr />LEN</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#INCHIAPI" class="tsd-kind-icon">INCHIAPI</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#INCHIGEN_DATA" class="tsd-kind-icon">INCHIGEN_<wbr />DATA</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#INCHIKEY_EMPTY_INPUT" class="tsd-kind-icon">INCHIKEY_<wbr />EMPTY_<wbr />INPUT</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#INCHIKEY_INVALID_INCHI" class="tsd-kind-icon"
+                  >INCHIKEY_<wbr />INVALID_<wbr />INCHI</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#INCHIKEY_INVALID_INCHI_PREFIX" class="tsd-kind-icon"
+                  >INCHIKEY_<wbr />INVALID_<wbr />INCHI_<wbr />PREFIX</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#INCHIKEY_INVALID_STD_INCHI" class="tsd-kind-icon"
+                  >INCHIKEY_<wbr />INVALID_<wbr />STD_<wbr />INCHI</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#INCHIKEY_NOT_ENOUGH_MEMORY" class="tsd-kind-icon"
+                  >INCHIKEY_<wbr />NOT_<wbr />ENOUGH_<wbr />MEMORY</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#INCHIKEY_OK" class="tsd-kind-icon">INCHIKEY_<wbr />OK</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#INCHIKEY_UNKNOWN_ERROR" class="tsd-kind-icon"
+                  >INCHIKEY_<wbr />UNKNOWN_<wbr />ERROR</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#INCHI_NUM" class="tsd-kind-icon">INCHI_<wbr />NUM</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#ISOTOPIC_SHIFT_FLAG" class="tsd-kind-icon">ISOTOPIC_<wbr />SHIFT_<wbr />FLAG</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#ISOTOPIC_SHIFT_MAX" class="tsd-kind-icon">ISOTOPIC_<wbr />SHIFT_<wbr />MAX</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#InchiInpData" class="tsd-kind-icon">Inchi<wbr />Inp<wbr />Data</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#MAXVAL" class="tsd-kind-icon">MAXVAL</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#MAX_NUM_STEREO_ATOM_NEIGH" class="tsd-kind-icon"
+                  >MAX_<wbr />NUM_<wbr />STEREO_<wbr />ATOM_<wbr />NEIGH</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#MAX_NUM_STEREO_BONDS" class="tsd-kind-icon"
+                  >MAX_<wbr />NUM_<wbr />STEREO_<wbr />BONDS</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#NORM_ATOM" class="tsd-kind-icon">NORM_<wbr />ATOM</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#NORM_ATOMS" class="tsd-kind-icon">NORM_<wbr />ATOMS</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#NO_ATOM" class="tsd-kind-icon">NO_<wbr />ATOM</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#NUM_H_ISOTOPES" class="tsd-kind-icon">NUM_<wbr /><wbr />H_ISOTOPES</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#RetValCheckINCHI" class="tsd-kind-icon">Ret<wbr />Val<wbr />CheckINCHI</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#RetValCheckINCHIKeyv" class="tsd-kind-icon">Ret<wbr />Val<wbr />CheckINCHIKeyv</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#RetValGetINCHI" class="tsd-kind-icon">Ret<wbr />Val<wbr />GetINCHI</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#RetValMol2INCHI" class="tsd-kind-icon">Ret<wbr />Val<wbr />Mol2INCHI</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#STR_ERR_LEN" class="tsd-kind-icon">STR_<wbr />ERR_<wbr />LEN</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_Atom" class="tsd-kind-icon">inchi_<wbr /><wbr />Atom</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_BondStereo2D" class="tsd-kind-icon"
+                  >inchi_<wbr /><wbr />Bond<wbr />Stereo2D</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_BondType" class="tsd-kind-icon">inchi_<wbr /><wbr />Bond<wbr />Type</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_Input" class="tsd-kind-icon">inchi_<wbr /><wbr />Input</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_InputEx" class="tsd-kind-icon">inchi_<wbr /><wbr />Input<wbr />Ex</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_InputINCHI" class="tsd-kind-icon">inchi_<wbr /><wbr />InputINCHI</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_Input_Polymer" class="tsd-kind-icon"
+                  >inchi_<wbr /><wbr />Input_<wbr /><wbr />Polymer</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_Input_PolymerUnit" class="tsd-kind-icon"
+                  >inchi_<wbr /><wbr />Input_<wbr /><wbr />Polymer<wbr />Unit</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_Input_V3000" class="tsd-kind-icon"
+                  >inchi_<wbr /><wbr />Input_<wbr /><wbr />V3000</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_Output" class="tsd-kind-icon">inchi_<wbr /><wbr />Output</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_OutputStruct" class="tsd-kind-icon"
+                  >inchi_<wbr /><wbr />Output<wbr />Struct</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_OutputStructEx" class="tsd-kind-icon"
+                  >inchi_<wbr /><wbr />Output<wbr />Struct<wbr />Ex</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_Radical" class="tsd-kind-icon">inchi_<wbr /><wbr />Radical</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_Stereo0D" class="tsd-kind-icon">inchi_<wbr /><wbr />Stereo0D</a>
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_StereoParity0D" class="tsd-kind-icon"
+                  >inchi_<wbr /><wbr />Stereo<wbr />Parity0D</a
+                >
+              </li>
+              <li class="tsd-kind-variable">
+                <a href="modules.html#inchi_StereoType0D" class="tsd-kind-icon"
+                  >inchi_<wbr /><wbr />Stereo<wbr />Type0D</a
+                >
+              </li>
+              <li class="tsd-kind-function">
+                <a href="modules.html#CheckINCHI" class="tsd-kind-icon">CheckINCHI</a>
+              </li>
+              <li class="tsd-kind-function">
+                <a href="modules.html#CheckINCHIKey" class="tsd-kind-icon">CheckINCHIKey</a>
+              </li>
+              <li class="tsd-kind-function">
+                <a href="modules.html#GetStringLength" class="tsd-kind-icon">Get<wbr />String<wbr />Length</a>
+              </li>
+              <li class="tsd-kind-function">
+                <a href="modules.html#generateOptionsString" class="tsd-kind-icon"
+                  >generate<wbr />Options<wbr />String</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <footer class="with-border-bottom">
+      <div class="container">
+        <h2>Legend</h2>
+        <div class="tsd-legend-group">
+          <ul class="tsd-legend">
+            <li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <div class="container tsd-generator">
+      <p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+    </div>
+    <div class="overlay"></div>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
