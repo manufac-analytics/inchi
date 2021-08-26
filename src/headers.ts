@@ -689,6 +689,24 @@ export const inchi_Input_V3000 = NAPIStructType({
   n_sterac: refNAPI.types.int,
   lists_sterac: refNAPI.refType(refNAPI.refType(refNAPI.types.int)),
 });
+export interface INCHIInputV3000 {
+  nNonStartAtoms: number;
+  nStarAtoms: number;
+  atomIndexOrig: number;
+  atomIndexFin: number;
+  nSGroups: number;
+  n3DContraints: number;
+  nCollections: number;
+  nNonHapticBonds: number;
+  nHapticBonds: number;
+  listsHapticBonds: number[][];
+  nSteabs: number;
+  listsSteabs: number[][];
+  nSterel: number;
+  listsSterel: number[][];
+  nSterac: number;
+  listsSterac: number[][];
+}
 
 // /* Input data structure for GetINCHIEx() */
 
