@@ -1,3 +1,12 @@
+# [1.0.0-alpha.30](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.29...v1.0.0-alpha.30) (2021-08-26)
+
+
+### Features
+
+* Add docs CLI ([62e4115](https://github.com/manufac-analytics/inchi/commit/62e4115cd9d782dfbdcf788284a554d887beb7af))
+
+
+
 # [1.0.0-alpha.29](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.28...v1.0.0-alpha.29) (2021-08-23)
 
 ### Features
