@@ -740,6 +740,15 @@ export const inchi_InputEx = NAPIStructType({
   polymer: refNAPI.refType(inchi_Input_Polymer),
   v3000: refNAPI.refType(inchi_Input_V3000),
 });
+export interface INCHIInputEx {
+  atom: INCHIAtom;
+  stereo0D: INCHIStereo0D;
+  szOptions: string;
+  numAtoms: number;
+  numStereo0D: number;
+  polymer: INCHIInputPolymer;
+  v3000: INCHIInputV3000;
+}
 
 // /*
 //   InChI -> Structure
