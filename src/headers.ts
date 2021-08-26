@@ -188,6 +188,20 @@ export const inchi_Atom = NAPIStructType({
   radical: refNAPI.types.char,
   charge: refNAPI.types.char,
 });
+export interface INCHIAtom {
+  x: number;
+  y: number;
+  z: number;
+  neighbor: MAXVALTuple;
+  bondType: MAXVALTuple;
+  bondStereo: MAXVALTuple;
+  elName: ATOMELLENTuple;
+  numBonds: number;
+  numIsoH: NUMHISOTOPESTuple;
+  isotopicMass: number;
+  radical: number;
+  charge: number;
+}
 
 /*****************************************************************************
  * Notes: 1. Atom ordering numbers (i, k, and atom[i].neighbor[j] below)
