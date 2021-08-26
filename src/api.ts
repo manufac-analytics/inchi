@@ -327,15 +327,15 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
   const inchiOutStructEx = new inchi_OutputStructEx();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStructEx.ref());
   const outputDataEx: INCHIOutputStructEx = {
-    atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
-    stereo0D: inchiOutStruct.stereo0D,
+    atom: generateINCHIAtom(inchiOutStructEx.atom.deref()),
+    stereo0D: inchiOutStructEx.stereo0D,
     numAtoms: inchiOutStructEx.num_atoms,
     numStereo0D: inchiOutStructEx.num_stereo0D,
     szMessage: inchiOutStructEx.szMessage,
     szLog: inchiOutStructEx.szLog,
     warningFlags: inchiOutStructEx.WarningFlags,
-    polymer: inchiOutStructEx.polymer.deref(),
-    v3000: inchiOutStructEx.v3000.deref(),
+    polymer: inchiOutStructEx.polymer,
+    v3000: inchiOutStructEx.v3000,
   };
   const output: GetStructFromINCHIExOutput = { status: returnCode, data: outputDataEx };
   return output;
