@@ -39,6 +39,7 @@
     "postbuild": "cp src/libinchi.so.1.06.00 dist/tsc/src && cp tests/ChEBI_16716.mol dist/tsc/tests",
     "serve": "node dist/tsc/src/server.js",
     "test": "jest",
+    "docs": "typedoc",
     "pretty": "prettier --write .",
     "preversion": "yarn build && yarn test",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
