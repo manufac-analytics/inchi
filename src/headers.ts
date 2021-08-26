@@ -111,6 +111,43 @@ export const NUM_H_ISOTOPES = 3; // number of hydrogen isotopes: protium, D, T
 export const ISOTOPIC_SHIFT_FLAG = 10000; // add to isotopic mass if isotopic_mass = (isotopic mass - average atomic mass)                             /* (isotopic mass - average atomic mass)        */
 export const ISOTOPIC_SHIFT_MAX = 100; // max abs(isotopic mass - average atomic mass)
 
+export type MAXVALTuple = [
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number,
+  number
+];
+export type ATOMELLENTuple = [number, number, number, number, number, number];
+export type NUMHISOTOPESTuple = [number, number, number, number];
+export type FourNumberTuple = [number, number, number, number];
+export type TenNumberTuple = [...FourNumberTuple, ...FourNumberTuple, number, number];
+export type EightyNumberTuple = [
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple
+];
+
 /*************************************************
  *
  *
@@ -163,6 +200,20 @@ export const inchi_Atom = NAPIStructType({
   radical: refNAPI.types.char,
   charge: refNAPI.types.char,
 });
+export interface INCHIAtom {
+  x: number;
+  y: number;
+  z: number;
+  neighbor: MAXVALTuple;
+  bondType: MAXVALTuple;
+  bondStereo: MAXVALTuple;
+  elName: ATOMELLENTuple;
+  numBonds: number;
+  numIsoH: NUMHISOTOPESTuple;
+  isotopicMass: number;
+  radical: number;
+  charge: number;
+}
 
 /*****************************************************************************
  * Notes: 1. Atom ordering numbers (i, k, and atom[i].neighbor[j] below)
@@ -464,6 +515,12 @@ export const inchi_Stereo0D = NAPIStructType({
   type: refNAPI.types.char,
   parity: refNAPI.types.char,
 });
+export interface INCHIStereo0D {
+  neighbor: FourNumberTuple;
+  centralAtom: number;
+  type: number;
+  parity: number;
+}
 
 /*************************************************
  *
@@ -500,6 +557,13 @@ export const inchi_Input = NAPIStructType({
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
 });
+export interface INCHIInput {
+  atom: INCHIAtom;
+  stereo0D: INCHIStereo0D;
+  szOptions: string;
+  numAtoms: number;
+  numStereo0D: number;
+}
 
 // /*
 //   Extended input supporting v. 1.05+ extensions: V3000; polymers
@@ -549,6 +613,20 @@ export const inchi_Input_PolymerUnit = NAPIStructType({
   alist: refNAPI.refType(refNAPI.types.int),
   blist: refNAPI.refType(refNAPI.types.int),
 });
+export interface INCHIInputPolymerUnit {
+  id: number;
+  type: number;
+  subType: number;
+  conn: number;
+  label: number;
+  nA: number;
+  nB: number;
+  xBr1: FourNumberTuple;
+  xBr2: FourNumberTuple;
+  smt: EightyNumberTuple;
+  aList: number;
+  bList: number;
+}
 
 // typedef struct inchi_Input_Polymer
 // {
@@ -561,6 +639,10 @@ export const inchi_Input_Polymer = NAPIStructType({
   units: refNAPI.refType(refNAPI.refType(inchi_Input_PolymerUnit)),
   n: refNAPI.types.int,
 });
+export interface INCHIInputPolymer {
+  units: INCHIInputPolymerUnit[];
+  n: number;
+}
 
 // /*
 //   V3000 Extensions
@@ -616,6 +698,24 @@ export const inchi_Input_V3000 = NAPIStructType({
   n_sterac: refNAPI.types.int,
   lists_sterac: refNAPI.refType(refNAPI.refType(refNAPI.types.int)),
 });
+export interface INCHIInputV3000 {
+  nNonStartAtoms: number;
+  nStarAtoms: number;
+  atomIndexOrig: number;
+  atomIndexFin: number;
+  nSGroups: number;
+  n3DContraints: number;
+  nCollections: number;
+  nNonHapticBonds: number;
+  nHapticBonds: number;
+  listsHapticBonds: number[][];
+  nSteabs: number;
+  listsSteabs: number[][];
+  nSterel: number;
+  listsSterel: number[][];
+  nSterac: number;
+  listsSterac: number[][];
+}
 
 // /* Input data structure for GetINCHIEx() */
 
@@ -649,6 +749,15 @@ export const inchi_InputEx = NAPIStructType({
   polymer: refNAPI.refType(inchi_Input_Polymer),
   v3000: refNAPI.refType(inchi_Input_V3000),
 });
+export interface INCHIInputEx {
+  atom: INCHIAtom;
+  stereo0D: INCHIStereo0D;
+  szOptions: string;
+  numAtoms: number;
+  numStereo0D: number;
+  polymer: INCHIInputPolymer;
+  v3000: INCHIInputV3000;
+}
 
 // /*
 //   InChI -> Structure
@@ -669,6 +778,10 @@ export const inchi_InputINCHI = NAPIStructType({
   szInChI: refNAPI.types.CString,
   szOptions: refNAPI.types.CString,
 });
+export interface INCHIInputINCHI {
+  szINCHI: string;
+  szOptions: string;
+}
 
 // typedef inchi_Input_PolymerUnit inchi_Output_PolymerUnit;
 // typedef inchi_Input_Polymer inchi_Output_Polymer;
@@ -703,6 +816,12 @@ export const inchi_Output = NAPIStructType({
   szMessage: refNAPI.types.CString,
   szLog: refNAPI.types.CString,
 });
+export interface INCHIOutput {
+  szINCHI: string;
+  szAuxInfo: string;
+  szMessage: string;
+  szLog: string;
+}
 
 // /* InChI -> Structure */
 
@@ -735,6 +854,15 @@ export const inchi_OutputStruct = NAPIStructType({
   szLog: refNAPI.types.CString,
   WarningFlags: NAPIArrayType(NAPIArrayType(refNAPI.types.ulong, 2), 2),
 });
+export interface INCHIOutputStruct {
+  atom: INCHIAtom;
+  stereo0D: INCHIStereo0D;
+  numAtoms: number;
+  numStereo0D: number;
+  szMessage: string;
+  szLog: string;
+  warningFlags: [[number, number], [number, number]];
+}
 
 // typedef struct tagINCHI_OutputStructEx
 // {
@@ -768,6 +896,17 @@ export const inchi_OutputStructEx = NAPIStructType({
   polymer: refNAPI.refType(inchi_Input_Polymer),
   v3000: refNAPI.refType(inchi_Input_V3000),
 });
+export interface INCHIOutputStructEx {
+  atom: INCHIAtom;
+  stereo0D: INCHIStereo0D;
+  numAtoms: number;
+  numStereo0D: number;
+  szMessage: string;
+  szLog: string;
+  warningFlags: [[number, number], [number, number]];
+  polymer: INCHIInputPolymer;
+  v3000: INCHIInputV3000;
+}
 
 // void FreeInChIExtInput( inchi_Input_Polymer    *polymer, inchi_Input_V3000 *v3000 );
 
