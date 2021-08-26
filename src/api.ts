@@ -7,7 +7,7 @@ import {
   inchi_OutputStruct,
   inchi_OutputStructEx,
 } from "./headers";
-import { generateINCHIAtom } from "./deref";
+import { generateINCHIAtom, generateINCHIStereo0D } from "./deref";
 
 // #region Types and Interfaces
 
@@ -311,7 +311,7 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
     atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
-    stereo0D: inchiOutStruct.stereo0D.deref(),
+    stereo0D: generateINCHIStereo0D(inchiOutStruct.stereo0D.deref()),
     numAtoms: inchiOutStruct.num_atoms,
     numStereo0D: inchiOutStruct.num_stereo0D,
     szMessage: inchiOutStruct.szMessage,
@@ -328,7 +328,7 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStructEx.ref());
   const outputDataEx: INCHIOutputStructEx = {
     atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
-    stereo0D: inchiOutStructEx.stereo0D.deref(),
+    stereo0D: generateINCHIStereo0D(inchiOutStruct.stereo0D.deref()),
     numAtoms: inchiOutStructEx.num_atoms,
     numStereo0D: inchiOutStructEx.num_stereo0D,
     szMessage: inchiOutStructEx.szMessage,
@@ -347,7 +347,7 @@ export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions):
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
     atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
-    stereo0D: inchiOutStruct.stereo0D.deref(),
+    stereo0D: generateINCHIStereo0D(inchiOutStruct.stereo0D.deref()),
     numAtoms: inchiOutStruct.num_atoms,
     numStereo0D: inchiOutStruct.num_stereo0D,
     szMessage: inchiOutStruct.szMessage,
