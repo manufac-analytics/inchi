@@ -1,6 +1,12 @@
 // @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies.
 import { INCHIAPI } from "./ffis";
-import { inchi_InputINCHI, inchi_OutputStruct, inchi_OutputStructEx } from "./headers";
+import {
+  INCHIOutputStruct,
+  INCHIOutputStructEx,
+  inchi_InputINCHI,
+  inchi_OutputStruct,
+  inchi_OutputStructEx,
+} from "./headers";
 
 // #region Types and Interfaces
 
@@ -252,6 +258,16 @@ export interface INCHIOutput {
   szLog: string;
 }
 
+export interface GetStructFromINCHIOutput {
+  status: GetINCHIReturnCode;
+  data: INCHIOutputStruct;
+}
+
+export interface GetStructFromINCHIExOutput {
+  status: GetINCHIReturnCode;
+  data: INCHIOutputStructEx;
+}
+
 // #endregion
 
 // #region Private Functions
@@ -291,21 +307,53 @@ export function GetStringLength(input: string): number {
 export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): GetINCHIReturnCode {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
-  const output = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
+  const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
+  const outputData = {
+    atom: inchiOutStruct.atom.deref(),
+    stereo0D: inchiOutStruct.stereo0D.deref(),
+    numAtoms: inchiOutStruct.num_atoms,
+    numStereo0D: inchiOutStruct.num_stereo0D,
+    szMessage: inchiOutStruct.szMessage,
+    szLog: inchiOutStruct.szLog,
+    warningFlags: inchiOutStruct.WarningFlags,
+  };
+  const output: GetStructFromINCHIOutput = { status: returnCode, data: outputData };
   return output;
 }
 
 export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions): GetINCHIReturnCode {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStructEx = new inchi_OutputStructEx();
-  const output = INCHIAPI.GetStructFromINCHIEx(inchiIn.ref(), inchiOutStructEx.ref());
+  const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStructEx.ref());
+  const outputDataEx = {
+    atom: inchiOutStructEx.atom.deref(),
+    stereo0D: inchiOutStructEx.stereo0D.deref(),
+    numAtoms: inchiOutStructEx.num_atoms,
+    numStereo0D: inchiOutStructEx.num_stereo0D,
+    szMessage: inchiOutStructEx.szMessage,
+    szLog: inchiOutStructEx.szLog,
+    warningFlags: inchiOutStructEx.WarningFlags,
+    polymer: inchiOutStructEx.polymer.deref(),
+    v3000: inchiOutStructEx.v3000.deref(),
+  };
+  const output: GetStructFromINCHIExOutput = { status: returnCode, data: outputDataEx };
   return output;
 }
 
 export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions): GetINCHIReturnCode {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
-  const output = INCHIAPI.GetStructFromStdINCHI(inchiIn.ref(), inchiOutStruct.ref());
+  const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
+  const outputData = {
+    atom: inchiOutStruct.atom.deref(),
+    stereo0D: inchiOutStruct.stereo0D.deref(),
+    numAtoms: inchiOutStruct.num_atoms,
+    numStereo0D: inchiOutStruct.num_stereo0D,
+    szMessage: inchiOutStruct.szMessage,
+    szLog: inchiOutStruct.szLog,
+    warningFlags: inchiOutStruct.WarningFlags,
+  };
+  const output: GetStructFromINCHIOutput = { status: returnCode, data: outputData };
   return output;
 }
 

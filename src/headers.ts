@@ -137,7 +137,16 @@ export type ATOMELLENTuple = [number, number, number, number, number, number];
 export type NUMHISOTOPESTuple = [number, number, number, number];
 export type FourNumberTuple = [number, number, number, number];
 export type TenNumberTuple = [...FourNumberTuple, ...FourNumberTuple, number, number];
-export type EightyNumberTuple = [...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple, ...TenNumberTuple]
+export type EightyNumberTuple = [
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple,
+  ...TenNumberTuple
+];
 
 /*************************************************
  *
@@ -610,7 +619,7 @@ export interface INCHIInputPolymerUnit {
   subType: number;
   conn: number;
   label: number;
-  nA: number
+  nA: number;
   nB: number;
   xBr1: FourNumberTuple;
   xBr2: FourNumberTuple;
