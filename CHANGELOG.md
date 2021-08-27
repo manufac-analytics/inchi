@@ -1,3 +1,31 @@
+# [2.0.0-alpha.0](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.30...v2.0.0-alpha.0) (2021-08-27)
+
+
+### Bug Fixes
+
+* Fix import calls in test files ([700a732](https://github.com/manufac-analytics/inchi/commit/700a732a792213a35e4a3f49fcc2c8bb5654f8cf))
+
+
+### Features
+
+* Add array tuples ([7c611d9](https://github.com/manufac-analytics/inchi/commit/7c611d90a5c4080edde6505fbab42e110d2b3d56))
+* Add dereferening functions ([b613f7f](https://github.com/manufac-analytics/inchi/commit/b613f7f3823446cc97c4476b4152dfd35131b41e))
+* Add function for dereferencing stereo0D ([d518e93](https://github.com/manufac-analytics/inchi/commit/d518e934931d1f523a9626815980f3dbe7c8795f))
+* add GetINCHIKeyReturnCode and GetINCHIReturnCode ([3315df2](https://github.com/manufac-analytics/inchi/commit/3315df221101fad182877200757d37e487ad5d4e))
+* Add INCHIAtom interface ([a806bf2](https://github.com/manufac-analytics/inchi/commit/a806bf22b3197f8720005dedb61d86d71a186f33))
+* Add INCHIInput interface ([a390f74](https://github.com/manufac-analytics/inchi/commit/a390f74c0151b753318312f2d6b0f3f3b0972144))
+* Add INCHIInputEx interface ([7fb2558](https://github.com/manufac-analytics/inchi/commit/7fb255869adaa21d3db27322f3852cf8bfe3da56))
+* Add INCHIInputINCHI and INCHIOutput ([61194a2](https://github.com/manufac-analytics/inchi/commit/61194a2f4a975d6d3e2fccc69822f946a7648d65))
+* Add INCHIInputPolymer interface ([dc9c486](https://github.com/manufac-analytics/inchi/commit/dc9c4862aa9b83fa5b425122c6a6135206b73eb2))
+* Add INCHIInputPolymerUnit interface ([7510bcb](https://github.com/manufac-analytics/inchi/commit/7510bcbb10b4b959cd1cb68c5d200d3c86e8c1e1))
+* Add INCHIInputV3000 interface ([1053fd8](https://github.com/manufac-analytics/inchi/commit/1053fd854dc3a117256c0ed6ba42de6ff0e5410f))
+* Add INCHIOutputStruct and INCHIOutputStructEx ([08b7300](https://github.com/manufac-analytics/inchi/commit/08b7300b6fb18181a36a361f54b5961f9eafcffc))
+* Add INCHIStereo0D ([fcd5850](https://github.com/manufac-analytics/inchi/commit/fcd58506b7d38557691f0dae2637e81cd1ae021c))
+* add output object in GetStruuct wrappemetmethods ([39e8732](https://github.com/manufac-analytics/inchi/commit/39e87327859a1aa473eb614deaa12b24624b5463))
+* add unit test for api wrapper functions ([fc16a9f](https://github.com/manufac-analytics/inchi/commit/fc16a9f054bd46b9346d0348b9b2bdb38a3c71b9))
+
+
+
 # [1.0.0-alpha.30](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.29...v1.0.0-alpha.30) (2021-08-26)
 
 
