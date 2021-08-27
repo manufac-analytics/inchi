@@ -14,7 +14,7 @@ describe("test inchi ffis", () => {
     expect(INCHIAPI.CheckINCHIKey("OTMSDBZUPAUEDD-UHFFFAOYSA-N")).toBe(0); // Valid length and valid format
   });
 
-  test("Check if the string represents valid InChIKey", () => {
+  test("Check if the string represents valid InChI string", () => {
     /**
      * Check if the string represents valid InChI/standard InChI.
      */
