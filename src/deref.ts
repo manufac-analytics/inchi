@@ -1,4 +1,3 @@
-// @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies.
 import {
   ATOMELLENTuple,
   INCHIAtom,
@@ -47,10 +46,9 @@ function generateINCHIInputPolymerUnit(
   input: refNAPI.Pointer<ReturnType<typeof inchi_Input_PolymerUnit>>[]
 ): INCHIInputPolymerUnit[] {
   let output: INCHIInputPolymerUnit[] = [];
-  let unit: INCHIInputPolymerUnit;
-  for (let elementPtr of inputArray) {
-    const element = elementPtr.deref();
-    unit = {
+  for (let ele of input) {
+    const element = ele.deref();
+    const unit: INCHIInputPolymerUnit = {
       id: element.id,
       type: element.type,
       subType: element.subtype,
@@ -71,6 +69,7 @@ function generateINCHIInputPolymerUnit(
 
 export function generateINCHIInputPolymer(input: ReturnType<typeof inchi_Input_Polymer>): INCHIInputPolymer {
   const output: INCHIInputPolymer = {
+    // @ts-expect-error TS Definitons need update in the dependencies
     units: generateINCHIInputPolymerUnit(input.units.deref()),
     n: input.n,
   };
