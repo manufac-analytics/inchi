@@ -69,7 +69,6 @@ function generateINCHIInputPolymerUnit(
 
 export function generateINCHIInputPolymer(input: ReturnType<typeof inchi_Input_Polymer>): INCHIInputPolymer {
   const output: INCHIInputPolymer = {
-    // @ts-expect-error TS Definitons need update in the dependencies
     units: generateINCHIInputPolymerUnit(input.units.deref()),
     n: input.n,
   };
