@@ -42,7 +42,8 @@
     "docs": "typedoc",
     "pretty": "prettier --write .",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "preversion": "yarn build && yarn test && yarn docs && yarn changelog && git add CHANGELOG.md docs",
+    "preversion": "yarn build && yarn test && yarn docs",
+    "version": "yarn changelog && git add CHANGELOG.md docs",
     "postversion": "git push origin v$npm_package_version && git push && yarn publish --new-version $npm_package_version"
   },
   "dependencies": {
