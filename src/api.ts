@@ -1,4 +1,3 @@
-// @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies.
 import { INCHIAPI } from "./ffis";
 import {
   INCHIOutputStruct,
@@ -294,11 +293,11 @@ function generateOptionsString(input?: GetINCHIOptions | GetINCHIExOptions): str
 // #region Public Functions
 
 export function CheckINCHIKey(input: string): CheckINCHIKeyReturnCode {
-  return INCHIAPI.CheckINCHIKey(input);
+  return INCHIAPI.CheckINCHIKey(input) as CheckINCHIKeyReturnCode;
 }
 
 export function CheckINCHI(input: string, strict?: boolean): CheckINCHIReturnCode {
-  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0);
+  return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as CheckINCHIReturnCode;
 }
 
 export function GetStringLength(input: string): number {
@@ -308,7 +307,8 @@ export function GetStringLength(input: string): number {
 export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): GetStructFromINCHIOutput {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
-  const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
+  // @ts-expect-error Bad types in dep libs
+  const returnCode: GetINCHIReturnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
     atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
     stereo0D: inchiOutStruct.stereo0D,
@@ -325,7 +325,8 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
 export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions): GetStructFromINCHIExOutput {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStructEx = new inchi_OutputStructEx();
-  const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStructEx.ref());
+  // @ts-expect-error Bad types in dep libs
+  const returnCode: GetINCHIReturnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStructEx.ref());
   const outputDataEx: INCHIOutputStructEx = {
     atom: generateINCHIAtom(inchiOutStructEx.atom.deref()),
     stereo0D: inchiOutStructEx.stereo0D,
@@ -344,7 +345,8 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
 export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions): GetStructFromINCHIOutput {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStruct = new inchi_OutputStruct();
-  const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
+  // @ts-expect-error Bad types in dep libs
+  const returnCode: GetINCHIReturnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
     atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
     stereo0D: inchiOutStruct.stereo0D,
