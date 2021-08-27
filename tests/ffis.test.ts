@@ -14,7 +14,7 @@ describe("test inchi ffis", () => {
     expect(INCHIAPI.CheckINCHIKey("OTMSDBZUPAUEDD-UHFFFAOYSA-N")).toBe(0); // Valid length and valid format
   });
 
-  test("Check if the string represents valid InChIKey", () => {
+  test("Check if the string represents valid InChI string", () => {
     /**
      * Check if the string represents valid InChI/standard InChI.
      */
@@ -25,6 +25,12 @@ describe("test inchi ffis", () => {
         0
       )
     ).toBe(0); // Standard InChI
+    expect(
+      INCHIAPI.CheckINCHI(
+        "InChI=1S/C22H42O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22(23)24/h9-10H,2-8,11-21H2,1H3,(H,23,24)/b10-9-",
+        0
+      )
+    ).toBe(0);
   });
 
   test("Check it returns string length", () => {
@@ -80,7 +86,7 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    const molString4 = readFileSync(join(process.cwd(), "tests/ChEBI_16716.mol")); // Not able to read file in CI, if ".tests/CheBI_16716.mol" is used instead
+    const molString4 = readFileSync(join(process.cwd(), "tests/ChEBI_16716.mol")); // Not able to read file in CI, if "./tests/CheBI_16716.mol" is used instead
     const status4 = INCHIAPI.MakeINCHIFromMolfileText(molString4.toString(), "", output4.ref());
     expect(status4).toBe(0);
     expect(output4.szInChI).toBe("InChI=1S/C6H6/c1-2-4-6-5-3-1/h1-6H");
@@ -93,7 +99,7 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    const molString4 = readFileSync(join(process.cwd(), "tests/ChEBI_16716.mol")); // Not able to read file in CI, if ".tests/CheBI_16716.mol" is used instead
+    const molString4 = readFileSync(join(process.cwd(), "tests/ChEBI_16716.mol")); // Not able to read file in CI, if "./tests/CheBI_16716.mol" is used instead
     const status4 = INCHIAPI.MakeINCHIFromMolfileText(molString4.toString(), "", output4.ref());
     expect(status4).toBe(0);
     expect(output4.szInChI).toBe("InChI=1S/C6H6/c1-2-4-6-5-3-1/h1-6H");
