@@ -6,7 +6,7 @@ import {
   inchi_OutputStruct,
   inchi_OutputStructEx,
 } from "./headers";
-import { generateINCHIAtom, generateINCHIInputPolymer } from "./deref";
+import { generateINCHIAtom } from "./deref";
 
 // #region Types and Interfaces
 
@@ -335,7 +335,7 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
     szMessage: inchiOutStructEx.szMessage,
     szLog: inchiOutStructEx.szLog,
     warningFlags: inchiOutStructEx.WarningFlags,
-    polymer: generateINCHIInputPolymer(inchiOutStructEx.polymer.deref()),
+    polymer: inchiOutStructEx.polymer,
     v3000: inchiOutStructEx.v3000,
   };
   const output: GetStructFromINCHIExOutput = { status: returnCode, data: outputDataEx };
