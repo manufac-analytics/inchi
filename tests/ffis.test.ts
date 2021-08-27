@@ -80,7 +80,7 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    const molString4 = readFileSync(join(process.cwd(), "tests/ChEBI_16716.mol"));
+    const molString4 = readFileSync(join(process.cwd(), "tests/ChEBI_16716.mol")); // Not able to read file in CI, if ".tests/CheBI_16716.mol" is used instead
     const status4 = INCHIAPI.MakeINCHIFromMolfileText(molString4.toString(), "", output4.ref());
     expect(status4).toBe(0);
     expect(output4.szInChI).toBe("InChI=1S/C6H6/c1-2-4-6-5-3-1/h1-6H");
@@ -93,7 +93,7 @@ describe("test inchi ffis", () => {
       szMessage: "",
       szLog: "",
     });
-    const molString4 = readFileSync(join(process.cwd(), "tests/ChEBI_16716.mol")); // Not able to read file in CI, may be because of Docker
+    const molString4 = readFileSync(join(process.cwd(), "tests/ChEBI_16716.mol")); // Not able to read file in CI, if ".tests/CheBI_16716.mol" is used instead
     const status4 = INCHIAPI.MakeINCHIFromMolfileText(molString4.toString(), "", output4.ref());
     expect(status4).toBe(0);
     expect(output4.szInChI).toBe("InChI=1S/C6H6/c1-2-4-6-5-3-1/h1-6H");
