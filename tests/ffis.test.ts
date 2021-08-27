@@ -25,6 +25,12 @@ describe("test inchi ffis", () => {
         0
       )
     ).toBe(0); // Standard InChI
+    expect(
+      INCHIAPI.CheckINCHI(
+        "InChI=1S/C22H42O2/c1-2-3-4-5-6-7-8-9-10-11-12-13-14-15-16-17-18-19-20-21-22(23)24/h9-10H,2-8,11-21H2,1H3,(H,23,24)/b10-9-",
+        0
+      )
+    ).toBe(0);
   });
 
   test("Check it returns string length", () => {
