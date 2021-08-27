@@ -201,17 +201,57 @@ export const inchi_Atom = NAPIStructType({
   charge: refNAPI.types.char,
 });
 export interface INCHIAtom {
+  /**
+   * Atom coordinates: x
+   */
   x: number;
+  /**
+   * Atom coordinates: y
+   */
   y: number;
+  /**
+   * Atom coordinates: z
+   */
   z: number;
+  /**
+   * Adjacency list representing ordering of the adjacent atoms
+   */
   neighbor: MAXVALTuple;
+  /**
+   * Bond type
+   */
   bondType: MAXVALTuple;
+  /**
+   * 2D stereo info. negative if the sharp end points to opposite atom
+   */
   bondStereo: MAXVALTuple;
+  /**
+   * zero-terminated chemical element name: "H", "Si", etc.
+   */
   elName: ATOMELLENTuple;
+  /**
+   * number of neighbors, bond types and bond stereo in the adjacency list
+   */
   numBonds: number;
+  /**
+   * implicit hydrogen atoms
+   * - [0]: number of implicit non-isotopic H (exception: num_iso_H[0]=-1 means INCHI adds implicit H automatically),
+   * - [1]: number of implicit isotopic 1H (protium),
+   * - [2]: number of implicit 2H (deuterium),
+   * - [3]: number of implicit 3H (tritium)
+   */
   numIsoH: NUMHISOTOPESTuple;
+  /**
+   * 0 => non-isotopic; isotopic mass or ISOTOPIC_SHIFT_FLAG + mass - (average atomic mass)
+   */
   isotopicMass: number;
+  /**
+   * Radical
+   */
   radical: number;
+  /**
+   * positive or negative; 0 => no charge
+   */
   charge: number;
 }
 
