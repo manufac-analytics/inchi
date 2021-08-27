@@ -1,3 +1,17 @@
+# [2.0.0-alpha.3](https://github.com/manufac-analytics/inchi/compare/v2.0.0-aplha.2...v2.0.0-alpha.3) (2021-08-27)
+
+
+### Features
+
+* Dummy ([3f4b50d](https://github.com/manufac-analytics/inchi/commit/3f4b50da5dbeb5db2b2caffb0aee99ff7b12496c))
+
+
+### Reverts
+
+* Add back "version" CLI ([8456255](https://github.com/manufac-analytics/inchi/commit/8456255aca1d09a2222fe846c21cc057ac538b48))
+
+
+
 # [2.0.0-alpha.0](https://github.com/manufac-analytics/inchi/compare/v1.0.0-alpha.30...v2.0.0-alpha.0) (2021-08-27)
 
 
