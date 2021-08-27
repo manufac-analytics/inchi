@@ -752,7 +752,7 @@ export const inchi_InputEx = NAPIStructType({
 export interface INCHIInputEx {
   atom: INCHIAtom;
   stereo0D: INCHIStereo0D;
-  szOptions: string;
+  szOptions: string | null;
   numAtoms: number;
   numStereo0D: number;
   polymer: INCHIInputPolymer;
@@ -779,8 +779,8 @@ export const inchi_InputINCHI = NAPIStructType({
   szOptions: refNAPI.types.CString,
 });
 export interface INCHIInputINCHI {
-  szINCHI: string;
-  szOptions: string;
+  szINCHI: string | null;
+  szOptions: string | null;
 }
 
 // typedef inchi_Input_PolymerUnit inchi_Output_PolymerUnit;
@@ -817,10 +817,10 @@ export const inchi_Output = NAPIStructType({
   szLog: refNAPI.types.CString,
 });
 export interface INCHIOutput {
-  szINCHI: string;
-  szAuxInfo: string;
-  szMessage: string;
-  szLog: string;
+  szINCHI: string | null;
+  szAuxInfo: string | null;
+  szMessage: string | null;
+  szLog: string | null;
 }
 
 // /* InChI -> Structure */
@@ -859,8 +859,8 @@ export interface INCHIOutputStruct {
   stereo0D: INCHIStereo0D;
   numAtoms: number;
   numStereo0D: number;
-  szMessage: string;
-  szLog: string;
+  szMessage: string | null;
+  szLog: string | null;
   warningFlags: [[number, number], [number, number]];
 }
 
@@ -901,8 +901,8 @@ export interface INCHIOutputStructEx {
   stereo0D: INCHIStereo0D;
   numAtoms: number;
   numStereo0D: number;
-  szMessage: string;
-  szLog: string;
+  szMessage: string | null;
+  szLog: string | null;
   warningFlags: [[number, number], [number, number]];
   polymer: INCHIInputPolymer;
   v3000: INCHIInputV3000;
