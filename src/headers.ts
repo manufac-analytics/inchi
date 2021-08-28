@@ -610,8 +610,8 @@ export const inchi_Input_PolymerUnit = NAPIStructType({
   xbr1: NAPIArrayType(refNAPI.types.double, 4),
   xbr2: NAPIArrayType(refNAPI.types.double, 4),
   smt: NAPIArrayType(refNAPI.types.char, 80),
-  alist: refNAPI.refType(refNAPI.types.int),
-  blist: refNAPI.refType(refNAPI.types.int),
+  alist: NAPIArrayType(refNAPI.types.int),
+  blist: NAPIArrayType(refNAPI.types.int),
 });
 export interface INCHIInputPolymerUnit {
   id: number;
@@ -624,8 +624,8 @@ export interface INCHIInputPolymerUnit {
   xBr1: FourNumberTuple;
   xBr2: FourNumberTuple;
   smt: EightyNumberTuple;
-  aList: number;
-  bList: number;
+  aList: number[];
+  bList: number[];
 }
 
 // typedef struct inchi_Input_Polymer
