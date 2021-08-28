@@ -636,7 +636,7 @@ export interface INCHIInputPolymerUnit {
 // } inchi_Input_Polymer;
 
 export const inchi_Input_Polymer = NAPIStructType({
-  units: refNAPI.refType(refNAPI.refType(inchi_Input_PolymerUnit)),
+  units: NAPIArrayType(refNAPI.refType(inchi_Input_PolymerUnit)),
   n: refNAPI.types.int,
 });
 export interface INCHIInputPolymer {
