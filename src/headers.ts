@@ -636,7 +636,7 @@ export interface INCHIInputPolymerUnit {
 // } inchi_Input_Polymer;
 
 export const inchi_Input_Polymer = NAPIStructType({
-  units: NAPIArrayType(refNAPI.refType(inchi_Input_PolymerUnit)),
+  units: NAPIArrayType(inchi_Input_PolymerUnit),
   n: refNAPI.types.int,
 });
 export interface INCHIInputPolymer {
@@ -683,20 +683,20 @@ export interface INCHIInputPolymer {
 export const inchi_Input_V3000 = NAPIStructType({
   n_non_star_atoms: refNAPI.types.int,
   n_star_atoms: refNAPI.types.int,
-  atom_index_orig: NAPIArrayType(refNAPI.types.int),
-  atom_index_fin: NAPIArrayType(refNAPI.types.int),
+  atom_index_orig: refNAPI.refType(refNAPI.types.int),
+  atom_index_fin: refNAPI.refType(refNAPI.types.int),
   n_sgroups: refNAPI.types.int,
   n_3d_constraints: refNAPI.types.int,
   n_collections: refNAPI.types.int,
   n_non_haptic_bonds: refNAPI.types.int,
   n_haptic_bonds: refNAPI.types.int,
-  lists_haptic_bonds: NAPIArrayType(refNAPI.refType(refNAPI.types.int)),
+  lists_haptic_bonds: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
   n_steabs: refNAPI.types.int,
-  lists_steabs: NAPIArrayType(refNAPI.refType(refNAPI.types.int)),
+  lists_steabs: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
   n_sterel: refNAPI.types.int,
-  lists_sterel: NAPIArrayType(refNAPI.refType(refNAPI.types.int)),
+  lists_sterel: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
   n_sterac: refNAPI.types.int,
-  lists_sterac: NAPIArrayType(refNAPI.refType(refNAPI.types.int)),
+  lists_sterac: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
 });
 export interface INCHIInputV3000 {
   nNonStartAtoms: number;
@@ -741,13 +741,13 @@ export interface INCHIInputV3000 {
 // } inchi_InputEx;
 
 export const inchi_InputEx = NAPIStructType({
-  atom: refNAPI.refType(inchi_Atom),
-  Stereo0D: refNAPI.refType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom),
+  Stereo0D: NAPIArrayType(inchi_Stereo0D),
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
-  polymer: refNAPI.refType(inchi_Input_Polymer),
-  v3000: refNAPI.refType(inchi_Input_V3000),
+  polymer: NAPIArrayType(inchi_Input_Polymer),
+  v3000: NAPIArrayType(inchi_Input_V3000),
 });
 export interface INCHIInputEx {
   atom: INCHIAtom;
@@ -846,8 +846,8 @@ export interface INCHIOutput {
 // }inchi_OutputStruct;
 
 export const inchi_OutputStruct = NAPIStructType({
-  atom: refNAPI.refType(inchi_Atom),
-  stereo0D: refNAPI.refType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom),
+  stereo0D: NAPIArrayType(inchi_Stereo0D),
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
   szMessage: refNAPI.types.CString,
@@ -855,8 +855,8 @@ export const inchi_OutputStruct = NAPIStructType({
   WarningFlags: NAPIArrayType(NAPIArrayType(refNAPI.types.ulong, 2), 2),
 });
 export interface INCHIOutputStruct {
-  atom: INCHIAtom;
-  stereo0D: INCHIStereo0D;
+  atom: INCHIAtom[];
+  stereo0D: INCHIStereo0D[];
   numAtoms: number;
   numStereo0D: number;
   szMessage: string;
@@ -886,26 +886,26 @@ export interface INCHIOutputStruct {
 // } inchi_OutputStructEx;
 
 export const inchi_OutputStructEx = NAPIStructType({
-  atom: refNAPI.refType(inchi_Atom),
-  stereo0D: refNAPI.refType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom),
+  stereo0D: NAPIArrayType(inchi_Stereo0D),
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
   szMessage: refNAPI.types.CString,
   szLog: refNAPI.types.CString,
   WarningFlags: NAPIArrayType(NAPIArrayType(refNAPI.types.ulong, 2), 2),
-  polymer: refNAPI.refType(inchi_Input_Polymer),
-  v3000: refNAPI.refType(inchi_Input_V3000),
+  polymer: NAPIArrayType(inchi_Input_Polymer),
+  v3000: NAPIArrayType(inchi_Input_V3000),
 });
 export interface INCHIOutputStructEx {
-  atom: INCHIAtom;
-  stereo0D: INCHIStereo0D;
+  atom: INCHIAtom[];
+  stereo0D: INCHIStereo0D[];
   numAtoms: number;
   numStereo0D: number;
   szMessage: string;
   szLog: string;
   warningFlags: [[number, number], [number, number]];
-  polymer: INCHIInputPolymer;
-  v3000: INCHIInputV3000;
+  polymer: INCHIInputPolymer[];
+  v3000: INCHIInputV3000[];
 }
 
 // void FreeInChIExtInput( inchi_Input_Polymer    *polymer, inchi_Input_V3000 *v3000 );

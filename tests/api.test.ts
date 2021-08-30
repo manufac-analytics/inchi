@@ -24,7 +24,7 @@ describe("test api wrapped ffis functions", () => {
     const {
       status,
       data: {
-        atom: { x, y, z },
+        atom: [{ x, y, z }],
         szMessage,
         szLog,
       },
@@ -41,7 +41,7 @@ describe("test api wrapped ffis functions", () => {
     const {
       status,
       data: {
-        atom: { x, y, z },
+        atom: [{ x, y, z }],
         szMessage,
         szLog,
       },
@@ -58,7 +58,7 @@ describe("test api wrapped ffis functions", () => {
     const {
       status,
       data: {
-        atom: { x, y, z },
+        atom: [{ x, y, z }],
         szMessage,
         szLog,
       },

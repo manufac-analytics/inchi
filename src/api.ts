@@ -310,8 +310,8 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
   const inchiOutStruct = new inchi_OutputStruct();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
-    atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
-    stereo0D: generateINCHIStereo0D(inchiOutStruct.stereo0D.deref()),
+    atom: generateINCHIAtom(inchiOutStruct.atom),
+    stereo0D: generateINCHIStereo0D(inchiOutStruct.stereo0D),
     numAtoms: inchiOutStruct.num_atoms,
     numStereo0D: inchiOutStruct.num_stereo0D,
     szMessage: inchiOutStruct.szMessage,
@@ -325,17 +325,17 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
 export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions): GetStructFromINCHIExOutput {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStructEx = new inchi_OutputStructEx();
-  const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStructEx.ref());
+  const returnCode = INCHIAPI.GetStructFromINCHIEx(inchiIn.ref(), inchiOutStructEx.ref());
   const outputDataEx: INCHIOutputStructEx = {
-    atom: generateINCHIAtom(inchiOutStructEx.atom.deref()),
-    stereo0D: inchiOutStructEx.stereo0D,
+    atom: generateINCHIAtom(inchiOutStructEx.atom),
+    stereo0D: generateINCHIStereo0D(inchiOutStructEx.stereo0D),
     numAtoms: inchiOutStructEx.num_atoms,
     numStereo0D: inchiOutStructEx.num_stereo0D,
     szMessage: inchiOutStructEx.szMessage,
     szLog: inchiOutStructEx.szLog,
     warningFlags: inchiOutStructEx.WarningFlags,
-    polymer: generateINCHIInputPolymer(inchiOutStructEx.polymer.deref()),
-    v3000: inchiOutStructEx.v3000,
+    polymer: generateINCHIInputPolymer(inchiOutStructEx.polymer),
+    v3000: generateINCHIInputV3000(inchiOutStructEx.v3000),
   };
   const output: GetStructFromINCHIExOutput = { status: returnCode, data: outputDataEx };
   return output;
@@ -346,7 +346,7 @@ export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions):
   const inchiOutStruct = new inchi_OutputStruct();
   const returnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
-    atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
+    atom: generateINCHIStereo0D(inchiOutStruct.stereo0D),
     stereo0D: inchiOutStruct.stereo0D,
     numAtoms: inchiOutStruct.num_atoms,
     numStereo0D: inchiOutStruct.num_stereo0D,
