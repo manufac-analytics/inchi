@@ -305,16 +305,14 @@ function generateOptionsString(input?: GetINCHIOptions | GetINCHIExOptions): str
 // #region Public Functions
 
 /**
- * CheckINCHIKey
- * Description: Check if the string represents valid InChIKey
- * Input: takes one argument , A string
- *  input - A source InChIKey string
- * Ouput: Returns code -1 , 0 , 1 , 2 , 3
- * -1: InChIKey is valid and non-standard
- *  0: InChIKey is valid and standard
- *  1: InChIKey has invalid length
- *  2: InChIKey has invalid layout
- *  3: InChIKey has invalid version number (not equal to 1)
+ * Check if the string represents valid InChIKey
+ * @param input A source InChIKey string
+ * @returns One amongst -1 , 0 , 1 , 2 , 3
+ *  - -1: InChIKey is valid and non-standard
+ *  - 0: InChIKey is valid and standard
+ *  - 1: InChIKey has invalid length
+ *  - 2: InChIKey has invalid layout
+ *  - 3: InChIKey has invalid version number (not equal to 1)
  */
 export function CheckINCHIKey(input: string): CheckINCHIKeyReturnCode {
   return INCHIAPI.CheckINCHIKey(input) as CheckINCHIKeyReturnCode;
