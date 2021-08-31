@@ -337,9 +337,9 @@ export function CheckINCHIKey(input: string): CheckINCHIKeyReturnCode {
  * - 4: Checking InChI through InChI2InChI either failed or produced a result which does not match the source InChI string
  * @example
  * ```ts
- * const status = CheckINCHI("InChI=1S/C3H5NO/c1-2-5-3-4-1/h3H,1-2H2/p+1",false);
+ * const status = CheckINCHI("InChI=1S/C3H5NO/c1-2-5-3-4-1/h3H,1-2H2/p+1", false);
  * console.log(status);
- * //0
+ * // 0
  * ```
  */
 export function CheckINCHI(input: string, strict?: boolean): CheckINCHIReturnCode {
@@ -354,7 +354,7 @@ export function CheckINCHI(input: string, strict?: boolean): CheckINCHIReturnCod
  * ```ts
  * const length = GetStringLength("VNWKTOKETHGBQD-UHFFFAOYSA-N");
  * console.log(length);
- * //27
+ * // 27
  * ```
  */
 export function GetStringLength(input: string): number {
@@ -383,13 +383,13 @@ export function GetStringLength(input: string): number {
  * ```ts
  * const output = GetStructFromINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
  * console.log(output.status);
- * //0
+ * // 0
  * console.log(output.data.atom.x);
- * //0
+ * // 0
  * console.log(output.data.atom.y);
- * //0
+ * // 0
  * console.log(output.data.atom.z);
- * //0
+ * // 0
  * ```
  */
 export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): GetStructFromINCHIOutput {
@@ -421,13 +421,13 @@ data-substructures carrying an information on polymers and V3000 features.
  * ```ts
  * const output = GetStructFromINCHIEx("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
  * console.log(output.status);
- * //0
+ * // 0
  * console.log(output.data.atom.x);
- * //0
+ * // 0
  * console.log(output.data.atom.y);
- * //0
+ * // 0
  * console.log(output.data.atom.z);
- * //0
+ * // 0
  * ```
  */
 export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions): GetStructFromINCHIExOutput {
@@ -459,13 +459,13 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
  * ```ts
  * const output = GetStructFromStdINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
  * console.log(output.status);
- * //0
+ * // 0
  * console.log(output.data.atom.x);
- * //0
+ * // 0
  * console.log(output.data.atom.y);
- * //0
+ * // 0
  * console.log(output.data.atom.z);
- * //0
+ * // 0
  * ```
  */
 export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions): GetStructFromINCHIOutput {
