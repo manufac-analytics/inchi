@@ -201,17 +201,57 @@ export const inchi_Atom = NAPIStructType({
   charge: refNAPI.types.char,
 });
 export interface INCHIAtom {
+  /**
+   * Atom coordinates: x
+   */
   x: number;
+  /**
+   * Atom coordinates: y
+   */
   y: number;
+  /**
+   * Atom coordinates: z
+   */
   z: number;
+  /**
+   * Adjacency list representing ordering of the adjacent atoms
+   */
   neighbor: MAXVALTuple;
+  /**
+   * Bond type
+   */
   bondType: MAXVALTuple;
+  /**
+   * 2D stereo info. negative if the sharp end points to opposite atom
+   */
   bondStereo: MAXVALTuple;
+  /**
+   * zero-terminated chemical element name: "H", "Si", etc.
+   */
   elName: ATOMELLENTuple;
+  /**
+   * number of neighbors, bond types and bond stereo in the adjacency list
+   */
   numBonds: number;
+  /**
+   * implicit hydrogen atoms
+   * - [0]: number of implicit non-isotopic H (exception: num_iso_H[0]=-1 means INCHI adds implicit H automatically),
+   * - [1]: number of implicit isotopic 1H (protium),
+   * - [2]: number of implicit 2H (deuterium),
+   * - [3]: number of implicit 3H (tritium)
+   */
   numIsoH: NUMHISOTOPESTuple;
+  /**
+   * 0 => non-isotopic; isotopic mass or ISOTOPIC_SHIFT_FLAG + mass - (average atomic mass)
+   */
   isotopicMass: number;
+  /**
+   * Radical
+   */
   radical: number;
+  /**
+   * positive or negative; 0 => no charge
+   */
   charge: number;
 }
 
@@ -752,7 +792,7 @@ export const inchi_InputEx = NAPIStructType({
 export interface INCHIInputEx {
   atom: INCHIAtom;
   stereo0D: INCHIStereo0D;
-  szOptions: string;
+  szOptions: string | null;
   numAtoms: number;
   numStereo0D: number;
   polymer: INCHIInputPolymer;
@@ -779,8 +819,8 @@ export const inchi_InputINCHI = NAPIStructType({
   szOptions: refNAPI.types.CString,
 });
 export interface INCHIInputINCHI {
-  szINCHI: string;
-  szOptions: string;
+  szINCHI: string | null;
+  szOptions: string | null;
 }
 
 // typedef inchi_Input_PolymerUnit inchi_Output_PolymerUnit;
@@ -817,10 +857,10 @@ export const inchi_Output = NAPIStructType({
   szLog: refNAPI.types.CString,
 });
 export interface INCHIOutput {
-  szINCHI: string;
-  szAuxInfo: string;
-  szMessage: string;
-  szLog: string;
+  szINCHI: string | null;
+  szAuxInfo: string | null;
+  szMessage: string | null;
+  szLog: string | null;
 }
 
 // /* InChI -> Structure */
@@ -859,8 +899,8 @@ export interface INCHIOutputStruct {
   stereo0D: INCHIStereo0D[];
   numAtoms: number;
   numStereo0D: number;
-  szMessage: string;
-  szLog: string;
+  szMessage: string | null;
+  szLog: string | null;
   warningFlags: [[number, number], [number, number]];
 }
 
@@ -901,8 +941,8 @@ export interface INCHIOutputStructEx {
   stereo0D: INCHIStereo0D[];
   numAtoms: number;
   numStereo0D: number;
-  szMessage: string;
-  szLog: string;
+  szMessage: string | null;
+  szLog: string | null;
   warningFlags: [[number, number], [number, number]];
   polymer: INCHIInputPolymer[];
   v3000: INCHIInputV3000[];

@@ -1,4 +1,3 @@
-// @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies.
 import {
   ATOMELLENTuple,
   INCHIAtom,
