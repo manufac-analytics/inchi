@@ -260,7 +260,7 @@ export interface INCHIOutput {
 
 export interface GetStructFromINCHIOutput {
   /**
-   * Returns code from -2 to 5 to show different results
+   * Returns One amongst -2 , -1 , 0 , 1 , 2 , 3 , 4 , 5
    */
   status: GetINCHIReturnCode;
   /**
@@ -271,7 +271,7 @@ export interface GetStructFromINCHIOutput {
 
 export interface GetStructFromINCHIExOutput {
   /**
-   * Returns code from -2 to 5 to show different results
+   * Returns One amongst -2 , -1 , 0 , 1 , 2 , 3 , 4 , 5
    */
   status: GetINCHIReturnCode;
   /**
@@ -306,8 +306,8 @@ function generateOptionsString(input?: GetINCHIOptions | GetINCHIExOptions): str
 
 /**
  * Check if the string represents valid InChIKey
- * @param input A source InChIKey string
- * @returns One amongst -1 , 0 , 1 , 2 , 3
+ * @param {string} input  A source InChIKey string
+ * @returns One amongst 1 , 0 , 1 , 2 , 3
  *  - -1: InChIKey is valid and non-standard
  *  - 0: InChIKey is valid and standard
  *  - 1: InChIKey has invalid length
@@ -325,54 +325,72 @@ export function CheckINCHIKey(input: string): CheckINCHIKeyReturnCode {
 }
 
 /**
- * CheckINCHI
- * Description: Check if the string represents valid InChI/standard InChI
- * Input: takes two argument
- *  input - source InChI string ,
- *  strict (optional) - if false, just briefly check for proper layout (prefix, version, etc.)
- * Output: Returns code -1 , 0 , 1 , 2 , 3 , 4
- * -1: InChI is valid and non-standard
- *  0: InChI is valid and standard
- *  1: InChI has invalid prefix
- *  2: InChI has invalid version number (not equal to 1)
- *  3: InChI has invalid layout
- *  4: Checking InChI through InChI2InChI either failed or produced a result which does not match the source InChI string
+ * Check if the string represents valid InChI/standard InChI
+ * @param {string} input source InChI string
+ * @param {boolean} strict (optional) if false, just briefly check for proper layout (prefix, version, etc.)
+ * @returns One amongst -1 , 0 , 1 , 2 , 3 , 4
+ * - -1: InChI is valid and non-standard
+ * - 0: InChI is valid and standard
+ * - 1: InChI has invalid prefix
+ * - 2: InChI has invalid version number (not equal to 1)
+ * - 3: InChI has invalid layout
+ * - 4: Checking InChI through InChI2InChI either failed or produced a result which does not match the source InChI string
+ * @example
+ * ```ts
+ * const status = CheckINCHI("InChI=1S/C3H5NO/c1-2-5-3-4-1/h3H,1-2H2/p+1",false);
+ * console.log(status);
+ * //0
+ * ```
  */
 export function CheckINCHI(input: string, strict?: boolean): CheckINCHIReturnCode {
   return INCHIAPI.CheckINCHI(input, strict === true ? 1 : 0) as CheckINCHIReturnCode;
 }
 
 /**
- * GetStringLength
- * Description: Returns length of the string
- * Input: input - A string
- * Ouput: length of the string
+ * Returns length of the string
+ * @param {string} input An Inchi string
+ * @returns {number} length of the string
+ * @example
+ * ```ts
+ * const length = GetStringLength("VNWKTOKETHGBQD-UHFFFAOYSA-N");
+ * console.log(length);
+ * //27
+ * ```
  */
 export function GetStringLength(input: string): number {
   return INCHIAPI.GetStringLength(input);
 }
 
 /**
- * GetStructFromINCHI
- * Description: This function creates structure from InChI string
- * Input: It takes two arguments
- *  input - An Inchi String
- *  options (optional) - An object containing chosen options as key and their values as true
- * Ouput: ouput is an object containing status and data
- *  status - The returned code
- *  data - data contains structure created from input (Inchi) string
- *    atom - Array of atom objects which contains various data like atom co-ordinates (x,y,z) , neighbor, bondType , bondStereo, elName, numBonds, numIsoh, isotopicMass, radical, charge
- *    stereo0D - array of num_stereo0D 0D stereo elements or NULL
- *    numAtoms - number of atoms in the structure
- *    numStereo0D - number of 0D stereo elements
- *    szMessage - A string containing Error/warning ASCIIZ message
- *    szLog - log-file ASCIIZ string, contains a human-readable list of recognized options and possibly an Error/warn message
- *    warningFlags - A 2d Array conataining warnings
- *                  [x][y]:
- *                  x=0 => Reconnected if present in InChI otherwise Disconnected/Normal
- *                  x=1 => Disconnected layer if Reconn. layer is present
- *                  y=1 => Main layer or Mobile-H
- *                  y=0 => Fixed-H layer
+ * This function creates structure from InChI string
+ * @param {string} input An Inchi String
+ * @param {object} options (optional) An object containing chosen options as key and their values as true
+ * @returns output is an object containing status and data
+ *  - status - The returned code
+ *  - data - data contains structure created from input (Inchi) string
+ *   -- atom - Array of atom objects which contains various data like atom co-ordinates (x,y,z) , neighbor, bondType , bondStereo, elName, numBonds, numIsoh, isotopicMass, radical, charge
+ *   -- stereo0D - array of num_stereo0D 0D stereo elements or NULL
+ *   -- numAtoms - number of atoms in the structure
+ *   -- numStereo0D - number of 0D stereo elements
+ *   -- szMessage - A string containing Error/warning ASCIIZ message
+ *   -- szLog - log-file ASCIIZ string, contains a human-readable list of recognized options and possibly an Error/warn message
+ *   -- warningFlags - A 2d Array conataining warnings , [x][y]:
+ *            -- x=0 => Reconnected if present in InChI otherwise Disconnected/Normal
+ *            -- x=1 => Disconnected layer if Reconn. layer is present
+ *            -- y=1 => Main layer or Mobile-H
+ *            -- y=0 => Fixed-H layer
+ * @example
+ * ```ts
+ * const output = GetStructFromINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
+ * console.log(output.status);
+ * //0
+ * console.log(output.data.atom.x);
+ * //0
+ * console.log(output.data.atom.y);
+ * //0
+ * console.log(output.data.atom.z);
+ * //0
+ * ```
  */
 export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): GetStructFromINCHIOutput {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
@@ -393,30 +411,24 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
 }
 
 /**
- * GetStructFromINCHIEx
- * Description: This extended version of GetStructFromINCHI supports v. 1.05 extensions: polymers and Molfile V3000 (partial support)
- * Input: It takes two arguments
- *  input - An Inchi String
- *  options (optional) - An object containing chosen options as key and their values as true
- * Ouput: ouput is an object containing status and data ,  It is a superset of inchi_OutputStruct including additional data-substructures carrying an information on polymers and V3000 features
- *  status - The returned code
- *  data - data contains structure created from input (Inchi) string
- *    atom - Array of atom objects which contains various data like atom co-ordinates (x,y,z) , neighbor, bondType , bondStereo, elName, numBonds, numIsoh, isotopicMass, radical, charge
- *    stereo0D - array of num_stereo0D 0D stereo elements or NULL
- *    numAtoms - number of atoms in the structure
- *    numStereo0D - number of 0D stereo elements
- *    szMessage - A string containing Error/warning ASCIIZ message
- *    szLog - log-file ASCIIZ string, contains a human-readable list of recognized options and possibly an Error/warn message
- *    warningFlags - A 2d Array conataining warnings
- *                  [x][y]:
- *                  x=0 => Reconnected if present in InChI otherwise Disconnected/Normal
- *                  x=1 => Disconnected layer if Reconn. layer is present
- *                  y=1 => Main layer or Mobile-H
- *                  y=0 => Fixed-H layer
- *    polymer - Array of Polymers , A Polymer contains two data , units and n.
- *        units - Array of Polymer units
- *        n - number of Polymer units
- *    v3000 - Array of V3000 Molfile features
+ * This extended version of GetStructFromINCHI supports v. 1.05 extensions: polymers and Molfile
+V3000 (partial support).
+ * @param {string} input An Inchi String
+ * @param {object} options (optional) An object containing chosen options as key and their values as true
+ * @returns The data structure inchi_OutputStructEx. It is a superset of inchi_OutputStruct including additional
+data-substructures carrying an information on polymers and V3000 features.
+ * @example
+ * ```ts
+ * const output = GetStructFromINCHIEx("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
+ * console.log(output.status);
+ * //0
+ * console.log(output.data.atom.x);
+ * //0
+ * console.log(output.data.atom.y);
+ * //0
+ * console.log(output.data.atom.z);
+ * //0
+ * ```
  */
 export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions): GetStructFromINCHIExOutput {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
@@ -441,7 +453,20 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
 /**
  * This is the “standard” counterpart of GetStructFromINCHI
  * @param input An Inchi String
- * @param options An object containing chosen options as key and their values as true
+ * @param options (optional) An object containing chosen options as key and their values as true
+ * @returns same as GetStructFromINCHI
+ * @example
+ * ```ts
+ * const output = GetStructFromStdINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
+ * console.log(output.status);
+ * //0
+ * console.log(output.data.atom.x);
+ * //0
+ * console.log(output.data.atom.y);
+ * //0
+ * console.log(output.data.atom.z);
+ * //0
+ * ```
  */
 export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions): GetStructFromINCHIOutput {
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
