@@ -313,6 +313,12 @@ function generateOptionsString(input?: GetINCHIOptions | GetINCHIExOptions): str
  *  - 1: InChIKey has invalid length
  *  - 2: InChIKey has invalid layout
  *  - 3: InChIKey has invalid version number (not equal to 1)
+ * @example
+ * ```ts
+ * const status = CheckINCHIKey("VNWKTOKETHGBQD-UHFFFAOYSA-N");
+ * console.log(status);
+ * // 0
+ * ```
  */
 export function CheckINCHIKey(input: string): CheckINCHIKeyReturnCode {
   return INCHIAPI.CheckINCHIKey(input) as CheckINCHIKeyReturnCode;
