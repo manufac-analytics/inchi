@@ -1,5 +1,4 @@
 // @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
-import refNAPI from "ref-napi";
 import {
   ATOM_EL_LEN,
   inchi_Atom,
@@ -77,7 +76,7 @@ describe("test inchi headers", () => {
      * Instantiate inchi_Input
      */
     const inchiInput = new inchi_Input({
-      atom: refNAPI.alloc(inchi_Atom, {
+      atom: new inchi_Atom({
         x: 1.1,
         y: 2.2,
         z: 3.3,
@@ -91,7 +90,7 @@ describe("test inchi headers", () => {
         radical: 2,
         charge: -2,
       }),
-      stereo0D: refNAPI.alloc(inchi_Stereo0D, {
+      stereo0D: new inchi_Stereo0D({
         neighbor: [1, 2, 3, 4],
         central_atom: 1,
         type: 1,
@@ -156,8 +155,8 @@ describe("test inchi headers", () => {
           xbr1: [1, 2, 3, 4],
           xbr2: [1, 2, 3, 4],
           smt: new Array(80).fill(7),
-          alist: refNAPI.alloc(refNAPI.types.int, 11),
-          blist: refNAPI.alloc(refNAPI.types.int, 11),
+          alist: new Array(11).fill(0),
+          blist: new Array(11).fill(0),
         },
       ],
       n: 1234,
@@ -174,8 +173,8 @@ describe("test inchi headers", () => {
     const inchiInputV3000 = new inchi_Input_V3000({
       n_non_star_atoms: 4,
       n_star_atoms: 3,
-      atom_index_orig: refNAPI.alloc(refNAPI.types.int, 11),
-      atom_index_fin: refNAPI.alloc(refNAPI.types.int, 11),
+      atom_index_orig: new Array(11).fill(0),
+      atom_index_fin: new Array(11).fill(0),
       n_sgroups: 13,
       n_3d_constraints: 13,
       n_collections: 12,
@@ -298,8 +297,8 @@ describe("test inchi headers", () => {
         [1, 2],
         [3, 4],
       ],
-      polymer: refNAPI.alloc(inchi_Input_Polymer),
-      v3000: refNAPI.alloc(inchi_Input_V3000),
+      polymer: new inchi_Input_Polymer(),
+      v3000: new inchi_Input_V3000(),
     });
     expect(inchiOutputStructEx.atom[0].x).toBe(0);
     expect(inchiOutputStructEx.Stereo0D[0].parity).toBe(0);
@@ -317,7 +316,7 @@ describe("test inchi headers", () => {
      * Instantiate InchiInpData
      */
     const InchiInpData1 = new InchiInpData({
-      pInp: refNAPI.alloc(inchi_Input),
+      pInp: new inchi_Input(),
       bChiral: 1,
       szErrMsg: new Array(STR_ERR_LEN).fill(0),
     });
@@ -399,8 +398,8 @@ describe("test inchi headers", () => {
      * Instantiate NORM_ATOMS
      */
     const NORMATOMS = new NORM_ATOMS({
-      at: refNAPI.alloc(NORM_ATOM),
-      at_fixed_bonds: refNAPI.alloc(NORM_ATOM),
+      at: new NORM_ATOM(),
+      at_fixed_bonds: new NORM_ATOM(),
       num_at: 1,
       num_removed_H: 1,
       num_bonds: 1,
