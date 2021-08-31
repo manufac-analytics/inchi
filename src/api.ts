@@ -366,19 +366,6 @@ export function GetStringLength(input: string): number {
  * @param {string} input An Inchi String
  * @param {object} options (optional) An object containing chosen options as key and their values as true
  * @returns output is an object containing status and data
- *  - status - The returned code
- *  - data - data contains structure created from input (Inchi) string
- *   -- atom - Array of atom objects which contains various data like atom co-ordinates (x,y,z) , neighbor, bondType , bondStereo, elName, numBonds, numIsoh, isotopicMass, radical, charge
- *   -- stereo0D - array of num_stereo0D 0D stereo elements or NULL
- *   -- numAtoms - number of atoms in the structure
- *   -- numStereo0D - number of 0D stereo elements
- *   -- szMessage - A string containing Error/warning ASCIIZ message
- *   -- szLog - log-file ASCIIZ string, contains a human-readable list of recognized options and possibly an Error/warn message
- *   -- warningFlags - A 2d Array conataining warnings , [x][y]:
- *            -- x=0 => Reconnected if present in InChI otherwise Disconnected/Normal
- *            -- x=1 => Disconnected layer if Reconn. layer is present
- *            -- y=1 => Main layer or Mobile-H
- *            -- y=0 => Fixed-H layer
  * @example
  * ```ts
  * const output = GetStructFromINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
