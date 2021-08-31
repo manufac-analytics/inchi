@@ -77,32 +77,36 @@ describe("test inchi headers", () => {
      * Instantiate inchi_Input
      */
     const inchiInput = new inchi_Input({
-      atom: refNAPI.alloc(inchi_Atom, {
-        x: 1.1,
-        y: 2.2,
-        z: 3.3,
-        neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        elname: [1, 2, 3, 4, 5, 6],
-        num_bonds: 3,
-        num_iso_H: [1, 2, 3, 4],
-        isotopic_mass: 10,
-        radical: 2,
-        charge: -2,
-      }),
-      stereo0D: refNAPI.alloc(inchi_Stereo0D, {
-        neighbor: [1, 2, 3, 4],
-        central_atom: 1,
-        type: 1,
-        parity: 1,
-      }),
+      atom: [
+        {
+          x: 1.1,
+          y: 2.2,
+          z: 3.3,
+          neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          elname: [1, 2, 3, 4, 5, 6],
+          num_bonds: 3,
+          num_iso_H: [1, 2, 3, 4],
+          isotopic_mass: 10,
+          radical: 2,
+          charge: -2,
+        },
+      ],
+      stereo0D: [
+        {
+          neighbor: [1, 2, 3, 4],
+          central_atom: 1,
+          type: 1,
+          parity: 1,
+        },
+      ],
       szOptions: "some-string",
       num_atoms: 32767,
       num_stereo0D: -32768,
     });
-    expect(inchiInput.atom.deref().neighbor.toArray().length).toBe(MAXVAL);
-    expect(inchiInput.stereo0D.deref().neighbor.toArray().length).toBe(4);
+    expect(inchiInput.atom[0].neighbor.toArray().length).toBe(MAXVAL);
+    expect(inchiInput.stereo0D[0].neighbor.toArray().length).toBe(4);
     expect(inchiInput.szOptions).toBe("some-string");
     expect(inchiInput.num_atoms).toBe(32767);
     expect(inchiInput.num_stereo0D).toBe(-32768);
@@ -212,21 +216,21 @@ describe("test inchi headers", () => {
      * Instantiate inchi_InputEx
      */
     const inchiInputEx = new inchi_InputEx({
-      atom: refNAPI.alloc(inchi_Atom),
-      Stereo0D: refNAPI.alloc(inchi_Stereo0D),
+      atom: [new inchi_Atom()],
+      Stereo0D: [new inchi_Stereo0D()],
       szOptions: "some-string",
       num_atoms: 11,
       num_stereo0D: 13,
-      polymer: refNAPI.alloc(inchi_Input_Polymer),
-      v3000: refNAPI.alloc(inchi_Input_V3000),
+      polymer: [new inchi_Input_Polymer()],
+      v3000: [new inchi_Input_V3000()],
     });
-    expect(inchiInputEx.atom.deref().x).toBe(0);
-    expect(inchiInputEx.Stereo0D.deref().parity).toBe(0);
+    expect(inchiInputEx.atom[0].x).toBe(0);
+    expect(inchiInputEx.Stereo0D[0].parity).toBe(0);
     expect(inchiInputEx.szOptions).toBe("some-string");
     expect(inchiInputEx.num_atoms).toBe(11);
     expect(inchiInputEx.num_stereo0D).toBe(13);
-    expect(inchiInputEx.polymer.deref().n).toBe(0);
-    expect(inchiInputEx.v3000.deref().n_non_star_atoms).toBe(0);
+    expect(inchiInputEx.polymer[0].n).toBe(0);
+    expect(inchiInputEx.v3000[0].n_non_star_atoms).toBe(0);
   });
 
   test("check inchi_InputINCHI", () => {
@@ -398,8 +402,8 @@ describe("test inchi headers", () => {
      * Instantiate NORM_ATOMS
      */
     const NORMATOMS = new NORM_ATOMS({
-      at: refNAPI.alloc(NORM_ATOM),
-      at_fixed_bonds: refNAPI.alloc(NORM_ATOM),
+      at: [new NORM_ATOM()],
+      at_fixed_bonds: [new NORM_ATOM()],
       num_at: 1,
       num_removed_H: 1,
       num_bonds: 1,
@@ -416,8 +420,8 @@ describe("test inchi headers", () => {
       bTautFlagsDone: 1,
       bNormalizationFlags: 1,
     });
-    expect(NORMATOMS.at.deref().num_H).toBe(0);
-    expect(NORMATOMS.at_fixed_bonds.deref().num_H).toBe(0);
+    expect(NORMATOMS.at[0].num_H).toBe(0);
+    expect(NORMATOMS.at_fixed_bonds[0].num_H).toBe(0);
     expect(NORMATOMS.num_at).toBe(1);
     expect(NORMATOMS.num_removed_H).toBe(1);
     expect(NORMATOMS.num_bonds).toBe(1);

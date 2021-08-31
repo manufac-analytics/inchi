@@ -591,15 +591,15 @@ export interface INCHIStereo0D {
 // }inchi_Input;
 
 export const inchi_Input = NAPIStructType({
-  atom: refNAPI.refType(inchi_Atom),
-  stereo0D: refNAPI.refType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom),
+  stereo0D: NAPIArrayType(inchi_Stereo0D),
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
 });
 export interface INCHIInput {
-  atom: INCHIAtom;
-  stereo0D: INCHIStereo0D;
+  atom: INCHIAtom[];
+  stereo0D: INCHIStereo0D[];
   szOptions: string;
   numAtoms: number;
   numStereo0D: number;
@@ -781,22 +781,22 @@ export interface INCHIInputV3000 {
 // } inchi_InputEx;
 
 export const inchi_InputEx = NAPIStructType({
-  atom: refNAPI.refType(inchi_Atom),
-  Stereo0D: refNAPI.refType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom),
+  Stereo0D: NAPIArrayType(inchi_Stereo0D),
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
-  polymer: refNAPI.refType(inchi_Input_Polymer),
-  v3000: refNAPI.refType(inchi_Input_V3000),
+  polymer: NAPIArrayType(inchi_Input_Polymer),
+  v3000: NAPIArrayType(inchi_Input_V3000),
 });
 export interface INCHIInputEx {
-  atom: INCHIAtom;
-  stereo0D: INCHIStereo0D;
+  atom: INCHIAtom[];
+  stereo0D: INCHIStereo0D[];
   szOptions: string | null;
   numAtoms: number;
   numStereo0D: number;
-  polymer: INCHIInputPolymer;
-  v3000: INCHIInputV3000;
+  polymer: INCHIInputPolymer[];
+  v3000: INCHIInputV3000[];
 }
 
 // /*
@@ -1582,8 +1582,8 @@ export const NORM_ATOM = NAPIStructType({
 // } NORM_ATOMS;
 
 export const NORM_ATOMS = NAPIStructType({
-  at: refNAPI.refType(NORM_ATOM),
-  at_fixed_bonds: refNAPI.refType(NORM_ATOM),
+  at: NAPIArrayType(NORM_ATOM),
+  at_fixed_bonds: NAPIArrayType(NORM_ATOM),
   num_at: refNAPI.types.int,
   num_removed_H: refNAPI.types.int,
   num_bonds: refNAPI.types.int,
@@ -1617,6 +1617,7 @@ export const NORM_ATOMS = NAPIStructType({
 export const INCHIGEN_DATA = NAPIStructType({
   pStrErrStruct: NAPIArrayType(refNAPI.types.char, STR_ERR_LEN),
   num_components: NAPIArrayType(refNAPI.types.int, INCHI_NUM),
+  // sir , look at below two key deifintion , should it be as it is or i have to change it to an array from pointer
   NormAtomsNontaut: refNAPI.refType(NAPIArrayType(NORM_ATOMS, INCHI_NUM)),
   NormAtomsTaut: refNAPI.refType(NAPIArrayType(NORM_ATOMS, INCHI_NUM)),
 });
