@@ -603,7 +603,7 @@ export interface INCHIInput {
    */
   atom: INCHIAtom;
   /**
-   * Array of stereo elements
+   * Array of num_stereo0D 0D stereo elements or NULL
    */
   stereo0D: INCHIStereo0D;
   /**
@@ -706,11 +706,11 @@ export interface INCHIInputPolymerUnit {
    */
   xBr2: FourNumberTuple;
   /**
-   * List of atoms in the unit (SAL), atomic numbers
+   * Sgroup Subscript (SMT) ('n' or so )
    */
   smt: EightyNumberTuple;
   /**
-   * group Subscript (SMT) ('n' or so )
+   * List of atoms in the unit (SAL), atomic numbers
    */
   aList: number;
   /**
@@ -981,9 +981,12 @@ export interface INCHIOutput {
    */
   szAuxInfo: string | null;
   /**
-   * log-file ASCIIZ string, contains a human-readable list of recognized options and possibly an Error/warning message
+   * Error/warning ASCIIZ message
    */
   szMessage: string | null;
+  /**
+   * log-file ASCIIZ string, contains a human-readable list of recognized options and possibly an Error/warning message
+   */
   szLog: string | null;
 }
 
@@ -1044,12 +1047,11 @@ export interface INCHIOutputStruct {
    */
   szLog: string | null;
   /**
-   * warnings
-   * [x][y]:
-   * x=0 => Reconnected if present in InChI otherwise Disconnected/Normal
-   * x=1 => Disconnected layer if Reconnected layer is present
-   * y=0 => Fixed-H layer
-   * y=1 => Main layer or Mobile-H
+   * warnings [x][y]:
+   * - `x=0` => Reconnected if present in InChI otherwise Disconnected/Normal
+   * - `x=1` => Disconnected layer if Reconnected layer is present
+   * - `y=0` => Fixed-H layer
+   * - `y=1` => Main layer or Mobile-H
    */
   warningFlags: [[number, number], [number, number]];
 }
