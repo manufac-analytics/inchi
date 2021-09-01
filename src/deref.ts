@@ -18,8 +18,7 @@ import refNAPI from "ref-napi";
 import { inchi_Atom, inchi_Stereo0D } from "./headers";
 
 export function generateINCHIAtom(input: ReturnType<typeof inchi_Atom>[]): INCHIAtom[] {
-  let ouput: INCHIAtom[] = [];
-  input.forEach((element) => {
+  let output: INCHIAtom[] = input.map((element) => {
     const out: INCHIAtom = {
       x: element.x,
       y: element.y,
@@ -34,61 +33,60 @@ export function generateINCHIAtom(input: ReturnType<typeof inchi_Atom>[]): INCHI
       radical: element.radical,
       charge: element.charge,
     };
-    ouput.push(out);
+    return out;
   });
   return output;
 }
 
 export function generateINCHIStereo0D(input: ReturnType<typeof inchi_Stereo0D>[]): INCHIStereo0D[] {
-  let output: INCHIStereo0D[] = [];
-  input.forEach((element) => {
+  let output: INCHIStereo0D[] = input.map((element) => {
     const out: INCHIStereo0D = {
       neighbor: element.neighbor.toArray() as FourNumberTuple,
       centralAtom: element.central_atom,
       type: element.type,
       parity: element.parity,
     };
-    output.push(out);
+    return out;
   });
   return output;
 }
 
-function generateINCHIInputPolymerUnit(input: ReturnType<typeof inchi_Input_PolymerUnit>[]): INCHIInputPolymerUnit[] {
-  let output: INCHIInputPolymerUnit[] = [];
-  input.forEach((element) => {
-    const out: INCHIInputPolymer = {
-      id: element.id,
-      type: element.type,
-      subType: element.subtype,
-      conn: element.conn,
-      label: element.label,
-      nA: element.na,
-      nB: element.nb,
-      xBr1: element.xbr1.toArray() as FourNumberTuple,
-      xBr2: element.xbr2.toArray() as FourNumberTuple,
-      smt: element.smt.toArray() as EightyNumberTuple,
-      aList: element.alist.deref(),
-      bList: element.blist.deref(),
+function generateINCHIInputPolymerUnit(
+  input: refNAPI.Pointer<ReturnType<typeof inchi_Input_PolymerUnit>>[]
+): INCHIInputPolymerUnit[] {
+  let output: INCHIInputPolymerUnit[] = input.map((element) => {
+    const out: INCHIInputPolymerUnit = {
+      id: element.deref().id,
+      type: element.deref().type,
+      subType: element.deref().subtype,
+      conn: element.deref().conn,
+      label: element.deref().label,
+      nA: element.deref().na,
+      nB: element.deref().nb,
+      xBr1: element.deref().xbr1.toArray() as FourNumberTuple,
+      xBr2: element.deref().xbr2.toArray() as FourNumberTuple,
+      smt: element.deref().smt.toArray() as EightyNumberTuple,
+      aList: element.deref().alist.toArray(),
+      bList: element.deref().blist.toArray(),
     };
-    output.push(unit);
+    return out;
   });
   return output;
 }
 
 export function generateINCHIInputPolymer(input: ReturnType<typeof inchi_Input_Polymer>[]): INCHIInputPolymer[] {
-  let output: INCHIInputPolymer[] = [];
-  input.forEach((element) => {
+  let output: INCHIInputPolymer[] = input.map((element) => {
     const out: INCHIInputPolymer = {
-      units: generateINCHIInputPolymerUnit(element.units),
+      units: generateINCHIInputPolymerUnit(element.units.toArray()),
       n: element.n,
     };
-    return output;
+    return out;
   });
+  return output;
 }
 
 export function generateINCHIInputV3000(input: ReturnType<typeof inchi_Input_V3000>[]): INCHIInputV3000[] {
-  let output: INCHIInputV3000[] = [];
-  input.forEach((element) => {
+  let output: INCHIInputV3000[] = input.map((element) => {
     const out: INCHIInputV3000 = {
       nNonStartAtoms: element.n_non_star_atoms,
       nStarAtoms: element.n_star_atoms,
@@ -99,14 +97,15 @@ export function generateINCHIInputV3000(input: ReturnType<typeof inchi_Input_V30
       nCollections: element.n_collections,
       nNonHapticBonds: element.n_non_haptic_bonds,
       nHapticBonds: element.n_haptic_bonds,
-      listsHapticBonds: element.lists_haptic_bonds.toArray(),
+      listsHapticBonds: element.lists_haptic_bonds.toArray().map((element) => element.deref()),
       nSteabs: element.n_steabs,
-      listsSteabs: element.lists_steabs.toArray(),
+      listsSteabs: element.lists_steabs.toArray().map((element) => element.toArray()),
       nSterel: element.n_sterel,
-      listsSterel: element.lists_sterel.toArray(),
+      listsSterel: element.lists_sterel.toArray().map((element) => element.toArray()),
       nSterac: element.n_sterac,
-      listsSterac: element.lists_sterac.toArray(),
+      listsSterac: element.lists_sterac.toArray().map((element) => element.toArray()),
     };
+    return out;
   });
   return output;
 }
