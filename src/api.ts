@@ -5,8 +5,14 @@ import {
   inchi_InputINCHI,
   inchi_OutputStruct,
   inchi_OutputStructEx,
+  WarningFlagsTuple,
 } from "./headers";
-import { generateINCHIAtom } from "./deref";
+import {
+  generateINCHIAtoms,
+  generateINCHIStereo0Ds,
+  generateINCHIInputPolymer,
+  generateINCHIInputV3000,
+} from "./deref";
 
 // #region Types and Interfaces
 
@@ -385,13 +391,15 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
   // @ts-expect-error Bad types in dep libs
   const returnCode: GetINCHIReturnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
-    atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
-    stereo0D: inchiOutStruct.stereo0D,
+    atom: generateINCHIAtoms(inchiOutStruct.atom.toArray()),
+    stereo0D: generateINCHIStereo0Ds(inchiOutStruct.stereo0D.toArray()),
     numAtoms: inchiOutStruct.num_atoms,
     numStereo0D: inchiOutStruct.num_stereo0D,
     szMessage: inchiOutStruct.szMessage,
     szLog: inchiOutStruct.szLog,
-    warningFlags: inchiOutStruct.WarningFlags,
+    warningFlags: inchiOutStruct.WarningFlags.toArray().map(
+      (element) => element.toArray() as [number, number]
+    ) as WarningFlagsTuple,
   };
   const output: GetStructFromINCHIOutput = { status: returnCode, data: outputData };
   return output;
@@ -421,17 +429,19 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
   const inchiIn = new inchi_InputINCHI({ szInChI: input, szOptions: generateOptionsString(options) });
   const inchiOutStructEx = new inchi_OutputStructEx();
   // @ts-expect-error Bad types in dep libs
-  const returnCode: GetINCHIReturnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStructEx.ref());
+  const returnCode: GetINCHIReturnCode = INCHIAPI.GetStructFromINCHIEx(inchiIn.ref(), inchiOutStructEx.ref());
   const outputDataEx: INCHIOutputStructEx = {
-    atom: generateINCHIAtom(inchiOutStructEx.atom.deref()),
-    stereo0D: inchiOutStructEx.stereo0D,
+    atom: generateINCHIAtoms(inchiOutStructEx.atom.toArray()),
+    stereo0D: generateINCHIStereo0Ds(inchiOutStructEx.stereo0D.toArray()),
     numAtoms: inchiOutStructEx.num_atoms,
     numStereo0D: inchiOutStructEx.num_stereo0D,
     szMessage: inchiOutStructEx.szMessage,
     szLog: inchiOutStructEx.szLog,
-    warningFlags: inchiOutStructEx.WarningFlags,
-    polymer: inchiOutStructEx.polymer,
-    v3000: inchiOutStructEx.v3000,
+    warningFlags: inchiOutStructEx.WarningFlags.toArray().map(
+      (element) => element.toArray() as [number, number]
+    ) as WarningFlagsTuple,
+    polymer: inchiOutStructEx.polymer.length > 0 ? generateINCHIInputPolymer(inchiOutStructEx.polymer.deref()) : null,
+    v3000: inchiOutStructEx.v3000.length > 0 ? generateINCHIInputV3000(inchiOutStructEx.v3000.deref()) : null,
   };
   const output: GetStructFromINCHIExOutput = { status: returnCode, data: outputDataEx };
   return output;
@@ -461,13 +471,15 @@ export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions):
   // @ts-expect-error Bad types in dep libs
   const returnCode: GetINCHIReturnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
-    atom: generateINCHIAtom(inchiOutStruct.atom.deref()),
-    stereo0D: inchiOutStruct.stereo0D,
+    atom: generateINCHIAtoms(inchiOutStruct.atom.toArray()),
+    stereo0D: generateINCHIStereo0Ds(inchiOutStruct.stereo0D.toArray()),
     numAtoms: inchiOutStruct.num_atoms,
     numStereo0D: inchiOutStruct.num_stereo0D,
     szMessage: inchiOutStruct.szMessage,
     szLog: inchiOutStruct.szLog,
-    warningFlags: inchiOutStruct.WarningFlags,
+    warningFlags: inchiOutStruct.WarningFlags.toArray().map(
+      (element) => element.toArray() as [number, number]
+    ) as WarningFlagsTuple,
   };
   const output: GetStructFromINCHIOutput = { status: returnCode, data: outputData };
   return output;

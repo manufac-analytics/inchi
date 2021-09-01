@@ -147,6 +147,7 @@ export type EightyNumberTuple = [
   ...TenNumberTuple,
   ...TenNumberTuple
 ];
+export type WarningFlagsTuple = [[number, number], [number, number]];
 
 /*************************************************
  *
@@ -591,8 +592,8 @@ export interface INCHIStereo0D {
 // }inchi_Input;
 
 export const inchi_Input = NAPIStructType({
-  atom: refNAPI.refType(inchi_Atom),
-  stereo0D: refNAPI.refType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom, 999),
+  stereo0D: NAPIArrayType(inchi_Stereo0D, 999),
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
@@ -601,11 +602,11 @@ export interface INCHIInput {
   /**
    * Array of Inchi Atoms
    */
-  atom: INCHIAtom;
+  atom: INCHIAtom[];
   /**
    * Array of num_stereo0D 0D stereo elements or NULL
    */
-  stereo0D: INCHIStereo0D;
+  stereo0D: INCHIStereo0D[] | null;
   /**
    * InChI options: space-delimited; each is preceded by '/' or '-' depending on OS and compiler
    */
@@ -665,8 +666,8 @@ export const inchi_Input_PolymerUnit = NAPIStructType({
   xbr1: NAPIArrayType(refNAPI.types.double, 4),
   xbr2: NAPIArrayType(refNAPI.types.double, 4),
   smt: NAPIArrayType(refNAPI.types.char, 80),
-  alist: refNAPI.refType(refNAPI.types.int),
-  blist: refNAPI.refType(refNAPI.types.int),
+  alist: NAPIArrayType(refNAPI.types.int),
+  blist: NAPIArrayType(refNAPI.types.int),
 });
 export interface INCHIInputPolymerUnit {
   /**
@@ -712,11 +713,11 @@ export interface INCHIInputPolymerUnit {
   /**
    * List of atoms in the unit (SAL), atomic numbers
    */
-  aList: number;
+  aList: number[];
   /**
    * List of crossing bonds of unit: [bond1end1, bond1end2, bond2end1, bond2end2]
    */
-  bList: number;
+  bList: number[];
 }
 
 // typedef struct inchi_Input_Polymer
@@ -727,7 +728,7 @@ export interface INCHIInputPolymerUnit {
 // } inchi_Input_Polymer;
 
 export const inchi_Input_Polymer = NAPIStructType({
-  units: refNAPI.refType(refNAPI.refType(inchi_Input_PolymerUnit)),
+  units: NAPIArrayType(refNAPI.refType(inchi_Input_PolymerUnit), 999),
   n: refNAPI.types.int,
 });
 export interface INCHIInputPolymer {
@@ -787,13 +788,13 @@ export const inchi_Input_V3000 = NAPIStructType({
   n_collections: refNAPI.types.int,
   n_non_haptic_bonds: refNAPI.types.int,
   n_haptic_bonds: refNAPI.types.int,
-  lists_haptic_bonds: refNAPI.refType(refNAPI.refType(refNAPI.types.int)),
+  lists_haptic_bonds: NAPIArrayType(refNAPI.types.int, 999),
   n_steabs: refNAPI.types.int,
-  lists_steabs: refNAPI.refType(refNAPI.refType(refNAPI.types.int)),
+  lists_steabs: NAPIArrayType(NAPIArrayType(refNAPI.types.int, 999), 999),
   n_sterel: refNAPI.types.int,
-  lists_sterel: refNAPI.refType(refNAPI.refType(refNAPI.types.int)),
+  lists_sterel: NAPIArrayType(NAPIArrayType(refNAPI.types.int, 999), 999),
   n_sterac: refNAPI.types.int,
-  lists_sterac: refNAPI.refType(refNAPI.refType(refNAPI.types.int)),
+  lists_sterac: NAPIArrayType(NAPIArrayType(refNAPI.types.int, 999), 999),
 });
 export interface INCHIInputV3000 {
   nNonStartAtoms: number;
@@ -821,7 +822,7 @@ export interface INCHIInputV3000 {
    * Haptic_bonds[i] is pointer to int array which contains:
    * bond_type, non-star atom number, nendpts, then endpts themselves
    */
-  listsHapticBonds: number[][];
+  listsHapticBonds: number[];
   nSteabs: number;
   /**
    * steabs[k][0] - not used
@@ -869,8 +870,8 @@ export interface INCHIInputV3000 {
 // } inchi_InputEx;
 
 export const inchi_InputEx = NAPIStructType({
-  atom: refNAPI.refType(inchi_Atom),
-  Stereo0D: refNAPI.refType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom, 999),
+  Stereo0D: NAPIArrayType(inchi_Stereo0D, 999),
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
@@ -881,11 +882,11 @@ export interface INCHIInputEx {
   /**
    * Array of INCHIAtom elements
    */
-  atom: INCHIAtom;
+  atom: INCHIAtom[];
   /**
    * Array of INCHIstereo0D 0D stereo elements
    */
-  stereo0D: INCHIStereo0D;
+  stereo0D: INCHIStereo0D[] | null;
   /**
    * InChI options: space-delimited; each is preceded by '/' or '-' depending on OS and compiler
    */
@@ -901,11 +902,11 @@ export interface INCHIInputEx {
   /**
    * v. 1.05+ extended data, polymers
    */
-  polymer: INCHIInputPolymer;
+  polymer: INCHIInputPolymer | null;
   /**
    * v. 1.05+ extended data, V3000 Molfile features, NULL if no V3000 extensions present
    */
-  v3000: INCHIInputV3000;
+  v3000: INCHIInputV3000 | null;
 }
 
 // /*
@@ -1013,8 +1014,8 @@ export interface INCHIOutput {
 // }inchi_OutputStruct;
 
 export const inchi_OutputStruct = NAPIStructType({
-  atom: refNAPI.refType(inchi_Atom),
-  stereo0D: refNAPI.refType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom),
+  stereo0D: NAPIArrayType(inchi_Stereo0D),
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
   szMessage: refNAPI.types.CString,
@@ -1025,11 +1026,11 @@ export interface INCHIOutputStruct {
   /**
    * Array of INCHIAtom elements
    */
-  atom: INCHIAtom;
+  atom: INCHIAtom[];
   /**
    * Array of INCHIStereo0D 0D stereo elements or NULL
    */
-  stereo0D: INCHIStereo0D;
+  stereo0D: INCHIStereo0D[] | null;
   /**
    * number of atoms in the structure
    */
@@ -1053,7 +1054,7 @@ export interface INCHIOutputStruct {
    * - `y=0` => Fixed-H layer
    * - `y=1` => Main layer or Mobile-H
    */
-  warningFlags: [[number, number], [number, number]];
+  warningFlags: WarningFlagsTuple;
 }
 
 // typedef struct tagINCHI_OutputStructEx
@@ -1078,8 +1079,8 @@ export interface INCHIOutputStruct {
 // } inchi_OutputStructEx;
 
 export const inchi_OutputStructEx = NAPIStructType({
-  atom: refNAPI.refType(inchi_Atom),
-  stereo0D: refNAPI.refType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom),
+  stereo0D: NAPIArrayType(inchi_Stereo0D),
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
   szMessage: refNAPI.types.CString,
@@ -1089,15 +1090,15 @@ export const inchi_OutputStructEx = NAPIStructType({
   v3000: refNAPI.refType(inchi_Input_V3000),
 });
 export interface INCHIOutputStructEx {
-  atom: INCHIAtom;
-  stereo0D: INCHIStereo0D;
+  atom: INCHIAtom[];
+  stereo0D: INCHIStereo0D[] | null;
   numAtoms: number;
   numStereo0D: number;
   szMessage: string | null;
   szLog: string | null;
-  warningFlags: [[number, number], [number, number]];
-  polymer: INCHIInputPolymer;
-  v3000: INCHIInputV3000;
+  warningFlags: WarningFlagsTuple;
+  polymer: INCHIInputPolymer | null;
+  v3000: INCHIInputV3000 | null;
 }
 
 // void FreeInChIExtInput( inchi_Input_Polymer    *polymer, inchi_Input_V3000 *v3000 );

@@ -1,3 +1,9 @@
 {
-  "recommendations": ["esbenp.prettier-vscode", "natqe.reload", "vivaxy.vscode-conventional-commits", "eamodio.gitlens"]
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "natqe.reload",
+    "vivaxy.vscode-conventional-commits",
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github"
+  ]
 }

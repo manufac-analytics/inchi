@@ -24,15 +24,13 @@ describe("test api wrapped ffis functions", () => {
     const {
       status,
       data: {
-        atom: { x, y, z },
+        atom,
         szMessage,
         szLog,
       },
     } = GetStructFromINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
     expect(status).toBe(0);
-    expect(x).toBe(0);
-    expect(y).toBe(0);
-    expect(z).toBe(0);
+    expect(atom.length).toBe(0);
     expect(typeof szMessage).toBe("string");
     expect(typeof szLog).toBe("string");
   });
@@ -41,15 +39,13 @@ describe("test api wrapped ffis functions", () => {
     const {
       status,
       data: {
-        atom: { x, y, z },
+        atom,
         szMessage,
         szLog,
       },
     } = GetStructFromINCHIEx("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
     expect(status).toBe(0);
-    expect(x).toBe(0);
-    expect(y).toBe(0);
-    expect(z).toBe(0);
+    expect(atom.length).toBe(0);
     expect(typeof szMessage).toBe("string");
     expect(typeof szLog).toBe("string");
   });
@@ -58,15 +54,13 @@ describe("test api wrapped ffis functions", () => {
     const {
       status,
       data: {
-        atom: { x, y, z },
+        atom,
         szMessage,
         szLog,
       },
     } = GetStructFromStdINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
     expect(status).toBe(0);
-    expect(x).toBe(0);
-    expect(y).toBe(0);
-    expect(z).toBe(0);
+    expect(atom.length).toBe(0);
     expect(typeof szMessage).toBe("string");
     expect(typeof szLog).toBe("string");
   });
