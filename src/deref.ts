@@ -10,7 +10,6 @@ import {
   inchi_Input_PolymerUnit,
   INCHIInputPolymerUnit,
   EightyNumberTuple,
-  inchi_Output,
   inchi_Input_V3000,
   INCHIInputV3000,
 } from "./headers";
