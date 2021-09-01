@@ -16,54 +16,48 @@ function convertError(input: Error): JSONRPCError {
 
 const server = new Server({
   GetStringLength: (args: Parameters<typeof GetStringLength>, callback: JSONRPCCallbackType) => {
-    let output: ReturnType<typeof GetStringLength>;
     try {
-      output = GetStringLength(...args);
+      const output = GetStringLength(...args);
       callback(null, undefined, output);
     } catch (error) {
       callback(error, convertError(error), undefined);
     }
   },
   CheckINCHIKey: (args: Parameters<typeof CheckINCHIKey>, callback: JSONRPCCallbackType) => {
-    let output: ReturnType<typeof CheckINCHIKey>;
     try {
-      output = CheckINCHIKey(...args);
+      const output = CheckINCHIKey(...args);
       callback(null, undefined, output);
     } catch (error) {
       callback(error, convertError(error), undefined);
     }
   },
   CheckINCHI: (args: Parameters<typeof CheckINCHI>, callback: JSONRPCCallbackType) => {
-    let output: ReturnType<typeof CheckINCHI>;
     try {
-      output = CheckINCHI(...args);
+      const output = CheckINCHI(...args);
       callback(null, undefined, output);
     } catch (error) {
       callback(error, convertError(error), undefined);
     }
   },
   GetStructFromINCHI: (args: Parameters<typeof GetStructFromINCHI>, callback: JSONRPCCallbackType) => {
-    let output: ReturnType<typeof GetStructFromINCHI>;
     try {
-      output = GetStructFromINCHI(...args);
+      const output = GetStructFromINCHI(...args);
       callback(null, undefined, output);
     } catch (error) {
       callback(error, convertError(error), undefined);
     }
   },
   GetStructFromINCHIEx: (args: Parameters<typeof GetStructFromINCHIEx>, callback: JSONRPCCallbackType) => {
-    let output: ReturnType<typeof GetStructFromINCHIEx>;
     try {
-      output = GetStructFromINCHIEx(...args);
+      const output = GetStructFromINCHIEx(...args);
       callback(null, undefined, output);
     } catch (error) {
       callback(error, convertError(error), undefined);
     }
   },
   GetStructFromStdINCHI: (args: Parameters<typeof GetStructFromStdINCHI>, callback: JSONRPCCallbackType) => {
-    let output: ReturnType<typeof GetStructFromStdINCHI>;
     try {
-      output = GetStructFromStdINCHI(...args);
+      const output = GetStructFromStdINCHI(...args);
       callback(null, undefined, output);
     } catch (error) {
       callback(error, convertError(error), undefined);
