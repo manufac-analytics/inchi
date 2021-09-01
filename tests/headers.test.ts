@@ -145,7 +145,7 @@ describe("test inchi headers", () => {
      */
     const inchiInputPolymer = new inchi_Input_Polymer({
       units: [
-        refNAPI.alloc(inchi_Input_PolymerUnit, {
+        new inchi_Input_PolymerUnit({
           id: 1,
           type: 1,
           subtype: 1,
@@ -158,12 +158,12 @@ describe("test inchi headers", () => {
           smt: new Array(80).fill(7),
           alist: new Array(11).fill(0),
           blist: new Array(11).fill(0),
-        }),
+        }).ref(),
       ],
       n: 1234,
     });
-    expect(inchiInputPolymer.units[0].deref().id).toBe(1);
-    expect(inchiInputPolymer.units[0].deref().smt.toArray().length).toBe(80);
+    expect(inchiInputPolymer.units.toArray()[0].deref().id).toBe(1);
+    expect(inchiInputPolymer.units.toArray()[0].deref().smt.toArray().length).toBe(80);
     expect(inchiInputPolymer.n).toBe(1234);
   });
 
