@@ -10,7 +10,7 @@ import {
 } from "./api";
 
 function convertError(input: Error): JSONRPCError {
-  const jsonError: JSONRPCError = { message: input.message, code: input.name === "TypeError" ? -32602 : 404 };
+  const jsonError: JSONRPCError = { message: input.message, code: input.name === "TypeError" ? -32602 : -32000 };
   return jsonError;
 }
 
