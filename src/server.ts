@@ -1,5 +1,5 @@
-import { JSONRPCError, Server } from "jayson";
-import type { JSONRPCCallbackType } from "jayson";
+import { Server } from "jayson";
+import type { JSONRPCCallbackType, JSONRPCError } from "jayson";
 import {
   GetStringLength,
   CheckINCHIKey,
