@@ -221,16 +221,16 @@ describe("test inchi headers", () => {
       szOptions: "some-string",
       num_atoms: 11,
       num_stereo0D: 13,
-      polymer: [new inchi_Input_Polymer()],
-      v3000: [new inchi_Input_V3000()],
+      polymer: new inchi_Input_Polymer().ref(),
+      v3000: new inchi_Input_V3000().ref(),
     });
     expect(inchiInputEx.atom[0].x).toBe(0);
     expect(inchiInputEx.Stereo0D[0].parity).toBe(0);
     expect(inchiInputEx.szOptions).toBe("some-string");
     expect(inchiInputEx.num_atoms).toBe(11);
     expect(inchiInputEx.num_stereo0D).toBe(13);
-    expect(inchiInputEx.polymer[0].n).toBe(0);
-    expect(inchiInputEx.v3000[0].n_non_star_atoms).toBe(0);
+    expect(inchiInputEx.polymer.deref().n).toBe(0);
+    expect(inchiInputEx.v3000.deref().n_non_star_atoms).toBe(0);
   });
 
   test("check inchi_InputINCHI", () => {
