@@ -147,6 +147,7 @@ export type EightyNumberTuple = [
   ...TenNumberTuple,
   ...TenNumberTuple
 ];
+export type WarningFlagsTuple = [[number,number],[number,number]];
 
 /*************************************************
  *
@@ -902,7 +903,7 @@ export interface INCHIOutputStruct {
   numStereo0D: number;
   szMessage: string | null;
   szLog: string | null;
-  warningFlags: [[number, number], [number, number]];
+  warningFlags: WarningFlagsTuple;
 }
 
 // typedef struct tagINCHI_OutputStructEx
@@ -944,7 +945,7 @@ export interface INCHIOutputStructEx {
   numStereo0D: number;
   szMessage: string | null;
   szLog: string | null;
-  warningFlags: [[number, number], [number, number]];
+  warningFlags: WarningFlagsTuple;
   polymer: INCHIInputPolymer[];
   v3000: INCHIInputV3000[];
 }
