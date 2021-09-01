@@ -731,7 +731,7 @@ export const inchi_Input_V3000 = NAPIStructType({
   n_collections: refNAPI.types.int,
   n_non_haptic_bonds: refNAPI.types.int,
   n_haptic_bonds: refNAPI.types.int,
-  lists_haptic_bonds: NAPIArrayType(refNAPI.types(refNAPI.types.int)),
+  lists_haptic_bonds: NAPIArrayType(refNAPI.refType(refNAPI.types.int)),
   n_steabs: refNAPI.types.int,
   lists_steabs: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
   n_sterel: refNAPI.types.int,
@@ -742,8 +742,8 @@ export const inchi_Input_V3000 = NAPIStructType({
 export interface INCHIInputV3000 {
   nNonStartAtoms: number;
   nStarAtoms: number;
-  atomIndexOrig: number[];
-  atomIndexFin: number[];
+  atomIndexOrig: number;
+  atomIndexFin: number;
   nSGroups: number;
   n3DContraints: number;
   nCollections: number;
@@ -791,13 +791,13 @@ export const inchi_InputEx = NAPIStructType({
   v3000: NAPIArrayType(inchi_Input_V3000),
 });
 export interface INCHIInputEx {
-  atom: INCHIAtom;
-  stereo0D: INCHIStereo0D;
+  atom: INCHIAtom[];
+  stereo0D: INCHIStereo0D | null;
   szOptions: string | null;
   numAtoms: number;
   numStereo0D: number;
-  polymer: INCHIInputPolymer;
-  v3000: INCHIInputV3000;
+  polymer: INCHIInputPolymer[] | null;
+  v3000: INCHIInputV3000[] | null;
 }
 
 // /*
@@ -897,7 +897,7 @@ export const inchi_OutputStruct = NAPIStructType({
 });
 export interface INCHIOutputStruct {
   atom: INCHIAtom[];
-  stereo0D: INCHIStereo0D[];
+  stereo0D: INCHIStereo0D[] | null;
   numAtoms: number;
   numStereo0D: number;
   szMessage: string | null;
