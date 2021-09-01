@@ -404,8 +404,8 @@ describe("test inchi headers", () => {
      * Instantiate NORM_ATOMS
      */
     const NORMATOMS = new NORM_ATOMS({
-      at: new NORM_ATOM(),
-      at_fixed_bonds: new NORM_ATOM(),
+      at: new NORM_ATOM().ref(),
+      at_fixed_bonds: new NORM_ATOM().ref(),
       num_at: 1,
       num_removed_H: 1,
       num_bonds: 1,
