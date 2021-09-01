@@ -317,8 +317,8 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
     numStereo0D: inchiOutStruct.num_stereo0D,
     szMessage: inchiOutStruct.szMessage,
     szLog: inchiOutStruct.szLog,
-    warningFlags: inchiOutStruct.WarningFlags.toArray().map((element) =>
-      element.toArray().map((el) => el as number)
+    warningFlags: inchiOutStruct.WarningFlags.toArray().map(
+      (element) => element.toArray() as [number, number]
     ) as WarningFlagsTuple,
   };
   const output: GetStructFromINCHIOutput = { status: returnCode, data: outputData };
@@ -337,8 +337,8 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
     numStereo0D: inchiOutStructEx.num_stereo0D,
     szMessage: inchiOutStructEx.szMessage,
     szLog: inchiOutStructEx.szLog,
-    warningFlags: inchiOutStructEx.WarningFlags.toArray().map((element) =>
-      element.toArray().map((el) => el as number)
+    warningFlags: inchiOutStructEx.WarningFlags.toArray().map(
+      (element) => element.toArray() as [number, number]
     ) as WarningFlagsTuple,
     polymer: generateINCHIInputPolymer(inchiOutStructEx.polymer.toArray()),
     v3000: generateINCHIInputV3000(inchiOutStructEx.v3000.toArray()),
@@ -359,8 +359,8 @@ export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions):
     numStereo0D: inchiOutStruct.num_stereo0D,
     szMessage: inchiOutStruct.szMessage,
     szLog: inchiOutStruct.szLog,
-    warningFlags: inchiOutStruct.WarningFlags.toArray().map((element) =>
-      element.toArray().map((el) => el as number)
+    warningFlags: inchiOutStruct.WarningFlags.toArray().map(
+      (element) => element.toArray() as [number, number]
     ) as WarningFlagsTuple,
   };
   const output: GetStructFromINCHIOutput = { status: returnCode, data: outputData };
