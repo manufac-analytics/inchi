@@ -7,7 +7,7 @@ import {
   inchi_OutputStructEx,
   WarningFlagsTuple,
 } from "./headers";
-import { generateINCHIAtoms, generateINCHIInputPolymer, generateINCHIInputV3000, generateINCHIStereo0D } from "./deref";
+import { generateINCHIAtoms, generateINCHIStereo0Ds, generateINCHIInputPolymer, generateINCHIInputV3000, } from "./deref";
 
 // #region Types and Interfaces
 
@@ -387,7 +387,7 @@ export function GetStructFromINCHI(input: string, options?: GetINCHIOptions): Ge
   const returnCode: GetINCHIReturnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
     atom: generateINCHIAtoms(inchiOutStruct.atom.toArray()),
-    stereo0D: generateINCHIStereo0D(inchiOutStruct.stereo0D.toArray()),
+    stereo0D: generateINCHIStereo0Ds(inchiOutStruct.stereo0D.toArray()),
     numAtoms: inchiOutStruct.num_atoms,
     numStereo0D: inchiOutStruct.num_stereo0D,
     szMessage: inchiOutStruct.szMessage,
@@ -427,7 +427,7 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
   const returnCode: GetINCHIReturnCode = INCHIAPI.GetStructFromINCHIEx(inchiIn.ref(), inchiOutStructEx.ref());
   const outputDataEx: INCHIOutputStructEx = {
     atom: generateINCHIAtoms(inchiOutStructEx.atom.toArray()),
-    stereo0D: generateINCHIStereo0D(inchiOutStructEx.stereo0D.toArray()),
+    stereo0D: generateINCHIStereo0Ds(inchiOutStructEx.stereo0D.toArray()),
     numAtoms: inchiOutStructEx.num_atoms,
     numStereo0D: inchiOutStructEx.num_stereo0D,
     szMessage: inchiOutStructEx.szMessage,
@@ -467,7 +467,7 @@ export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions):
   const returnCode: GetINCHIReturnCode = INCHIAPI.GetStructFromINCHI(inchiIn.ref(), inchiOutStruct.ref());
   const outputData: INCHIOutputStruct = {
     atom: generateINCHIAtoms(inchiOutStruct.atom.toArray()),
-    stereo0D: generateINCHIStereo0D(inchiOutStruct.stereo0D.toArray()),
+    stereo0D: generateINCHIStereo0Ds(inchiOutStruct.stereo0D.toArray()),
     numAtoms: inchiOutStruct.num_atoms,
     numStereo0D: inchiOutStruct.num_stereo0D,
     szMessage: inchiOutStruct.szMessage,

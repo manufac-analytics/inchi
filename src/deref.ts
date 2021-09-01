@@ -37,7 +37,7 @@ export function generateINCHIAtoms(input: ReturnType<typeof inchi_Atom>[]): INCH
   return output;
 }
 
-export function generateINCHIStereo0D(input: ReturnType<typeof inchi_Stereo0D>[]): INCHIStereo0D[] {
+export function generateINCHIStereo0Ds(input: ReturnType<typeof inchi_Stereo0D>[]): INCHIStereo0D[] {
   let output: INCHIStereo0D[] = input.map((element) => {
     const out: INCHIStereo0D = {
       neighbor: element.neighbor.toArray() as FourNumberTuple,
