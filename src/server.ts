@@ -1,4 +1,5 @@
-import { Server } from "jayson";
+import { JSONRPCError, Server } from "jayson";
+import type { JSONRPCCallbackType } from "jayson";
 import {
   GetStringLength,
   CheckINCHIKey,
@@ -9,58 +10,64 @@ import {
 } from "./api";
 
 const server = new Server({
-  GetStringLength: (args: Parameters<typeof GetStringLength>, callback: Function) => {
+  GetStringLength: (args: Parameters<typeof GetStringLength>, callback: JSONRPCCallbackType) => {
     let output: ReturnType<typeof GetStringLength>;
     try {
       output = GetStringLength(...args);
-      callback(null, output);
-    } catch ({ message, name }) {
-      callback({ message, code: name === "TypeError" ? -32602 : 404 });
+      callback(null, undefined, output);
+    } catch (error) {
+      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
+      callback(error, jsonError, undefined);
     }
   },
-  CheckINCHIKey: (args: Parameters<typeof CheckINCHIKey>, callback: Function) => {
+  CheckINCHIKey: (args: Parameters<typeof CheckINCHIKey>, callback: JSONRPCCallbackType) => {
     let output: ReturnType<typeof CheckINCHIKey>;
     try {
       output = CheckINCHIKey(...args);
-      callback(null, output);
-    } catch ({ message, name }) {
-      callback({ message, code: name === "TypeError" ? -32602 : 404 });
+      callback(null, undefined, output);
+    } catch (error) {
+      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
+      callback(error, jsonError, undefined);
     }
   },
-  CheckINCHI: (args: Parameters<typeof CheckINCHI>, callback: Function) => {
+  CheckINCHI: (args: Parameters<typeof CheckINCHI>, callback: JSONRPCCallbackType) => {
     let output: ReturnType<typeof CheckINCHI>;
     try {
       output = CheckINCHI(...args);
-      callback(null, output);
-    } catch ({ message, name }) {
-      callback({ message, code: name === "TypeError" ? -32602 : 404 });
+      callback(null, undefined, output);
+    } catch (error) {
+      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
+      callback(error, jsonError, undefined);
     }
   },
-  GetStructFromINCHI: (args: Parameters<typeof GetStructFromINCHI>, callback: Function) => {
+  GetStructFromINCHI: (args: Parameters<typeof GetStructFromINCHI>, callback: JSONRPCCallbackType) => {
     let output: ReturnType<typeof GetStructFromINCHI>;
     try {
       output = GetStructFromINCHI(...args);
-      callback(null, output);
-    } catch ({ message, name }) {
-      callback({ message, code: name === "TypeError" ? -32602 : 404 });
+      callback(null, undefined, output);
+    } catch (error) {
+      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
+      callback(error, jsonError, undefined);
     }
   },
-  GetStructFromINCHIEx: (args: Parameters<typeof GetStructFromINCHIEx>, callback: Function) => {
+  GetStructFromINCHIEx: (args: Parameters<typeof GetStructFromINCHIEx>, callback: JSONRPCCallbackType) => {
     let output: ReturnType<typeof GetStructFromINCHIEx>;
     try {
       output = GetStructFromINCHIEx(...args);
-      callback(null, output);
-    } catch ({ message, name }) {
-      callback({ message, code: name === "TypeError" ? -32602 : 404 });
+      callback(null, undefined, output);
+    } catch (error) {
+      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
+      callback(error, jsonError, undefined);
     }
   },
-  GetStructFromStdINCHI: (args: Parameters<typeof GetStructFromStdINCHI>, callback: Function) => {
+  GetStructFromStdINCHI: (args: Parameters<typeof GetStructFromStdINCHI>, callback: JSONRPCCallbackType) => {
     let output: ReturnType<typeof GetStructFromStdINCHI>;
     try {
       output = GetStructFromStdINCHI(...args);
-      callback(null, output);
-    } catch ({ message, name }) {
-      callback({ message, code: name === "TypeError" ? -32602 : 404 });
+      callback(null, undefined, output);
+    } catch (error) {
+      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
+      callback(error, jsonError, undefined);
     }
   },
 });
