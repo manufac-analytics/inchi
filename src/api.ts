@@ -377,11 +377,7 @@ export function GetStringLength(input: string): number {
  * const output = GetStructFromINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
  * console.log(output.status);
  * // 0
- * console.log(output.data.atom[0].x);
- * // 0
- * console.log(output.data.atom[0].y);
- * // 0
- * console.log(output.data.atom[0].z);
+ * console.log(output.data.atom.length);
  * // 0
  * ```
  */
@@ -417,11 +413,7 @@ data-substructures carrying an information on polymers and V3000 features.
  * const output = GetStructFromINCHIEx("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
  * console.log(output.status);
  * // 0
- * console.log(output.data.atom[0].x);
- * // 0
- * console.log(output.data.atom[0].y);
- * // 0
- * console.log(output.data.atom[0].z);
+ * console.log(output.data.atom.length);
  * // 0
  * ```
  */
@@ -457,11 +449,7 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
  * const output = GetStructFromStdINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
  * console.log(output.status);
  * // 0
- * console.log(output.data.atom[0].x);
- * // 0
- * console.log(output.data.atom[0].y);
- * // 0
- * console.log(output.data.atom[0].z);
+ * console.log(output.data.atom.length);
  * // 0
  * ```
  */
