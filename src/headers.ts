@@ -1097,8 +1097,8 @@ export interface INCHIOutputStructEx {
   szMessage: string | null;
   szLog: string | null;
   warningFlags: WarningFlagsTuple;
-  polymer: INCHIInputPolymer;
-  v3000: INCHIInputV3000;
+  polymer: INCHIInputPolymer | null;
+  v3000: INCHIInputV3000 | null;
 }
 
 // void FreeInChIExtInput( inchi_Input_Polymer    *polymer, inchi_Input_V3000 *v3000 );

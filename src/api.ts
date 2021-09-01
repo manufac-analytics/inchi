@@ -440,8 +440,8 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
     warningFlags: inchiOutStructEx.WarningFlags.toArray().map(
       (element) => element.toArray() as [number, number]
     ) as WarningFlagsTuple,
-    polymer: generateINCHIInputPolymer(inchiOutStructEx.polymer.deref()),
-    v3000: generateINCHIInputV3000(inchiOutStructEx.v3000.deref()),
+    polymer: inchiOutStructEx.polymer.length > 0 ? generateINCHIInputPolymer(inchiOutStructEx.polymer.deref()) : null,
+    v3000: inchiOutStructEx.v3000.length > 0 ? generateINCHIInputV3000(inchiOutStructEx.v3000.deref()) : null,
   };
   const output: GetStructFromINCHIExOutput = { status: returnCode, data: outputDataEx };
   return output;

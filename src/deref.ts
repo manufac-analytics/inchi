@@ -93,7 +93,7 @@ export function generateINCHIInputV3000(input: ReturnType<typeof inchi_Input_V30
     nCollections: input.n_collections,
     nNonHapticBonds: input.n_non_haptic_bonds,
     nHapticBonds: input.n_haptic_bonds,
-    listsHapticBonds: input.lists_haptic_bonds.deref().toArray(),
+    listsHapticBonds: input.lists_haptic_bonds.toArray(),
     nSteabs: input.n_steabs,
     listsSteabs: input.lists_steabs.toArray().map((element) => element.toArray()),
     nSterel: input.n_sterel,
