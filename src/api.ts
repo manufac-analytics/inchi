@@ -7,7 +7,12 @@ import {
   inchi_OutputStructEx,
   WarningFlagsTuple,
 } from "./headers";
-import { generateINCHIAtoms, generateINCHIStereo0Ds, generateINCHIInputPolymer, generateINCHIInputV3000s } from "./deref";
+import {
+  generateINCHIAtoms,
+  generateINCHIStereo0Ds,
+  generateINCHIInputPolymer,
+  generateINCHIInputV3000s,
+} from "./deref";
 
 // #region Types and Interfaces
 

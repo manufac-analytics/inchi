@@ -20,7 +20,9 @@ function convertError(input: Error): JSONRPCError {
 /**
  * Converts the input function into a "jayson" server compatible function
  */
-function generateServerFunction<T extends (...args: any[]) => any>(input: T): (args: Parameters<T>, callback: JSONRPCCallbackType) => void {
+function generateServerFunction<T extends (...args: any[]) => any>(
+  input: T
+): (args: Parameters<T>, callback: JSONRPCCallbackType) => void {
   return (args: Parameters<T>, callback: JSONRPCCallbackType) => {
     try {
       const output = input(...args);
