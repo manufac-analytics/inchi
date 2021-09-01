@@ -789,7 +789,7 @@ export const inchi_Input_V3000 = NAPIStructType({
   n_collections: refNAPI.types.int,
   n_non_haptic_bonds: refNAPI.types.int,
   n_haptic_bonds: refNAPI.types.int,
-  lists_haptic_bonds: NAPIArrayType(refNAPI.refType(refNAPI.types.int)),
+  lists_haptic_bonds: refNAPI.refType(NAPIArrayType(refNAPI.types.int)),
   n_steabs: refNAPI.types.int,
   lists_steabs: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
   n_sterel: refNAPI.types.int,
@@ -876,8 +876,8 @@ export const inchi_InputEx = NAPIStructType({
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
-  polymer: NAPIArrayType(inchi_Input_Polymer),
-  v3000: NAPIArrayType(inchi_Input_V3000),
+  polymer: refNAPI.refType(inchi_Input_Polymer),
+  v3000: refNAPI.refType(inchi_Input_V3000),
 });
 export interface INCHIInputEx {
   /**
@@ -887,7 +887,7 @@ export interface INCHIInputEx {
   /**
    * Array of INCHIstereo0D 0D stereo elements
    */
-  stereo0D: INCHIStereo0D | null;
+  stereo0D: INCHIStereo0D[] | null;
   /**
    * InChI options: space-delimited; each is preceded by '/' or '-' depending on OS and compiler
    */
@@ -903,11 +903,11 @@ export interface INCHIInputEx {
   /**
    * v. 1.05+ extended data, polymers
    */
-  polymer: INCHIInputPolymer[] | null;
+  polymer: INCHIInputPolymer | null;
   /**
    * v. 1.05+ extended data, V3000 Molfile features, NULL if no V3000 extensions present
    */
-  v3000: INCHIInputV3000[] | null;
+  v3000: INCHIInputV3000 | null;
 }
 
 // /*
@@ -1087,19 +1087,19 @@ export const inchi_OutputStructEx = NAPIStructType({
   szMessage: refNAPI.types.CString,
   szLog: refNAPI.types.CString,
   WarningFlags: NAPIArrayType(NAPIArrayType(refNAPI.types.ulong, 2), 2),
-  polymer: NAPIArrayType(inchi_Input_Polymer),
-  v3000: NAPIArrayType(inchi_Input_V3000),
+  polymer: refNAPI.refType(inchi_Input_Polymer),
+  v3000: refNAPI.refType(inchi_Input_V3000),
 });
 export interface INCHIOutputStructEx {
   atom: INCHIAtom[];
-  stereo0D: INCHIStereo0D[];
+  stereo0D: INCHIStereo0D[] | null;
   numAtoms: number;
   numStereo0D: number;
   szMessage: string | null;
   szLog: string | null;
   warningFlags: WarningFlagsTuple;
-  polymer: INCHIInputPolymer[];
-  v3000: INCHIInputV3000[];
+  polymer: INCHIInputPolymer;
+  v3000: INCHIInputV3000;
 }
 
 // void FreeInChIExtInput( inchi_Input_Polymer    *polymer, inchi_Input_V3000 *v3000 );

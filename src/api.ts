@@ -11,7 +11,7 @@ import {
   generateINCHIAtoms,
   generateINCHIStereo0Ds,
   generateINCHIInputPolymer,
-  generateINCHIInputV3000s,
+  generateINCHIInputV3000,
 } from "./deref";
 
 // #region Types and Interfaces
@@ -440,8 +440,8 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
     warningFlags: inchiOutStructEx.WarningFlags.toArray().map(
       (element) => element.toArray() as [number, number]
     ) as WarningFlagsTuple,
-    polymer: generateINCHIInputPolymer(inchiOutStructEx.polymer.toArray()),
-    v3000: generateINCHIInputV3000s(inchiOutStructEx.v3000.toArray()),
+    polymer: generateINCHIInputPolymer(inchiOutStructEx.polymer.deref()),
+    v3000: generateINCHIInputV3000(inchiOutStructEx.v3000.deref()),
   };
   const output: GetStructFromINCHIExOutput = { status: returnCode, data: outputDataEx };
   return output;

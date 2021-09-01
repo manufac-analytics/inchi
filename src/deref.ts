@@ -73,38 +73,32 @@ function generateINCHIInputPolymerUnits(
   return output;
 }
 
-export function generateINCHIInputPolymer(input: ReturnType<typeof inchi_Input_Polymer>[]): INCHIInputPolymer[] {
-  let output: INCHIInputPolymer[] = input.map((element) => {
-    const out: INCHIInputPolymer = {
-      units: generateINCHIInputPolymerUnits(element.units.toArray()),
-      n: element.n,
-    };
-    return out;
-  });
-  return output;
+export function generateINCHIInputPolymer(input: ReturnType<typeof inchi_Input_Polymer>): INCHIInputPolymer {
+  const out: INCHIInputPolymer = {
+    units: generateINCHIInputPolymerUnits(input.units.toArray()),
+    n: input.n,
+  };
+  return out;
 }
 
-export function generateINCHIInputV3000s(input: ReturnType<typeof inchi_Input_V3000>[]): INCHIInputV3000[] {
-  let output: INCHIInputV3000[] = input.map((element) => {
-    const out: INCHIInputV3000 = {
-      nNonStartAtoms: element.n_non_star_atoms,
-      nStarAtoms: element.n_star_atoms,
-      atomIndexOrig: element.atom_index_orig.deref(),
-      atomIndexFin: element.atom_index_fin.deref(),
-      nSGroups: element.n_sgroups,
-      n3DContraints: element.n_3d_constraints,
-      nCollections: element.n_collections,
-      nNonHapticBonds: element.n_non_haptic_bonds,
-      nHapticBonds: element.n_haptic_bonds,
-      listsHapticBonds: element.lists_haptic_bonds.toArray().map((element) => element.deref()),
-      nSteabs: element.n_steabs,
-      listsSteabs: element.lists_steabs.toArray().map((element) => element.toArray()),
-      nSterel: element.n_sterel,
-      listsSterel: element.lists_sterel.toArray().map((element) => element.toArray()),
-      nSterac: element.n_sterac,
-      listsSterac: element.lists_sterac.toArray().map((element) => element.toArray()),
-    };
-    return out;
-  });
-  return output;
+export function generateINCHIInputV3000(input: ReturnType<typeof inchi_Input_V3000>): INCHIInputV3000 {
+  const out: INCHIInputV3000 = {
+    nNonStartAtoms: input.n_non_star_atoms,
+    nStarAtoms: input.n_star_atoms,
+    atomIndexOrig: input.atom_index_orig.deref(),
+    atomIndexFin: input.atom_index_fin.deref(),
+    nSGroups: input.n_sgroups,
+    n3DContraints: input.n_3d_constraints,
+    nCollections: input.n_collections,
+    nNonHapticBonds: input.n_non_haptic_bonds,
+    nHapticBonds: input.n_haptic_bonds,
+    listsHapticBonds: input.lists_haptic_bonds.deref().toArray(),
+    nSteabs: input.n_steabs,
+    listsSteabs: input.lists_steabs.toArray().map((element) => element.toArray()),
+    nSterel: input.n_sterel,
+    listsSterel: input.lists_sterel.toArray().map((element) => element.toArray()),
+    nSterac: input.n_sterac,
+    listsSterac: input.lists_sterac.toArray().map((element) => element.toArray()),
+  };
+  return out;
 }
