@@ -302,8 +302,8 @@ describe("test inchi headers", () => {
         [1, 2],
         [3, 4],
       ],
-      polymer: [new inchi_Input_Polymer()],
-      v3000: [new inchi_Input_V3000()],
+      polymer: new inchi_Input_Polymer().ref(),
+      v3000: new inchi_Input_V3000().ref(),
     });
     expect(inchiOutputStructEx.atom[0].x).toBe(0);
     // compiler doesn't seem to read the value of inchiOutputStruct.Stereo0D
@@ -313,8 +313,8 @@ describe("test inchi headers", () => {
     expect(inchiOutputStructEx.szMessage).toBe("some-string");
     expect(inchiOutputStructEx.szLog).toBe("some-string");
     expect(inchiOutputStructEx.WarningFlags[0][0]).toBe(1);
-    expect(inchiOutputStructEx.polymer[0].n).toBe(0);
-    expect(inchiOutputStructEx.v3000[0].n_non_star_atoms).toBe(0);
+    expect(inchiOutputStructEx.polymer.deref().n).toBe(0);
+    expect(inchiOutputStructEx.v3000.deref().n_non_star_atoms).toBe(0);
   });
 
   test("check inchi_InputData", () => {
@@ -322,7 +322,7 @@ describe("test inchi headers", () => {
      * Instantiate InchiInpData
      */
     const InchiInpData1 = new InchiInpData({
-      pInp: new inchi_Input(),
+      pInp: new inchi_Input().ref(),
       bChiral: 1,
       szErrMsg: new Array(STR_ERR_LEN).fill(0),
     });
