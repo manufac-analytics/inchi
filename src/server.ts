@@ -9,6 +9,11 @@ import {
   GetStructFromStdINCHI,
 } from "./api";
 
+function convertError(input: Error): JSONRPCError {
+  const jsonError: JSONRPCError = { message: input.message, code: input.name === "TypeError" ? -32602 : 404 };
+  return jsonError;
+}
+
 const server = new Server({
   GetStringLength: (args: Parameters<typeof GetStringLength>, callback: JSONRPCCallbackType) => {
     let output: ReturnType<typeof GetStringLength>;
@@ -16,8 +21,7 @@ const server = new Server({
       output = GetStringLength(...args);
       callback(null, undefined, output);
     } catch (error) {
-      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
-      callback(error, jsonError, undefined);
+      callback(error, convertError(error), undefined);
     }
   },
   CheckINCHIKey: (args: Parameters<typeof CheckINCHIKey>, callback: JSONRPCCallbackType) => {
@@ -26,8 +30,7 @@ const server = new Server({
       output = CheckINCHIKey(...args);
       callback(null, undefined, output);
     } catch (error) {
-      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
-      callback(error, jsonError, undefined);
+      callback(error, convertError(error), undefined);
     }
   },
   CheckINCHI: (args: Parameters<typeof CheckINCHI>, callback: JSONRPCCallbackType) => {
@@ -36,8 +39,7 @@ const server = new Server({
       output = CheckINCHI(...args);
       callback(null, undefined, output);
     } catch (error) {
-      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
-      callback(error, jsonError, undefined);
+      callback(error, convertError(error), undefined);
     }
   },
   GetStructFromINCHI: (args: Parameters<typeof GetStructFromINCHI>, callback: JSONRPCCallbackType) => {
@@ -46,8 +48,7 @@ const server = new Server({
       output = GetStructFromINCHI(...args);
       callback(null, undefined, output);
     } catch (error) {
-      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
-      callback(error, jsonError, undefined);
+      callback(error, convertError(error), undefined);
     }
   },
   GetStructFromINCHIEx: (args: Parameters<typeof GetStructFromINCHIEx>, callback: JSONRPCCallbackType) => {
@@ -56,8 +57,7 @@ const server = new Server({
       output = GetStructFromINCHIEx(...args);
       callback(null, undefined, output);
     } catch (error) {
-      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
-      callback(error, jsonError, undefined);
+      callback(error, convertError(error), undefined);
     }
   },
   GetStructFromStdINCHI: (args: Parameters<typeof GetStructFromStdINCHI>, callback: JSONRPCCallbackType) => {
@@ -66,8 +66,7 @@ const server = new Server({
       output = GetStructFromStdINCHI(...args);
       callback(null, undefined, output);
     } catch (error) {
-      const jsonError: JSONRPCError = { message: error.message, code: error.name === "TypeError" ? -32602 : 404 };
-      callback(error, jsonError, undefined);
+      callback(error, convertError(error), undefined);
     }
   },
 });
