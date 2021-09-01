@@ -16,7 +16,7 @@ import {
 import refNAPI from "ref-napi";
 import { inchi_Atom, inchi_Stereo0D } from "./headers";
 
-export function generateINCHIAtom(input: ReturnType<typeof inchi_Atom>[]): INCHIAtom[] {
+export function generateINCHIAtoms(input: ReturnType<typeof inchi_Atom>[]): INCHIAtom[] {
   let output: INCHIAtom[] = input.map((element) => {
     const out: INCHIAtom = {
       x: element.x,
