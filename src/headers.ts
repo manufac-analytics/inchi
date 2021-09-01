@@ -676,7 +676,8 @@ export interface INCHIInputPolymerUnit {
 // } inchi_Input_Polymer;
 
 export const inchi_Input_Polymer = NAPIStructType({
-  units: NAPIArrayType(inchi_Input_PolymerUnit),
+  //please review the below line
+  units: NAPIArrayType(refNAPI.refType(inchi_Input_PolymerUnit)),
   n: refNAPI.types.int,
 });
 export interface INCHIInputPolymer {
@@ -730,7 +731,7 @@ export const inchi_Input_V3000 = NAPIStructType({
   n_collections: refNAPI.types.int,
   n_non_haptic_bonds: refNAPI.types.int,
   n_haptic_bonds: refNAPI.types.int,
-  lists_haptic_bonds: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
+  lists_haptic_bonds: NAPIArrayType(refNAPI.types(refNAPI.types.int)),
   n_steabs: refNAPI.types.int,
   lists_steabs: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
   n_sterel: refNAPI.types.int,
