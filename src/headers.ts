@@ -788,13 +788,13 @@ export const inchi_Input_V3000 = NAPIStructType({
   n_collections: refNAPI.types.int,
   n_non_haptic_bonds: refNAPI.types.int,
   n_haptic_bonds: refNAPI.types.int,
-  lists_haptic_bonds: refNAPI.refType(NAPIArrayType(refNAPI.types.int)),
+  lists_haptic_bonds: NAPIArrayType(refNAPI.types.int, 999),
   n_steabs: refNAPI.types.int,
-  lists_steabs: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
+  lists_steabs: NAPIArrayType(NAPIArrayType(refNAPI.types.int, 999), 999),
   n_sterel: refNAPI.types.int,
-  lists_sterel: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
+  lists_sterel: NAPIArrayType(NAPIArrayType(refNAPI.types.int, 999), 999),
   n_sterac: refNAPI.types.int,
-  lists_sterac: NAPIArrayType(NAPIArrayType(refNAPI.types.int)),
+  lists_sterac: NAPIArrayType(NAPIArrayType(refNAPI.types.int, 999), 999),
 });
 export interface INCHIInputV3000 {
   nNonStartAtoms: number;

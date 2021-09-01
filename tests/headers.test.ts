@@ -22,6 +22,10 @@ import {
   NORM_ATOMS,
 } from "../src/headers";
 import refNAPI from "ref-napi";
+import ArrayType from "ref-array-di";
+
+const NAPIArrayType = ArrayType(refNAPI);
+const IntArray = NAPIArrayType(refNAPI.types.int);
 
 describe("test inchi headers", () => {
   test("Check inchi_Atom", () => {
@@ -181,7 +185,7 @@ describe("test inchi headers", () => {
       n_collections: 12,
       n_non_haptic_bonds: 11,
       n_haptic_bonds: 11,
-      lists_haptic_bonds: [refNAPI.alloc(refNAPI.types.int, 11)],
+      lists_haptic_bonds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       n_steabs: 14,
       lists_steabs: [[11]],
       n_sterel: 19,
@@ -198,7 +202,7 @@ describe("test inchi headers", () => {
     expect(inchiInputV3000.n_collections).toBe(12);
     expect(inchiInputV3000.n_non_haptic_bonds).toBe(11);
     expect(inchiInputV3000.n_haptic_bonds).toBe(11);
-    expect(inchiInputV3000.lists_haptic_bonds[0].deref()).toBe(11);
+    expect(inchiInputV3000.lists_haptic_bonds[10]).toBe(11);
     expect(inchiInputV3000.n_steabs).toBe(14);
     expect(inchiInputV3000.lists_steabs[0][0]).toBe(11);
     expect(inchiInputV3000.n_sterel).toBe(19);
