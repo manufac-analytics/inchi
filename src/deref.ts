@@ -50,7 +50,7 @@ export function generateINCHIStereo0Ds(input: ReturnType<typeof inchi_Stereo0D>[
   return output;
 }
 
-function generateINCHIInputPolymerUnit(
+function generateINCHIInputPolymerUnits(
   input: refNAPI.Pointer<ReturnType<typeof inchi_Input_PolymerUnit>>[]
 ): INCHIInputPolymerUnit[] {
   let output: INCHIInputPolymerUnit[] = input.map((element) => {
@@ -76,7 +76,7 @@ function generateINCHIInputPolymerUnit(
 export function generateINCHIInputPolymer(input: ReturnType<typeof inchi_Input_Polymer>[]): INCHIInputPolymer[] {
   let output: INCHIInputPolymer[] = input.map((element) => {
     const out: INCHIInputPolymer = {
-      units: generateINCHIInputPolymerUnit(element.units.toArray()),
+      units: generateINCHIInputPolymerUnits(element.units.toArray()),
       n: element.n,
     };
     return out;
@@ -84,7 +84,7 @@ export function generateINCHIInputPolymer(input: ReturnType<typeof inchi_Input_P
   return output;
 }
 
-export function generateINCHIInputV3000(input: ReturnType<typeof inchi_Input_V3000>[]): INCHIInputV3000[] {
+export function generateINCHIInputV3000s(input: ReturnType<typeof inchi_Input_V3000>[]): INCHIInputV3000[] {
   let output: INCHIInputV3000[] = input.map((element) => {
     const out: INCHIInputV3000 = {
       nNonStartAtoms: element.n_non_star_atoms,

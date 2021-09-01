@@ -7,7 +7,7 @@ import {
   inchi_OutputStructEx,
   WarningFlagsTuple,
 } from "./headers";
-import { generateINCHIAtoms, generateINCHIStereo0Ds, generateINCHIInputPolymer, generateINCHIInputV3000, } from "./deref";
+import { generateINCHIAtoms, generateINCHIStereo0Ds, generateINCHIInputPolymer, generateINCHIInputV3000s } from "./deref";
 
 // #region Types and Interfaces
 
@@ -436,7 +436,7 @@ export function GetStructFromINCHIEx(input: string, options?: GetINCHIExOptions)
       (element) => element.toArray() as [number, number]
     ) as WarningFlagsTuple,
     polymer: generateINCHIInputPolymer(inchiOutStructEx.polymer.toArray()),
-    v3000: generateINCHIInputV3000(inchiOutStructEx.v3000.toArray()),
+    v3000: generateINCHIInputV3000s(inchiOutStructEx.v3000.toArray()),
   };
   const output: GetStructFromINCHIExOutput = { status: returnCode, data: outputDataEx };
   return output;
