@@ -145,7 +145,7 @@ describe("test inchi headers", () => {
      */
     const inchiInputPolymer = new inchi_Input_Polymer({
       units: [
-       refNAPI.alloc(inchi_Input_PolymerUnit,{
+        refNAPI.alloc(inchi_Input_PolymerUnit, {
           id: 1,
           type: 1,
           subtype: 1,
