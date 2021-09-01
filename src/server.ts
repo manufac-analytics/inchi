@@ -1,21 +1,16 @@
 import { Server } from "jayson";
 import {
   GetStringLength,
-  GetStructFromINCHI,
-  GetStructFromINCHIOutput,
-  GetINCHIOptions,
-  GetStructFromINCHIEx,
-  GetStructFromINCHIExOutput,
-  GetStructFromStdINCHI,
   CheckINCHIKey,
-  CheckINCHIKeyReturnCode,
   CheckINCHI,
-  CheckINCHIReturnCode,
+  GetStructFromINCHI,
+  GetStructFromINCHIEx,
+  GetStructFromStdINCHI,
 } from "./api";
 
 const server = new Server({
-  GetStringLength: (args: [string], callback: Function) => {
-    let output = NaN;
+  GetStringLength: (args: Parameters<typeof GetStringLength>, callback: Function) => {
+    let output: ReturnType<typeof GetStringLength>;
     try {
       output = GetStringLength(...args);
       callback(null, output);
@@ -23,8 +18,8 @@ const server = new Server({
       callback({ message, code: name === "TypeError" ? -32602 : 404 });
     }
   },
-  CheckINCHIKey: (args: [string], callback: Function) => {
-    let output: CheckINCHIKeyReturnCode;
+  CheckINCHIKey: (args: Parameters<typeof CheckINCHIKey>, callback: Function) => {
+    let output: ReturnType<typeof CheckINCHIKey>;
     try {
       output = CheckINCHIKey(...args);
       callback(null, output);
@@ -32,8 +27,8 @@ const server = new Server({
       callback({ message, code: name === "TypeError" ? -32602 : 404 });
     }
   },
-  CheckINCHI: (args: [string, boolean?], callback: Function) => {
-    let output: CheckINCHIReturnCode;
+  CheckINCHI: (args: Parameters<typeof CheckINCHI>, callback: Function) => {
+    let output: ReturnType<typeof CheckINCHI>;
     try {
       output = CheckINCHI(...args);
       callback(null, output);
@@ -41,8 +36,8 @@ const server = new Server({
       callback({ message, code: name === "TypeError" ? -32602 : 404 });
     }
   },
-  GetStructFromINCHI: (args: [string, GetINCHIOptions?], callback: Function) => {
-    let output: GetStructFromINCHIOutput;
+  GetStructFromINCHI: (args: Parameters<typeof GetStructFromINCHI>, callback: Function) => {
+    let output: ReturnType<typeof GetStructFromINCHI>;
     try {
       output = GetStructFromINCHI(...args);
       callback(null, output);
@@ -50,8 +45,8 @@ const server = new Server({
       callback({ message, code: name === "TypeError" ? -32602 : 404 });
     }
   },
-  GetStructFromINCHIEx: (args: [string, GetINCHIOptions?], callback: Function) => {
-    let output: GetStructFromINCHIExOutput;
+  GetStructFromINCHIEx: (args: Parameters<typeof GetStructFromINCHIEx>, callback: Function) => {
+    let output: ReturnType<typeof GetStructFromINCHIEx>;
     try {
       output = GetStructFromINCHIEx(...args);
       callback(null, output);
@@ -59,8 +54,8 @@ const server = new Server({
       callback({ message, code: name === "TypeError" ? -32602 : 404 });
     }
   },
-  GetStructFromStdINCHI: (args: [string, GetINCHIOptions?], callback: Function) => {
-    let output: GetStructFromINCHIOutput;
+  GetStructFromStdINCHI: (args: Parameters<typeof GetStructFromStdINCHI>, callback: Function) => {
+    let output: ReturnType<typeof GetStructFromStdINCHI>;
     try {
       output = GetStructFromStdINCHI(...args);
       callback(null, output);
