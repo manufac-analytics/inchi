@@ -749,7 +749,7 @@ export interface INCHIInputV3000 {
   nCollections: number;
   nNonHapticBonds: number;
   nHapticBonds: number;
-  listsHapticBonds: number[][];
+  listsHapticBonds: number[];
   nSteabs: number;
   listsSteabs: number[][];
   nSterel: number;
