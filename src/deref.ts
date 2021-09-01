@@ -54,19 +54,20 @@ function generateINCHIInputPolymerUnits(
   input: refNAPI.Pointer<ReturnType<typeof inchi_Input_PolymerUnit>>[]
 ): INCHIInputPolymerUnit[] {
   let output: INCHIInputPolymerUnit[] = input.map((element) => {
+    const derefedUnit = element.deref();
     const out: INCHIInputPolymerUnit = {
-      id: element.deref().id,
-      type: element.deref().type,
-      subType: element.deref().subtype,
-      conn: element.deref().conn,
-      label: element.deref().label,
-      nA: element.deref().na,
-      nB: element.deref().nb,
-      xBr1: element.deref().xbr1.toArray() as FourNumberTuple,
-      xBr2: element.deref().xbr2.toArray() as FourNumberTuple,
-      smt: element.deref().smt.toArray() as EightyNumberTuple,
-      aList: element.deref().alist.toArray(),
-      bList: element.deref().blist.toArray(),
+      id: derefedUnit.id,
+      type: derefedUnit.type,
+      subType: derefedUnit.subtype,
+      conn: derefedUnit.conn,
+      label: derefedUnit.label,
+      nA: derefedUnit.na,
+      nB: derefedUnit.nb,
+      xBr1: derefedUnit.xbr1.toArray() as FourNumberTuple,
+      xBr2: derefedUnit.xbr2.toArray() as FourNumberTuple,
+      smt: derefedUnit.smt.toArray() as EightyNumberTuple,
+      aList: derefedUnit.alist.toArray(),
+      bList: derefedUnit.blist.toArray(),
     };
     return out;
   });
