@@ -147,7 +147,7 @@ export type EightyNumberTuple = [
   ...TenNumberTuple,
   ...TenNumberTuple
 ];
-export type WarningFlagsTuple = [[number,number],[number,number]];
+export type WarningFlagsTuple = [[number, number], [number, number]];
 
 /*************************************************
  *
