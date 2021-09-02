@@ -1,5 +1,5 @@
-import { Server } from "jayson";
-import type { JSONRPCCallbackType, JSONRPCError } from "jayson";
+import { JSONRPCResultLike, Server } from "jayson";
+import type { JSONRPCError } from "jayson";
 import {
   GetStringLength,
   CheckINCHIKey,
@@ -22,13 +22,13 @@ function convertError(input: Error): JSONRPCError {
  */
 function generateServerFunction<T extends (...args: any[]) => any>(
   input: T
-): (args: Parameters<T>, callback: JSONRPCCallbackType) => void {
-  return (args: Parameters<T>, callback: JSONRPCCallbackType) => {
+): (args: Parameters<T>, callback: (err?: JSONRPCError | null, result?: JSONRPCResultLike) => void) => void {
+  return (args: Parameters<T>, callback: (err?: JSONRPCError | null, result?: JSONRPCResultLike) => void) => {
     try {
       const output = input(...args);
-      callback(null, undefined, output);
+      callback(null, output);
     } catch (error) {
-      callback(error, convertError(error), undefined);
+      callback(convertError(error), undefined);
     }
   };
 }
