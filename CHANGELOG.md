@@ -1,3 +1,22 @@
+# [2.0.0-alpha.4](https://github.com/manufac-analytics/inchi/compare/v2.0.0-alpha.3...v2.0.0-alpha.4) (2021-09-01)
+
+
+### Bug Fixes
+
+* change type definition ([8d941d9](https://github.com/manufac-analytics/inchi/commit/8d941d992c032016b50ead81265ed6a90c6cb930))
+* change units type definition ([edaa631](https://github.com/manufac-analytics/inchi/commit/edaa631c108cc485ffd3e7f834ef74c430ff2b06))
+* changed alist blist type definition ([7230139](https://github.com/manufac-analytics/inchi/commit/7230139a41a8659c19dc85aabd3c0dc13a6187e0))
+* dereference polymer object ([a22bb9e](https://github.com/manufac-analytics/inchi/commit/a22bb9eca24b9fb64646dc833da5aa457c723452))
+* update INCHIInputV3000 type definition ([e6fb33a](https://github.com/manufac-analytics/inchi/commit/e6fb33a61ed4b9ddee4881606e5f871d7629a871))
+
+
+### Features
+
+* Improve type-safety in server.ts ([23feac0](https://github.com/manufac-analytics/inchi/commit/23feac0b27fb30760d69c24fe4195171ab5a357a))
+* serve api functions ([97678b1](https://github.com/manufac-analytics/inchi/commit/97678b1551b2e60dc8b61daa756d653b2e8bebe0))
+
+
+
 # [2.0.0-alpha.3](https://github.com/manufac-analytics/inchi/compare/v2.0.0-aplha.2...v2.0.0-alpha.3) (2021-08-27)
 
 

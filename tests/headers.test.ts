@@ -1,5 +1,4 @@
 // @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
-import refNAPI from "ref-napi";
 import {
   ATOM_EL_LEN,
   inchi_Atom,
@@ -22,6 +21,11 @@ import {
   MAX_NUM_STEREO_BONDS,
   NORM_ATOMS,
 } from "../src/headers";
+import refNAPI from "ref-napi";
+import ArrayType from "ref-array-di";
+
+const NAPIArrayType = ArrayType(refNAPI);
+const IntArray = NAPIArrayType(refNAPI.types.int);
 
 describe("test inchi headers", () => {
   test("Check inchi_Atom", () => {
@@ -77,36 +81,32 @@ describe("test inchi headers", () => {
      * Instantiate inchi_Input
      */
     const inchiInput = new inchi_Input({
-      atom: [
-        {
-          x: 1.1,
-          y: 2.2,
-          z: 3.3,
-          neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-          bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-          bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-          elname: [1, 2, 3, 4, 5, 6],
-          num_bonds: 3,
-          num_iso_H: [1, 2, 3, 4],
-          isotopic_mass: 10,
-          radical: 2,
-          charge: -2,
-        },
-      ],
-      stereo0D: [
-        {
-          neighbor: [1, 2, 3, 4],
-          central_atom: 1,
-          type: 1,
-          parity: 1,
-        },
-      ],
+      atom: [new inchi_Atom({
+        x: 1.1,
+        y: 2.2,
+        z: 3.3,
+        neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        elname: [1, 2, 3, 4, 5, 6],
+        num_bonds: 3,
+        num_iso_H: [1, 2, 3, 4],
+        isotopic_mass: 10,
+        radical: 2,
+        charge: -2,
+      })],
+      stereo0D: [new inchi_Stereo0D({
+        neighbor: [1, 2, 3, 4],
+        central_atom: 1,
+        type: 1,
+        parity: 1,
+      })],
       szOptions: "some-string",
       num_atoms: 32767,
       num_stereo0D: -32768,
     });
-    expect(inchiInput.atom[0].neighbor.toArray().length).toBe(MAXVAL);
-    expect(inchiInput.stereo0D[0].neighbor.toArray().length).toBe(4);
+    expect(inchiInput.atom.toArray()[0].neighbor.toArray().length).toBe(MAXVAL);
+    expect(inchiInput.stereo0D.toArray()[0].neighbor.toArray().length).toBe(4);
     expect(inchiInput.szOptions).toBe("some-string");
     expect(inchiInput.num_atoms).toBe(32767);
     expect(inchiInput.num_stereo0D).toBe(-32768);
@@ -127,8 +127,8 @@ describe("test inchi headers", () => {
       xbr1: [1, 2, 3, 4],
       xbr2: [1, 2, 3, 4],
       smt: new Array(80).fill(7),
-      alist: refNAPI.alloc(refNAPI.types.int, 11),
-      blist: refNAPI.alloc(refNAPI.types.int, 11),
+      alist: new Array(1).fill(11),
+      blist: new Array(1).fill(11),
     });
     expect(inchiInputPolymerUnit.id).toBe(1);
     expect(inchiInputPolymerUnit.type).toBe(1);
@@ -139,8 +139,8 @@ describe("test inchi headers", () => {
     expect(inchiInputPolymerUnit.xbr1.toArray().length).toBe(4);
     expect(inchiInputPolymerUnit.xbr2.toArray().length).toBe(4);
     expect(inchiInputPolymerUnit.smt.toArray().length).toBe(80);
-    expect(inchiInputPolymerUnit.alist.deref()).toBe(11);
-    expect(inchiInputPolymerUnit.blist.deref()).toBe(11);
+    expect(inchiInputPolymerUnit.alist[0]).toBe(11);
+    expect(inchiInputPolymerUnit.blist[0]).toBe(11);
   });
 
   test("check inchi_Input_Polymer", () => {
@@ -148,8 +148,8 @@ describe("test inchi headers", () => {
      * Instantiate inchi_Input_Polymer
      */
     const inchiInputPolymer = new inchi_Input_Polymer({
-      units: refNAPI
-        .alloc(inchi_Input_PolymerUnit, {
+      units: [
+        new inchi_Input_PolymerUnit({
           id: 1,
           type: 1,
           subtype: 1,
@@ -160,14 +160,14 @@ describe("test inchi headers", () => {
           xbr1: [1, 2, 3, 4],
           xbr2: [1, 2, 3, 4],
           smt: new Array(80).fill(7),
-          alist: refNAPI.alloc(refNAPI.types.int, 11),
-          blist: refNAPI.alloc(refNAPI.types.int, 11),
-        })
-        .ref(),
+          alist: new Array(11).fill(0),
+          blist: new Array(11).fill(0),
+        }).ref(),
+      ],
       n: 1234,
     });
-    expect(inchiInputPolymer.units.deref().deref().id).toBe(1);
-    expect(inchiInputPolymer.units.deref().deref().smt.toArray().length).toBe(80);
+    expect(inchiInputPolymer.units.toArray()[0].deref().id).toBe(1);
+    expect(inchiInputPolymer.units.toArray()[0].deref().smt.toArray().length).toBe(80);
     expect(inchiInputPolymer.n).toBe(1234);
   });
 
@@ -185,13 +185,13 @@ describe("test inchi headers", () => {
       n_collections: 12,
       n_non_haptic_bonds: 11,
       n_haptic_bonds: 11,
-      lists_haptic_bonds: refNAPI.alloc(refNAPI.types.int, 11).ref(),
+      lists_haptic_bonds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       n_steabs: 14,
-      lists_steabs: refNAPI.alloc(refNAPI.types.int, 11).ref(),
+      lists_steabs: [[11]],
       n_sterel: 19,
-      lists_sterel: refNAPI.alloc(refNAPI.types.int, 11).ref(),
+      lists_sterel: [[11]],
       n_sterac: 21,
-      lists_sterac: refNAPI.alloc(refNAPI.types.int, 11).ref(),
+      lists_sterac: [[11]],
     });
     expect(inchiInputV3000.n_non_star_atoms).toBe(4);
     expect(inchiInputV3000.n_star_atoms).toBe(3);
@@ -202,13 +202,13 @@ describe("test inchi headers", () => {
     expect(inchiInputV3000.n_collections).toBe(12);
     expect(inchiInputV3000.n_non_haptic_bonds).toBe(11);
     expect(inchiInputV3000.n_haptic_bonds).toBe(11);
-    expect(inchiInputV3000.lists_haptic_bonds.deref().deref()).toBe(11);
+    expect(inchiInputV3000.lists_haptic_bonds[10]).toBe(11);
     expect(inchiInputV3000.n_steabs).toBe(14);
-    expect(inchiInputV3000.lists_steabs.deref().deref()).toBe(11);
+    expect(inchiInputV3000.lists_steabs[0][0]).toBe(11);
     expect(inchiInputV3000.n_sterel).toBe(19);
-    expect(inchiInputV3000.lists_sterel.deref().deref()).toBe(11);
+    expect(inchiInputV3000.lists_sterel[0][0]).toBe(11);
     expect(inchiInputV3000.n_sterac).toBe(21);
-    expect(inchiInputV3000.lists_sterac.deref().deref()).toBe(11);
+    expect(inchiInputV3000.lists_sterac[0][0]).toBe(11);
   });
 
   test("check inchi_InputEx", () => {
@@ -221,8 +221,8 @@ describe("test inchi headers", () => {
       szOptions: "some-string",
       num_atoms: 11,
       num_stereo0D: 13,
-      polymer: [new inchi_Input_Polymer()],
-      v3000: [new inchi_Input_V3000()],
+      polymer: new inchi_Input_Polymer().ref(),
+      v3000: new inchi_Input_V3000().ref(),
     });
     expect(inchiInputEx.atom[0].x).toBe(0);
     expect(inchiInputEx.Stereo0D[0].parity).toBe(0);
@@ -266,8 +266,8 @@ describe("test inchi headers", () => {
      * Instantiate inchi_OutputStruct
      */
     const inchiOutputStruct = new inchi_OutputStruct({
-      atom: refNAPI.alloc(inchi_Atom),
-      Stereo0D: refNAPI.alloc(inchi_Stereo0D),
+      atom: [new inchi_Atom()],
+      Stereo0D: [new inchi_Stereo0D()],
       num_atoms: 1,
       num_stereo0D: 2,
       szMessage: "some-string",
@@ -277,8 +277,9 @@ describe("test inchi headers", () => {
         [3, 4],
       ],
     });
-    expect(inchiOutputStruct.atom.deref().x).toBe(0);
-    expect(inchiOutputStruct.Stereo0D.deref().parity).toBe(0);
+    expect(inchiOutputStruct.atom[0].x).toBe(0);
+    // compiler doesn't seem to read the value of inchiOutputStruct.Stereo0D
+    expect(inchiOutputStruct.Stereo0D[0].parity).toBe(0);
     expect(inchiOutputStruct.num_atoms).toBe(1);
     expect(inchiOutputStruct.num_stereo0D).toBe(2);
     expect(inchiOutputStruct.szMessage).toBe("some-string");
@@ -291,8 +292,8 @@ describe("test inchi headers", () => {
      * Instantiate inchi_OutputStructEx
      */
     const inchiOutputStructEx = new inchi_OutputStructEx({
-      atom: refNAPI.alloc(inchi_Atom),
-      Stereo0D: refNAPI.alloc(inchi_Stereo0D),
+      atom: [new inchi_Atom()],
+      Stereo0D: [new inchi_Stereo0D()],
       num_atoms: 1,
       num_stereo0D: 2,
       szMessage: "some-string",
@@ -301,11 +302,12 @@ describe("test inchi headers", () => {
         [1, 2],
         [3, 4],
       ],
-      polymer: refNAPI.alloc(inchi_Input_Polymer),
-      v3000: refNAPI.alloc(inchi_Input_V3000),
+      polymer: new inchi_Input_Polymer().ref(),
+      v3000: new inchi_Input_V3000().ref(),
     });
-    expect(inchiOutputStructEx.atom.deref().x).toBe(0);
-    expect(inchiOutputStructEx.Stereo0D.deref().parity).toBe(0);
+    expect(inchiOutputStructEx.atom[0].x).toBe(0);
+    // compiler doesn't seem to read the value of inchiOutputStruct.Stereo0D
+    expect(inchiOutputStructEx.Stereo0D[0].parity).toBe(0);
     expect(inchiOutputStructEx.num_atoms).toBe(1);
     expect(inchiOutputStructEx.num_stereo0D).toBe(2);
     expect(inchiOutputStructEx.szMessage).toBe("some-string");
@@ -320,7 +322,7 @@ describe("test inchi headers", () => {
      * Instantiate InchiInpData
      */
     const InchiInpData1 = new InchiInpData({
-      pInp: refNAPI.alloc(inchi_Input),
+      pInp: new inchi_Input().ref(),
       bChiral: 1,
       szErrMsg: new Array(STR_ERR_LEN).fill(0),
     });
@@ -402,8 +404,8 @@ describe("test inchi headers", () => {
      * Instantiate NORM_ATOMS
      */
     const NORMATOMS = new NORM_ATOMS({
-      at: [new NORM_ATOM()],
-      at_fixed_bonds: [new NORM_ATOM()],
+      at: new NORM_ATOM().ref(),
+      at_fixed_bonds: new NORM_ATOM().ref(),
       num_at: 1,
       num_removed_H: 1,
       num_bonds: 1,
