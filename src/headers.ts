@@ -592,8 +592,8 @@ export interface INCHIStereo0D {
 // }inchi_Input;
 
 export const inchi_Input = NAPIStructType({
-  atom: NAPIArrayType(inchi_Atom),
-  stereo0D: NAPIArrayType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom, 999),
+  stereo0D: NAPIArrayType(inchi_Stereo0D, 999),
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
