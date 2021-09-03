@@ -81,26 +81,30 @@ describe("test inchi headers", () => {
      * Instantiate inchi_Input
      */
     const inchiInput = new inchi_Input({
-      atom: [new inchi_Atom({
-        x: 1.1,
-        y: 2.2,
-        z: 3.3,
-        neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        elname: [1, 2, 3, 4, 5, 6],
-        num_bonds: 3,
-        num_iso_H: [1, 2, 3, 4],
-        isotopic_mass: 10,
-        radical: 2,
-        charge: -2,
-      })],
-      stereo0D: [new inchi_Stereo0D({
-        neighbor: [1, 2, 3, 4],
-        central_atom: 1,
-        type: 1,
-        parity: 1,
-      })],
+      atom: [
+        new inchi_Atom({
+          x: 1.1,
+          y: 2.2,
+          z: 3.3,
+          neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          elname: [1, 2, 3, 4, 5, 6],
+          num_bonds: 3,
+          num_iso_H: [1, 2, 3, 4],
+          isotopic_mass: 10,
+          radical: 2,
+          charge: -2,
+        }),
+      ],
+      stereo0D: [
+        new inchi_Stereo0D({
+          neighbor: [1, 2, 3, 4],
+          central_atom: 1,
+          type: 1,
+          parity: 1,
+        }),
+      ],
       szOptions: "some-string",
       num_atoms: 32767,
       num_stereo0D: -32768,
@@ -217,7 +221,7 @@ describe("test inchi headers", () => {
      */
     const inchiInputEx = new inchi_InputEx({
       atom: [new inchi_Atom()],
-      Stereo0D: [new inchi_Stereo0D()],
+      stereo0D: [new inchi_Stereo0D()],
       szOptions: "some-string",
       num_atoms: 11,
       num_stereo0D: 13,
@@ -225,7 +229,7 @@ describe("test inchi headers", () => {
       v3000: new inchi_Input_V3000().ref(),
     });
     expect(inchiInputEx.atom[0].x).toBe(0);
-    expect(inchiInputEx.Stereo0D[0].parity).toBe(0);
+    expect(inchiInputEx.stereo0D[0].parity).toBe(0);
     expect(inchiInputEx.szOptions).toBe("some-string");
     expect(inchiInputEx.num_atoms).toBe(11);
     expect(inchiInputEx.num_stereo0D).toBe(13);
@@ -267,7 +271,7 @@ describe("test inchi headers", () => {
      */
     const inchiOutputStruct = new inchi_OutputStruct({
       atom: [new inchi_Atom()],
-      Stereo0D: [new inchi_Stereo0D()],
+      stereo0D: [new inchi_Stereo0D()],
       num_atoms: 1,
       num_stereo0D: 2,
       szMessage: "some-string",
@@ -278,8 +282,7 @@ describe("test inchi headers", () => {
       ],
     });
     expect(inchiOutputStruct.atom[0].x).toBe(0);
-    // compiler doesn't seem to read the value of inchiOutputStruct.Stereo0D
-    expect(inchiOutputStruct.Stereo0D[0].parity).toBe(0);
+    expect(inchiOutputStruct.stereo0D[0].parity).toBe(0);
     expect(inchiOutputStruct.num_atoms).toBe(1);
     expect(inchiOutputStruct.num_stereo0D).toBe(2);
     expect(inchiOutputStruct.szMessage).toBe("some-string");
@@ -293,7 +296,7 @@ describe("test inchi headers", () => {
      */
     const inchiOutputStructEx = new inchi_OutputStructEx({
       atom: [new inchi_Atom()],
-      Stereo0D: [new inchi_Stereo0D()],
+      stereo0D: [new inchi_Stereo0D()],
       num_atoms: 1,
       num_stereo0D: 2,
       szMessage: "some-string",
@@ -306,8 +309,7 @@ describe("test inchi headers", () => {
       v3000: new inchi_Input_V3000().ref(),
     });
     expect(inchiOutputStructEx.atom[0].x).toBe(0);
-    // compiler doesn't seem to read the value of inchiOutputStruct.Stereo0D
-    expect(inchiOutputStructEx.Stereo0D[0].parity).toBe(0);
+    expect(inchiOutputStructEx.stereo0D[0].parity).toBe(0);
     expect(inchiOutputStructEx.num_atoms).toBe(1);
     expect(inchiOutputStructEx.num_stereo0D).toBe(2);
     expect(inchiOutputStructEx.szMessage).toBe("some-string");
