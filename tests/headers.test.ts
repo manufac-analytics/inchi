@@ -81,26 +81,30 @@ describe("test inchi headers", () => {
      * Instantiate inchi_Input
      */
     const inchiInput = new inchi_Input({
-      atom: [new inchi_Atom({
-        x: 1.1,
-        y: 2.2,
-        z: 3.3,
-        neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-        elname: [1, 2, 3, 4, 5, 6],
-        num_bonds: 3,
-        num_iso_H: [1, 2, 3, 4],
-        isotopic_mass: 10,
-        radical: 2,
-        charge: -2,
-      })],
-      stereo0D: [new inchi_Stereo0D({
-        neighbor: [1, 2, 3, 4],
-        central_atom: 1,
-        type: 1,
-        parity: 1,
-      })],
+      atom: [
+        new inchi_Atom({
+          x: 1.1,
+          y: 2.2,
+          z: 3.3,
+          neighbor: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          bond_type: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          bond_stereo: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+          elname: [1, 2, 3, 4, 5, 6],
+          num_bonds: 3,
+          num_iso_H: [1, 2, 3, 4],
+          isotopic_mass: 10,
+          radical: 2,
+          charge: -2,
+        }),
+      ],
+      stereo0D: [
+        new inchi_Stereo0D({
+          neighbor: [1, 2, 3, 4],
+          central_atom: 1,
+          type: 1,
+          parity: 1,
+        }),
+      ],
       szOptions: "some-string",
       num_atoms: 32767,
       num_stereo0D: -32768,
