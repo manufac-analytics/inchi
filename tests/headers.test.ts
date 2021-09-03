@@ -426,8 +426,8 @@ describe("test inchi headers", () => {
       bTautFlagsDone: 1,
       bNormalizationFlags: 1,
     });
-    expect(NORMATOMS.at[0].num_H).toBe(0);
-    expect(NORMATOMS.at_fixed_bonds[0].num_H).toBe(0);
+    expect(NORMATOMS.at.deref().num_H).toBe(0);
+    expect(NORMATOMS.at_fixed_bonds.deref().num_H).toBe(0);
     expect(NORMATOMS.num_at).toBe(1);
     expect(NORMATOMS.num_removed_H).toBe(1);
     expect(NORMATOMS.num_bonds).toBe(1);

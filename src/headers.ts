@@ -110,7 +110,7 @@ export const ATOM_EL_LEN = 6; // length of ASCIIZ element symbol field
 export const NUM_H_ISOTOPES = 3; // number of hydrogen isotopes: protium, D, T
 export const ISOTOPIC_SHIFT_FLAG = 10000; // add to isotopic mass if isotopic_mass = (isotopic mass - average atomic mass)                             /* (isotopic mass - average atomic mass)        */
 export const ISOTOPIC_SHIFT_MAX = 100; // max abs(isotopic mass - average atomic mass)
-
+export const MAXARRAYSIZE = 999; // to create array with huge size
 export type MAXVALTuple = [
   number,
   number,
@@ -592,8 +592,8 @@ export interface INCHIStereo0D {
 // }inchi_Input;
 
 export const inchi_Input = NAPIStructType({
-  atom: NAPIArrayType(inchi_Atom, 999),
-  stereo0D: NAPIArrayType(inchi_Stereo0D, 999),
+  atom: NAPIArrayType(inchi_Atom, MAXARRAYSIZE),
+  stereo0D: NAPIArrayType(inchi_Stereo0D, MAXARRAYSIZE),
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
@@ -728,7 +728,7 @@ export interface INCHIInputPolymerUnit {
 // } inchi_Input_Polymer;
 
 export const inchi_Input_Polymer = NAPIStructType({
-  units: NAPIArrayType(refNAPI.refType(inchi_Input_PolymerUnit), 999),
+  units: NAPIArrayType(refNAPI.refType(inchi_Input_PolymerUnit), MAXARRAYSIZE),
   n: refNAPI.types.int,
 });
 export interface INCHIInputPolymer {
@@ -788,13 +788,13 @@ export const inchi_Input_V3000 = NAPIStructType({
   n_collections: refNAPI.types.int,
   n_non_haptic_bonds: refNAPI.types.int,
   n_haptic_bonds: refNAPI.types.int,
-  lists_haptic_bonds: NAPIArrayType(refNAPI.types.int, 999),
+  lists_haptic_bonds: NAPIArrayType(refNAPI.types.int, MAXARRAYSIZE),
   n_steabs: refNAPI.types.int,
-  lists_steabs: NAPIArrayType(NAPIArrayType(refNAPI.types.int, 999), 999),
+  lists_steabs: NAPIArrayType(NAPIArrayType(refNAPI.types.int, MAXARRAYSIZE), MAXARRAYSIZE),
   n_sterel: refNAPI.types.int,
-  lists_sterel: NAPIArrayType(NAPIArrayType(refNAPI.types.int, 999), 999),
+  lists_sterel: NAPIArrayType(NAPIArrayType(refNAPI.types.int, MAXARRAYSIZE), MAXARRAYSIZE),
   n_sterac: refNAPI.types.int,
-  lists_sterac: NAPIArrayType(NAPIArrayType(refNAPI.types.int, 999), 999),
+  lists_sterac: NAPIArrayType(NAPIArrayType(refNAPI.types.int, MAXARRAYSIZE), MAXARRAYSIZE),
 });
 export interface INCHIInputV3000 {
   nNonStartAtoms: number;
@@ -870,8 +870,8 @@ export interface INCHIInputV3000 {
 // } inchi_InputEx;
 
 export const inchi_InputEx = NAPIStructType({
-  atom: NAPIArrayType(inchi_Atom, 999),
-  Stereo0D: NAPIArrayType(inchi_Stereo0D, 999),
+  atom: NAPIArrayType(inchi_Atom, MAXARRAYSIZE),
+  Stereo0D: NAPIArrayType(inchi_Stereo0D, MAXARRAYSIZE),
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
