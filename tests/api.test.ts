@@ -23,11 +23,7 @@ describe("test api wrapped ffis functions", () => {
   test("Check if GetStructFromINCHI method is working properly", () => {
     const {
       status,
-      data: {
-        atom,
-        szMessage,
-        szLog,
-      },
+      data: { atom, szMessage, szLog },
     } = GetStructFromINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
     expect(status).toBe(0);
     expect(atom.length).toBe(0);
@@ -38,11 +34,7 @@ describe("test api wrapped ffis functions", () => {
   test("Check if GetStructFromINCHIEx method is working properly", () => {
     const {
       status,
-      data: {
-        atom,
-        szMessage,
-        szLog,
-      },
+      data: { atom, szMessage, szLog },
     } = GetStructFromINCHIEx("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
     expect(status).toBe(0);
     expect(atom.length).toBe(0);
@@ -53,11 +45,7 @@ describe("test api wrapped ffis functions", () => {
   test("Check if GetStructFromStdINCHI method is working properly", () => {
     const {
       status,
-      data: {
-        atom,
-        szMessage,
-        szLog,
-      },
+      data: { atom, szMessage, szLog },
     } = GetStructFromStdINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
     expect(status).toBe(0);
     expect(atom.length).toBe(0);
