@@ -282,7 +282,7 @@ describe("test inchi headers", () => {
       ],
     });
     expect(inchiOutputStruct.atom[0].x).toBe(0);
-    // compiler doesn't seem to read the value of inchiOutputStruct.Stereo0D
+    // compiler doesn't seem to read the value of inchiOutputStruct.Stereo0D in vscode but it is passing the test
     expect(inchiOutputStruct.Stereo0D[0].parity).toBe(0);
     expect(inchiOutputStruct.num_atoms).toBe(1);
     expect(inchiOutputStruct.num_stereo0D).toBe(2);
@@ -310,7 +310,7 @@ describe("test inchi headers", () => {
       v3000: new inchi_Input_V3000().ref(),
     });
     expect(inchiOutputStructEx.atom[0].x).toBe(0);
-    // compiler doesn't seem to read the value of inchiOutputStruct.Stereo0D
+    // compiler doesn't seem to read the value of inchiOutputStruct.Stereo0D in vscode but it is passing the test
     expect(inchiOutputStructEx.Stereo0D[0].parity).toBe(0);
     expect(inchiOutputStructEx.num_atoms).toBe(1);
     expect(inchiOutputStructEx.num_stereo0D).toBe(2);
