@@ -592,8 +592,8 @@ export interface INCHIStereo0D {
 // }inchi_Input;
 
 export const inchi_Input = NAPIStructType({
-  atom: NAPIArrayType(inchi_Atom),
-  stereo0D: NAPIArrayType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom, 999),
+  stereo0D: NAPIArrayType(inchi_Stereo0D, 999),
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
@@ -875,8 +875,8 @@ export const inchi_InputEx = NAPIStructType({
   szOptions: refNAPI.types.CString,
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
-  polymer: NAPIArrayType(inchi_Input_Polymer),
-  v3000: NAPIArrayType(inchi_Input_V3000),
+  polymer: refNAPI.refType(inchi_Input_Polymer),
+  v3000: refNAPI.refType(inchi_Input_V3000),
 });
 export interface INCHIInputEx {
   /**
@@ -1735,8 +1735,8 @@ export const NORM_ATOM = NAPIStructType({
 // } NORM_ATOMS;
 
 export const NORM_ATOMS = NAPIStructType({
-  at: NAPIArrayType(NORM_ATOM),
-  at_fixed_bonds: NAPIArrayType(NORM_ATOM),
+  at: refNAPI.refType(NORM_ATOM),
+  at_fixed_bonds: refNAPI.refType(NORM_ATOM),
   num_at: refNAPI.types.int,
   num_removed_H: refNAPI.types.int,
   num_bonds: refNAPI.types.int,
