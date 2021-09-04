@@ -1,6 +1,13 @@
 // @ts-nocheck There are some issues in the Definitely Typed packages of the "ref" related dependencies
 import { INCHIAPI } from "../src/ffis";
-import { inchi_InputINCHI, inchi_Output, inchi_OutputStruct, inchi_OutputStructEx } from "../src/headers";
+import {
+  InchiInpData,
+  inchi_Input,
+  inchi_InputINCHI,
+  inchi_Output,
+  inchi_OutputStruct,
+  inchi_OutputStructEx,
+} from "../src/headers";
 import refNAPI from "ref-napi";
 import { readFileSync } from "fs";
 import { join } from "path";
@@ -177,5 +184,152 @@ describe("test inchi ffis", () => {
     INCHIAPI.FreeStructFromStdINCHI(inchiOutStruct.ref());
     expect(inchiOutStruct.num_atoms).toBe(0);
     expect(inchiOutStruct.num_stereo0D).toBe(0);
+  });
+
+  test("Test GetINCHI", () => {
+    const inchiInput = new inchi_Input({
+      atom: [],
+      stereo0D: [],
+      num_atoms: 3,
+      szOptions: "",
+      num_stereo0D: 0,
+    });
+    const inchiOutput = new inchi_Output({
+      szInChI: "",
+      szAuxInfo: "",
+      szMessage: "",
+      szLog: "",
+    });
+    const output = INCHIAPI.GetINCHI(refNAPI.refType(inchiInput), refNAPI.refType(inchiOutput));
+    expect(output).toBe(0);
+  });
+
+  test("Test GetINCHIEx", () => {
+    const inchiInputEx = new inchi_InputEx({
+      atom: [],
+      stereo0D: [],
+      num_atoms: 3,
+      szOptions: "",
+      num_stereo0D: 0,
+    });
+    const inchiOutput = new inchi_Output({
+      szInChI: "",
+      szAuxInfo: "",
+      szMessage: "",
+      szLog: "",
+    });
+    const output = INCHIAPI.GetINCHI(refNAPI.refType(inchiInputEx), refNAPI.refType(inchiOutput));
+    expect(output).toBe(0);
+  });
+
+  test("Test FreeINCHI", () => {
+    const inchiOutput = new inchi_Output({
+      szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3",
+      szAuxInfo: "",
+      szMessage: "",
+      szLog: "",
+    });
+    expect(inchiOutput.szInChI).toBe("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
+    INCHIAPI.FreeINCHI(inchiOutput.ref());
+    expect(inchiOutput.szInChI).toBe("");
+  });
+
+  test("Test Free_inchi_Input", () => {
+    const inchiInput = new inchi_Input({
+      atom: [],
+      stereo0D: [],
+      num_atoms: 3,
+      szOptions: "",
+      num_stereo0D: 0,
+    });
+    expect(inchiInput.num_atoms).toBe(3);
+    INCHIAPI.Free_inchi_Input(inchiInput.ref());
+    expect(inchiInput.num_atoms).toBe(0);
+  });
+  // didn't get example to test this method
+  test("Test Get_inchi_Input_FromAuxInfo", () => {
+    const szInchiAuxInfo = "";
+    const bDoNotAddH = 0;
+    const bDiffUnkUndfStereo = 0;
+    const pInchiInp = new InchiInpData({
+      pInp: new inchi_Input({
+        atom: [],
+        stereo0D: [],
+        num_atoms: 3,
+        szOptions: "",
+        num_stereo0D: 0,
+      }).ref(),
+      bChiral: 0,
+      szErrMsg: "",
+    });
+    const output = INCHIAPI.Get_inchi_Input_FromAuxInfo(
+      szInchiAuxInfo,
+      bDoNotAddH,
+      bDiffUnkUndfStereo,
+      pInchiInp.ref()
+    );
+    expect(output).toBe(0);
+  });
+
+  test("Test GetStdINCHI", () => {
+    const inchiInput = new inchi_Input({
+      atom: [],
+      stereo0D: [],
+      num_atoms: 3,
+      szOptions: "",
+      num_stereo0D: 0,
+    });
+    const inchiOutput = new inchi_Output({
+      szInChI: "",
+      szAuxInfo: "",
+      szMessage: "",
+      szLog: "",
+    });
+    const output = INCHIAPI.GetStdINCHI(refNAPI.refType(inchiInput), refNAPI.refType(inchiOutput));
+    expect(output).toBe(0);
+  });
+
+  test("Test FreeStdINCHI", () => {
+    const inchiOutput = new inchi_Output({
+      szInChI: "InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3",
+      szAuxInfo: "",
+      szMessage: "",
+      szLog: "",
+    });
+    expect(inchiOutput.szInChI).toBe("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
+    INCHIAPI.FreeStdsINCHI(inchiOutput.ref());
+    expect(inchiOutput.szInChI).toBe("");
+  });
+
+  test("Test Free_std_inchi_Input", () => {
+    const inchiInput = new inchi_Input({
+      atom: [],
+      stereo0D: [],
+      num_atoms: 3,
+      szOptions: "",
+      num_stereo0D: 0,
+    });
+    expect(inchiInput.num_atoms).toBe(3);
+    INCHIAPI.Free_std_inchi_Input(inchiInput.ref());
+    expect(inchiInput.num_atoms).toBe(0);
+  });
+
+  // didn't get example to test this method
+  test("Test Get_std_inchi_Input_FromAuxInfo", () => {
+    const szInchiAuxInfo = "";
+    const bDoNotAddH = 0;
+    const pInchiInp = new InchiInpData({
+      pInp: new inchi_Input({
+        atom: [],
+        stereo0D: [],
+        num_atoms: 3,
+        szOptions: "",
+        num_stereo0D: 0,
+      }).ref(),
+      bChiral: 0,
+      szErrMsg: "",
+    });
+    const output = INCHIAPI.Get_std_inchi_Input_FromAuxInfo(szInchiAuxInfo, bDoNotAddH, pInchiInp.ref());
+    expect(output).toBe(0);
   });
 });
