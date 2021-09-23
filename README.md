@@ -12,7 +12,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper consectetu
 
 ### What are some features of the InChI notation?
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper consectetur massa vel eleifend. Suspendisse tincidunt maximus tortor eget venenatis. In tortor libero, feugiat ut ultrices vel, dictum quis ipsum. Suspendisse ut nisi massa. Maecenas iaculis scelerisque est, at egestas purus vulputate non. Pellentesque in nisl erat. Nunc ultrices tellus quis ligula suscipit, nec consequat lorem pretium. Aliquam lobortis neque vitae lectus dignissim, quis tincidunt erat aliquet. Duis venenatis quis dolor non dapibus. Donec vel magna vitae mi feugiat luctus. Aenean nec rhoncus augue.
+1. Structure-based approach. Anybody anywhere should be able to produce InChI from just the structural formula of a chemical substance. 
+2. Strict uniqueness of identifier. The same label always means the same substance, and the same substance always receives the same label (under the same labelling conditions). This is achieved through a well-defined procedure of obtaining canonical numbering of atoms.
+3. Non-proprietary, Open Source, free and open approach.* Free access to developed computer programs. No payment is assumed under any circumstances.* Open access to the source  code. Everybody is free to read and use the source code. 
+4. Applicability to the entire domain of “classic organic chemistry” and, to a significant extent, to inorganic compounds, bearing in mind the eventual goal to extend InChI to cover all of chemistry.
+5. Ability to generate the same InChI for structures drawn under (reasonably) different styles and conventions, specifically those represented by mesomers.
+6. Hierarchical approach allowing encoding of molecular structure with different levels of “granularity”, dependent on algorithms and software switches. In particular, the ability to include/exclude stereochemical, isotopic and tautomeric information was considered necessary.
+7. Ability to produce an identifier with some “default” switches, targeted to a fixed level of granularity and ensuring interoperability in large databases.
+
+- Reference: [InChI, the IUPAC International Chemical Identifier](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-015-0068-4)
+
 
 ---
 
