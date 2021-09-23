@@ -22,6 +22,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper consectetu
 
 - Reference: [InChI, the IUPAC International Chemical Identifier](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-015-0068-4)
 
+### How would you differentiate between InChI and SMILES line notations?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper consectetur massa vel eleifend. Suspendisse tincidunt maximus tortor eget venenatis. In tortor libero, feugiat ut ultrices vel, dictum quis ipsum. Suspendisse ut nisi massa. Maecenas iaculis scelerisque est, at egestas purus vulputate non. Pellentesque in nisl erat. Nunc ultrices tellus quis ligula suscipit, nec consequat lorem pretium. Aliquam lobortis neque vitae lectus dignissim, quis tincidunt erat aliquet. Duis venenatis quis dolor non dapibus. Donec vel magna vitae mi feugiat luctus. Aenean nec rhoncus augue.
 
 ---
 
