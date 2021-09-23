@@ -6,7 +6,7 @@ _NodeJS/TypeScript Port of [InChI 1.06](https://www.inchi-trust.org/downloads/)_
 
 ---
 
-### What does **Line Notation** refer to in the field Chemiformatics?
+### What does **Line Notation** refer to in the field Cheminformatics?
 
 Cheminformatics can be defined as the field of solving chemistry problems with the help of computers. It is the field of science where computational methods and information science models, like machine learning, are used to solve problems in chemistry, biology and related molecular fields. These methods can also be used to tackle difficulties in chemical and allied industries, where chemical processes are involved and studied. Information is fed in a way that is flexible to the computers. Line notations, here, represent the structure of chemical compounds and nomenclature as a linear sequence of letters and numbers. Examples of line notations include the Wiswesser Line-Formula Notation (WLN), Sybyl Line Notation (SLN), and Representation of structure diagram arranged linearly (ROSDAL). Currently, the most widely used linear notations are the Simplified Molecular-Input Line-Entry System (SMILES), and the IUPAC International Chemical Identifier (InChI).
 
