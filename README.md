@@ -19,7 +19,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin semper consectetu
 5. Ability to generate the same InChI for structures drawn under (reasonably) different styles and conventions, specifically those represented by mesomers.
 6. Hierarchical approach allowing encoding of molecular structure with different levels of “granularity”, dependent on algorithms and software switches. In particular, the ability to include/exclude stereochemical, isotopic and tautomeric information was considered necessary.
 7. Ability to produce an identifier with some “default” switches, targeted to a fixed level of granularity and ensuring interoperability in large databases.
-- [InChI, the IUPAC International Chemical Identifier](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-015-0068-4)
+
+- Reference: [InChI, the IUPAC International Chemical Identifier](https://jcheminf.biomedcentral.com/articles/10.1186/s13321-015-0068-4)
 
 
 ---
