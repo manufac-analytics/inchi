@@ -28,7 +28,7 @@ The Simplified Molecular-Input Line-Entry System (SMILES) is a line notation for
 
 Unlike SMILES, InChI is a canonical line notation and so is a unique identifier that is built upon a set of nomenclature rules.  That is, although there are canonical SMILES built through a canonicalization algorithm, there can be more than one canonicalization algorithm for SMILES, and so you can have more than one SMILES string for the same structure. Therefore, InChI aims to provide a unique, or canonical, identifier for chemical structures, while SMILES strings are widely used for storage and interchange of chemical structures, but no standard exists to generate a canonical SMILES string.
 
-References : [SMILES and InChI](https://chem.libretexts.org/Courses/Fordham_University/Chem1102%3A_Drug_Discovery_-_From_the_Laboratory_to_the_Clinic/05%3A_Organic_Molecules/5.08%3A_Line_Notation_(SMILES_and_InChI)#title), [SMILES representation from InChI](https://jcheminf.biomedcentral.com/articles/10.1186/1758-2946-4-22)
+References : [SMILES - Wikipedia](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system), [SMILES and InChI](https://chem.libretexts.org/Courses/Fordham_University/Chem1102%3A_Drug_Discovery_-_From_the_Laboratory_to_the_Clinic/05%3A_Organic_Molecules/5.08%3A_Line_Notation_(SMILES_and_InChI)#title), [SMILES representation from InChI](https://jcheminf.biomedcentral.com/articles/10.1186/1758-2946-4-22)
 
 ---
 
