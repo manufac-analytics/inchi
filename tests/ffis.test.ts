@@ -1,6 +1,6 @@
 import { INCHIAPI } from "../src/ffis";
 import {
-  InchiInpData,
+  // InchiInpData,
   inchi_Input,
   inchi_InputEx,
   inchi_InputINCHI,
