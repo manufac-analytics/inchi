@@ -1,5 +1,6 @@
 import { INCHIAPI } from "../src/ffis";
 import {
+  InchiInpData,
   inchi_Input,
   inchi_InputEx,
   inchi_InputINCHI,
@@ -281,7 +282,7 @@ describe("test inchi ffis", () => {
   //       szMessage: "",
   //       szLog: "",
   //     });
-  //     const output = INCHIAPI.GetStdINCHI(refNAPI.refType(inchiInput), refNAPI.refType(inchiOutput));
+  //     const output = INCHIAPI.GetStdINCHI(inchiInput.ref(), inchiOutput.ref());
   //     expect(output).toBe(0);
   //   });
 
@@ -293,7 +294,7 @@ describe("test inchi ffis", () => {
   //       szLog: "",
   //     });
   //     expect(inchiOutput.szInChI).toBe("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
-  //     INCHIAPI.FreeStdsINCHI(inchiOutput.ref());
+  //     INCHIAPI.FreeStdINCHI(inchiOutput.ref());
   //     expect(inchiOutput.szInChI).toBe("");
   //   });
 
