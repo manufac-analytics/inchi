@@ -1014,8 +1014,8 @@ export interface INCHIOutput {
 // }inchi_OutputStruct;
 
 export const inchi_OutputStruct = NAPIStructType({
-  atom: NAPIArrayType(inchi_Atom),
-  stereo0D: NAPIArrayType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom, inchi_Atom.length),
+  stereo0D: NAPIArrayType(inchi_Stereo0D, inchi_Stereo0D.length),
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
   szMessage: refNAPI.types.CString,
@@ -1079,8 +1079,8 @@ export interface INCHIOutputStruct {
 // } inchi_OutputStructEx;
 
 export const inchi_OutputStructEx = NAPIStructType({
-  atom: NAPIArrayType(inchi_Atom),
-  stereo0D: NAPIArrayType(inchi_Stereo0D),
+  atom: NAPIArrayType(inchi_Atom, inchi_Atom.length),
+  stereo0D: NAPIArrayType(inchi_Stereo0D, inchi_Stereo0D.length),
   num_atoms: refNAPI.types.short,
   num_stereo0D: refNAPI.types.short,
   szMessage: refNAPI.types.CString,

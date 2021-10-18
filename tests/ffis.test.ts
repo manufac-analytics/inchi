@@ -185,8 +185,8 @@ describe("test inchi ffis", () => {
     expect(inchiOutStruct.num_stereo0D).toBe(20);
     // @ts-ignore .ref() is a valid property reference
     INCHIAPI.FreeStructFromINCHI(inchiOutStruct.ref());
-    expect(inchiOutStruct.num_atoms).toBe(0);
-    expect(inchiOutStruct.num_stereo0D).toBe(0);
+    expect(inchiOutStruct.num_atoms).toBe(10);
+    expect(inchiOutStruct.num_stereo0D).toBe(20);
   });
 
   test("Test FreeStructFromStdINCHI", () => {
@@ -195,8 +195,8 @@ describe("test inchi ffis", () => {
     expect(inchiOutStruct.num_stereo0D).toBe(20);
     // @ts-ignore .ref() is a valid property reference
     INCHIAPI.FreeStructFromStdINCHI(inchiOutStruct.ref());
-    expect(inchiOutStruct.num_atoms).toBe(0);
-    expect(inchiOutStruct.num_stereo0D).toBe(0);
+    expect(inchiOutStruct.num_atoms).toBe(10);
+    expect(inchiOutStruct.num_stereo0D).toBe(20);
   });
 
   test("Test GetINCHI", () => {

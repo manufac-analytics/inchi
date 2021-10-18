@@ -26,9 +26,9 @@ describe("test api wrapped ffis functions", () => {
       data: { atom, szMessage, szLog },
     } = GetStructFromINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
     expect(status).toBe(0);
-    expect(atom.length).toBe(0);
-    expect(typeof szMessage).toBe("string");
-    expect(typeof szLog).toBe("string");
+    expect(atom.length).toBe(2);
+    expect(szMessage).toBe(null);
+    expect(szLog).toBe(null);
   });
 
   test("Check if GetStructFromINCHIEx method is working properly", () => {
@@ -37,9 +37,9 @@ describe("test api wrapped ffis functions", () => {
       data: { atom, szMessage, szLog },
     } = GetStructFromINCHIEx("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
     expect(status).toBe(0);
-    expect(atom.length).toBe(0);
-    expect(typeof szMessage).toBe("string");
-    expect(typeof szLog).toBe("string");
+    expect(atom.length).toBe(2);
+    expect(szMessage).toBe(null);
+    expect(szLog).toBe(null);
   });
 
   test("Check if GetStructFromStdINCHI method is working properly", () => {
@@ -48,8 +48,8 @@ describe("test api wrapped ffis functions", () => {
       data: { atom, szMessage, szLog },
     } = GetStructFromStdINCHI("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3");
     expect(status).toBe(0);
-    expect(atom.length).toBe(0);
-    expect(typeof szMessage).toBe("string");
-    expect(typeof szLog).toBe("string");
+    expect(atom.length).toBe(2);
+    expect(szMessage).toBe(null);
+    expect(szLog).toBe(null);
   });
 });
