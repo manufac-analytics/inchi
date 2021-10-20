@@ -20,6 +20,8 @@ import {
   MAX_NUM_STEREO_ATOM_NEIGH,
   MAX_NUM_STEREO_BONDS,
   NORM_ATOMS,
+  INCHIGEN_DATA,
+  INCHI_NUM,
 } from "../src/headers";
 import refNAPI from "ref-napi";
 import ArrayType from "ref-array-di";
@@ -456,4 +458,21 @@ describe("test inchi headers", () => {
   // strict.equal(INCHIGENDATA.num_components.toArray().length,INCHI_NUM);
   // strict.equal(INCHIGENDATA.NormAtomsNontaut.toArray().length,INCHI_NUM);
   // strict.equal(INCHIGENDATA.NormAtomsTaut.toArray().length,INCHI_NUM);
+
+  test("check INCHIGEN_DATA", () => {
+    /**
+     * Instantiate INCHIGEN_DATA
+     */
+    const INCHIGENDATA = new INCHIGEN_DATA({
+      pStrErrStruct: new Array(STR_ERR_LEN).fill(0),
+      num_components: new Array(INCHI_NUM).fill(new NORM_ATOMS()),
+      NormAtomsNontaut: new NORM_ATOM().ref(),
+      NormAtomsTaut: new NORM_ATOM().ref(),
+    });
+
+    expect(INCHIGENDATA.pStrErrStruct).toHaveLength(STR_ERR_LEN);
+    expect(INCHIGENDATA.num_components).toHaveLength(INCHI_NUM);
+    expect(INCHIGENDATA.NormAtomsNontaut.deref().toArray()).toHaveLength(INCHI_NUM);
+    // expect(INCHIGENDATA.NormAtomsTaut).toHaveLength(INCHI_NUM);
+  });
 });
