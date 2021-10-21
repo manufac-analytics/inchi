@@ -76,10 +76,6 @@ describe("test inchi deref", () => {
     expect(output[1].centralAtom).toBe(inchiStereo0D2.central_atom);
   });
 
-  /**
-   *  ! Message: Buffer instance must be at least 192 bytes to back this struct type
-   */
-
   test("Check generateINCHIInputPolymer function", () => {
     /**
      * Instantiate inchi_Input_Polymer
