@@ -76,33 +76,37 @@ describe("test inchi deref", () => {
     expect(output[1].centralAtom).toBe(inchiStereo0D2.central_atom);
   });
 
-  //   test("Check generateINCHIInputPolymer function", () => {
-  //     /**
-  //      * Instantiate inchi_Input_Polymer
-  //      */
-  //     const inchiInputPolymer = new inchi_Input_Polymer({
-  //       units: [
-  //         new inchi_Input_PolymerUnit({
-  //           id: 1,
-  //           type: 1,
-  //           subtype: 1,
-  //           conn: 1,
-  //           label: 1,
-  //           na: 1,
-  //           nb: 1,
-  //           xbr1: [1, 2, 3, 4],
-  //           xbr2: [1, 2, 3, 4],
-  //           smt: new Array(80).fill(7),
-  //           alist: new Array(11).fill(0),
-  //           blist: new Array(11).fill(0),
-  //         }).ref(),
-  //       ],
-  //       n: 1234,
-  //     });
+  /**
+   *  ! Message: Buffer instance must be at least 192 bytes to back this struct type
+   */
 
-  //     const output = generateINCHIInputPolymer(inchiInputPolymer);
-  //     expect(output.units[0].subType).toHaveLength(1);
+  // test("Check generateINCHIInputPolymer function", () => {
+  //   /**
+  //    * Instantiate inchi_Input_Polymer
+  //    */
+  //   const inchiInputPolymer = new inchi_Input_Polymer({
+  //     units: [
+  //       new inchi_Input_PolymerUnit({
+  //         id: 1,
+  //         type: 1,
+  //         subtype: 1,
+  //         conn: 1,
+  //         label: 1,
+  //         na: 1,
+  //         nb: 1,
+  //         xbr1: [1, 2, 3, 4],
+  //         xbr2: [1, 2, 3, 4],
+  //         smt: new Array(80).fill(7),
+  //         alist: new Array(11).fill(0),
+  //         blist: new Array(11).fill(0),
+  //       }).ref(),
+  //     ],
+  //     n: 1234,
   //   });
+
+  //   const output = generateINCHIInputPolymer(inchiInputPolymer);
+  //   expect(output.units[0].subType).toBe(1);
+  // });
 
   test("Check generateINCHIInputV3000 function", () => {
     /**
