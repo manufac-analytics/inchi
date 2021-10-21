@@ -472,6 +472,9 @@ describe("test inchi headers", () => {
 
     expect(INCHIGENDATA.pStrErrStruct).toHaveLength(STR_ERR_LEN);
     expect(INCHIGENDATA.num_components).toHaveLength(INCHI_NUM);
+    /**
+     * ! RangeError [ERR_BUFFER_OUT_OF_BOUNDS]: "length" is outside of buffer bounds
+     */
     // expect(INCHIGENDATA.NormAtomsNontaut.deref().toArray()).toHaveLength(INCHI_NUM);
     // expect(INCHIGENDATA.NormAtomsTaut).toHaveLength(INCHI_NUM);
   });
