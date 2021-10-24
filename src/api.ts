@@ -1,4 +1,7 @@
 import { INCHIAPI } from "./ffis";
+import refNAPI from "ref-napi";
+import ArrayType from "ref-array-di";
+const NAPIArrayType = ArrayType(refNAPI);
 import {
   INCHIOutputStruct,
   INCHIOutputStructEx,
@@ -6,12 +9,19 @@ import {
   inchi_OutputStruct,
   inchi_OutputStructEx,
   WarningFlagsTuple,
+  inchi_Atom,
+  inchi_Stereo0D,
+  inchi_Input,
+  inchi_Output,
+  INCHIInput,
 } from "./headers";
 import {
   generateINCHIAtoms,
   generateINCHIStereo0Ds,
   generateINCHIInputPolymer,
   generateINCHIInputV3000,
+  convertINCHIAtomsToInchiInputAtoms,
+  convertINCHIStereo0DsToInchiInputStereo0Ds,
 } from "./deref";
 
 // #region Types and Interfaces
@@ -286,6 +296,16 @@ export interface GetStructFromINCHIExOutput {
   data: INCHIOutputStructEx;
 }
 
+export interface GetINCHIOutput {
+  /**
+   * Returns One amongst -2 , -1 , 0 , 1 , 2 , 3 , 4 , 5
+   */
+  status: GetINCHIReturnCode;
+  /**
+   * Returns an object of inchi_Output
+   */
+  data: INCHIOutput;
+}
 // #endregion
 
 // #region Private Functions
@@ -473,4 +493,32 @@ export function GetStructFromStdINCHI(input: string, options?: GetINCHIOptions):
   return output;
 }
 
+export function GetINCHI(input: INCHIInput): GetINCHIOutput {
+  const InchiAtomArrayType = NAPIArrayType(inchi_Atom, 999);
+  const InchiStereo0DArrayType = NAPIArrayType(inchi_Stereo0D, 999);
+  const placeholderBuffer = new inchi_Input();
+  // @ts-expect-error Bad types in dep libs
+  const inchiInput = new inchi_Input(placeholderBuffer.ref(), {
+    // @ts-expect-error Bad types in dep libs
+    atom: new InchiAtomArrayType(convertINCHIAtomsToInchiInputAtoms(input.atom).ref()),
+    stereo0D: input.stereo0D
+      ? // @ts-expect-error Bad types in dep libs
+        new InchiStereo0DArrayType(convertINCHIStereo0DsToInchiInputStereo0Ds(input.stereo0D).ref())
+      : undefined,
+    szOptions: input.szOptions,
+    num_atoms: input.numAtoms,
+    num_stereo0D: input.numStereo0D,
+  });
+  const inchiOutput = new inchi_Output();
+  // @ts-expect-error Bad types in dep libs
+  const returnCode: GetINCHIReturnCode = INCHIAPI.GetINCHI(inchiInput.ref(), inchiOutput.ref());
+  const outputData: INCHIOutput = {
+    szInChI: inchiOutput.szInChI as string,
+    szAuxInfo: inchiOutput.szAuxInfo as string,
+    szMessage: inchiOutput.szMessage as string,
+    szLog: inchiOutput.szLog as string,
+  };
+  const output: GetINCHIOutput = { status: returnCode, data: outputData };
+  return output;
+}
 // #endregion

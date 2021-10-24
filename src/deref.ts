@@ -12,9 +12,14 @@ import {
   EightyNumberTuple,
   inchi_Input_V3000,
   INCHIInputV3000,
+  MAXVAL,
+  ATOM_EL_LEN,
+  NUM_H_ISOTOPES,
 } from "./headers";
 import refNAPI from "ref-napi";
 import { inchi_Atom, inchi_Stereo0D } from "./headers";
+import ArrayType from "ref-array-di";
+const NAPIArrayType = ArrayType(refNAPI);
 
 export function generateINCHIAtoms(input: ReturnType<typeof inchi_Atom>[]): INCHIAtom[] {
   let output: INCHIAtom[] = input.map((element) => {
@@ -102,4 +107,47 @@ export function generateINCHIInputV3000(input: ReturnType<typeof inchi_Input_V30
     listsSterac: input.lists_sterac.toArray().map((element) => element.toArray()),
   };
   return out;
+}
+
+export function convertINCHIAtomsToInchiInputAtoms(input: INCHIAtom[]): ReturnType<typeof inchi_Atom>[] {
+  const MAXVALArrayType = NAPIArrayType(refNAPI.types.short, MAXVAL);
+  const ATOMELLenArrayType = NAPIArrayType(refNAPI.types.char, ATOM_EL_LEN);
+  const NUMHIsotopesArrayType = NAPIArrayType(refNAPI.types.char, NUM_H_ISOTOPES + 1);
+  const output: ReturnType<typeof inchi_Atom>[] = input.map((element) => {
+    const { x, y, z, neighbor, bondType, bondStereo, elName, numBonds, numIsoH, isotopicMass, radical, charge } =
+      element;
+    const out: ReturnType<typeof inchi_Atom> = {
+      x: x,
+      y: y,
+      z: z,
+      neighbor: new MAXVALArrayType([...neighbor]),
+      bond_type: new MAXVALArrayType([...bondType]),
+      bond_stereo: new MAXVALArrayType([...bondStereo]),
+      elname: new ATOMELLenArrayType([...elName]),
+      num_bonds: numBonds,
+      num_iso_H: new NUMHIsotopesArrayType([...numIsoH]),
+      isotopic_mass: isotopicMass,
+      radical: radical,
+      charge: charge,
+    };
+    return out;
+  });
+  return output;
+}
+
+export function convertINCHIStereo0DsToInchiInputStereo0Ds(
+  input: INCHIStereo0D[]
+): ReturnType<typeof inchi_Stereo0D>[] {
+  const NeighborArrayType = NAPIArrayType(refNAPI.types.short, 4);
+  const output: ReturnType<typeof inchi_Stereo0D>[] = input.map((element) => {
+    const { neighbor, centralAtom, type, parity } = element;
+    const out: ReturnType<typeof inchi_Stereo0D> = {
+      neighbor: new NeighborArrayType([...neighbor]),
+      central_atom: centralAtom,
+      type: type,
+      parity: parity,
+    };
+    return out;
+  });
+  return output;
 }
