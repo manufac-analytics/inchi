@@ -10,13 +10,13 @@ _NodeJS/TypeScript Port of [InChI 1.06](https://www.inchi-trust.org/downloads/)_
 
 Cheminformatics can be defined as the field of solving chemistry problems with the help of computers. It is the field of science where computational methods and information science models, like machine learning, are used to solve problems in chemistry, biology and related molecular fields. These methods can also be used to tackle difficulties in chemical and allied industries, where chemical processes are involved and studied. Information is fed in a way that is flexible to the computers. Line notations, here, represent the structure of chemical compounds and nomenclature as a linear sequence of letters and numbers. Examples of line notations include the Wiswesser Line-Formula Notation (WLN), Sybyl Line Notation (SLN), and Representation of structure diagram arranged linearly (ROSDAL). Currently, the most widely used linear notations are the Simplified Molecular-Input Line-Entry System (SMILES), and the IUPAC International Chemical Identifier (InChI).
 
-References : [Cheminformatics - Wikipedia](https://en.wikipedia.org/wiki/Cheminformatics), [Line Notations - ChemLibreTexts](https://chem.libretexts.org/Courses/Intercollegiate_Courses/Cheminformatics_OLCC_(2019)/2._Representing_Small_Molecules_on_Computers/2.4%3A_Line_Notation)
+References : [Cheminformatics - Wikipedia](https://en.wikipedia.org/wiki/Cheminformatics), [Line Notations - ChemLibreTexts](<https://chem.libretexts.org/Courses/Intercollegiate_Courses/Cheminformatics_OLCC_(2019)/2._Representing_Small_Molecules_on_Computers/2.4%3A_Line_Notation>)
 
 ### What are some features of the InChI notation?
 
-1. Structure-based approach. Anybody anywhere should be able to produce InChI from just the structural formula of a chemical substance. 
+1. Structure-based approach. Anybody anywhere should be able to produce InChI from just the structural formula of a chemical substance.
 2. Strict uniqueness of identifier. The same label always means the same substance, and the same substance always receives the same label (under the same labelling conditions). This is achieved through a well-defined procedure of obtaining canonical numbering of atoms.
-3. Non-proprietary, Open Source, free and open approach.* Free access to developed computer programs. No payment is assumed under any circumstances.* Open access to the source  code. Everybody is free to read and use the source code. 
+3. Non-proprietary, Open Source, free and open approach._ Free access to developed computer programs. No payment is assumed under any circumstances._ Open access to the source code. Everybody is free to read and use the source code.
 4. Applicability to the entire domain of “classic organic chemistry” and, to a significant extent, to inorganic compounds, bearing in mind the eventual goal to extend InChI to cover all of chemistry.
 5. Ability to generate the same InChI for structures drawn under (reasonably) different styles and conventions, specifically those represented by mesomers.
 6. Hierarchical approach allowing encoding of molecular structure with different levels of “granularity”, dependent on algorithms and software switches. In particular, the ability to include/exclude stereochemical, isotopic and tautomeric information was considered necessary.
@@ -30,7 +30,7 @@ The Simplified Molecular-Input Line-Entry System (SMILES) is a line notation for
 
 Unlike SMILES, InChI is a canonical line notation and so is a unique identifier that is built upon a set of nomenclature rules. That is, although there are canonical SMILES built through a canonicalization algorithm, there can be more than one canonicalization algorithm for SMILES, and so you can have more than one SMILES string for the same structure. Therefore, InChI aims to provide a unique, or canonical, identifier for chemical structures, while SMILES strings are widely used for storage and interchange of chemical structures, but no standard exists to generate a canonical SMILES string.
 
-References : [SMILES - Wikipedia](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system), [SMILES and InChI](https://chem.libretexts.org/Courses/Fordham_University/Chem1102%3A_Drug_Discovery_-_From_the_Laboratory_to_the_Clinic/05%3A_Organic_Molecules/5.08%3A_Line_Notation_(SMILES_and_InChI)#title), [SMILES representation from InChI](https://jcheminf.biomedcentral.com/articles/10.1186/1758-2946-4-22)
+References : [SMILES - Wikipedia](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system), [SMILES and InChI](<https://chem.libretexts.org/Courses/Fordham_University/Chem1102%3A_Drug_Discovery_-_From_the_Laboratory_to_the_Clinic/05%3A_Organic_Molecules/5.08%3A_Line_Notation_(SMILES_and_InChI)#title>), [SMILES representation from InChI](https://jcheminf.biomedcentral.com/articles/10.1186/1758-2946-4-22)
 
 ---
 
