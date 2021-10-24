@@ -500,10 +500,10 @@ export function GetINCHI(input: INCHIInput): GetINCHIOutput {
   // @ts-expect-error Bad types in dep libs
   const inchiInput = new inchi_Input(placeholderBuffer.ref(), {
     // @ts-expect-error Bad types in dep libs
-    atom: InchiAtomArrayType(convertINCHIAtomsToInchiInputAtoms(input.atom).ref()),
+    atom: new InchiAtomArrayType(convertINCHIAtomsToInchiInputAtoms(input.atom).ref()),
     stereo0D: input.stereo0D
-    // @ts-expect-error Bad types in dep libs
-      ? InchiStereo0DArrayType(convertINCHIStereo0DsToInchiInputStereo0Ds(input.stereo0D).ref())
+      ? // @ts-expect-error Bad types in dep libs
+        new InchiStereo0DArrayType(convertINCHIStereo0DsToInchiInputStereo0Ds(input.stereo0D).ref())
       : undefined,
     szOptions: input.szOptions,
     num_atoms: input.numAtoms,

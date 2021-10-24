@@ -120,12 +120,12 @@ export function convertINCHIAtomsToInchiInputAtoms(input: INCHIAtom[]): ReturnTy
       x: x,
       y: y,
       z: z,
-      neighbor: MAXVALArrayType([...neighbor]),
-      bond_type: MAXVALArrayType([...bondType]),
-      bond_stereo: MAXVALArrayType([...bondStereo]),
-      elname: ATOMELLenArrayType([...elName]),
+      neighbor: new MAXVALArrayType([...neighbor]),
+      bond_type: new MAXVALArrayType([...bondType]),
+      bond_stereo: new MAXVALArrayType([...bondStereo]),
+      elname: new ATOMELLenArrayType([...elName]),
       num_bonds: numBonds,
-      num_iso_H: NUMHIsotopesArrayType([...numIsoH]),
+      num_iso_H: new NUMHIsotopesArrayType([...numIsoH]),
       isotopic_mass: isotopicMass,
       radical: radical,
       charge: charge,
@@ -142,7 +142,7 @@ export function convertINCHIStereo0DsToInchiInputStereo0Ds(
   const output: ReturnType<typeof inchi_Stereo0D>[] = input.map((element) => {
     const { neighbor, centralAtom, type, parity } = element;
     const out: ReturnType<typeof inchi_Stereo0D> = {
-      neighbor: NeighborArrayType([...neighbor]),
+      neighbor: new NeighborArrayType([...neighbor]),
       central_atom: centralAtom,
       type: type,
       parity: parity,
